@@ -1,4 +1,4 @@
-// Script file for the More Extra Themes mod for S3AIR. License yet undecided, so for the time being treat this script as if it is using the Unlicense.
+// Script file for the More Extra Themes mod for S3AIR.
 
 /*
 	This script file is the primary compnent of the Per-Character Themes mod for Sonic 3 A.I.R. 
@@ -11,11 +11,10 @@
 	
 */
 
-// Although the license allows it, please do not include this script with your mod! It is an early work in progress that will be updated frequently. Also, using it will mean that you will have to adhere to the very strict license that this mod uses. 
-// ...Wait, you mobile kids probably don't understand me. Fine then, let's word it a way that you can understand:
+// Although the license allows it, please do not include this script with your mod! It is an early work in progress that will be updated frequently. Also, using it will mean that you will have to adhere to the very strict license that this mod uses.
+// Of course, I'm well aware of the Spanish following that Sonic has. Therefore:
 // Aunque la licencia lo permite, ¡no incluya este script con su mod! Es un trabajo inicial en progreso que se actualizará con frecuencia. Además, usarlo significará que tendrá que cumplir con la licencia muy estricta que usa este mod.
-// Good. I presume that we are now amigos since I put in the effort to throw that in Google Translate. 
-// If any bilinguals can help me do a more accurate translation that wasn't spat out by a neural network, I'll hapilly
+// If any bilinguals can help me do a more accurate translation that wasn't regurgitated by Google Translate, I'll hapilly utilise it.
 
 // Actually, I didn't want to GPL this. Damn, that means people are gonna breach my license again.
 
