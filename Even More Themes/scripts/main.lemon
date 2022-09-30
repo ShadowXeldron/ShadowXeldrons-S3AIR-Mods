@@ -1,0 +1,42 @@
+// Script file for the More Extra Themes mod for S3AIR. License yet undecided, so for the time being treat this script as if it is using the Unlicense.
+
+/*
+	This script file is the primary compnent of the Per-Character Themes mod for Sonic 3 A.I.R. 
+	Copyright (C) 2022 by ShadowXeldron
+    #
+	Some code is taken from the Sonic 3 A.I.R script software distribution, Copyright (C) 2017-2022 by Eukaryot
+
+	This mod is published under the GNU GPLv3 open source software license, see LICENSE.txt
+	or https://www.gnu.org/licenses/gpl-3.0.en.html
+	
+*/
+
+// Although the license allows it, please do not include this script with your mod! It is an early work in progress that will be updated frequently. Also, using it will mean that you will have to adhere to the very strict license that this mod uses. 
+// ...Wait, you mobile kids probably don't understand me. Fine then, let's word it a way that you can understand:
+// Aunque la licencia lo permite, ¡no incluya este script con su mod! Es un trabajo inicial en progreso que se actualizará con frecuencia. Además, usarlo significará que tendrá que cumplir con la licencia muy estricta que usa este mod.
+// Good. I presume that we are now amigos since I put in the effort to throw that in Google Translate. 
+// If any bilinguals can help me do a more accurate translation that wasn't spat out by a neural network, I'll hapilly
+
+// Actually, I didn't want to GPL this. Damn, that means people are gonna breach my license again.
+
+// Contextual audio overrides with an old friend of ours
+
+function void Standalone.playAudio(u8 sfxId) // And not in the way you were expecting it...
+{
+    //u64 soundKey = sfxId // Note to self, u64 is a string
+
+    if (sfxId == MUSIC_MAINBOSS && isMainCharacter(CHARACTER_KNUCKLES))
+    {
+        Audio.playAudio("BossEggrobo", 0) // Ta-da! We're using the PCT method since that's the one I know works. However, we're in Standalone.playAudio this time.
+    }
+    else
+    {
+        base.Standalone.playAudio(sfxId)
+        //return // Calls the base formula and just stops existing.
+    }
+
+    //Audio.playAudio(soundKey, 0) // Aw crap, I'm gonna have to GPL this mod, aren't I? I even had my hopes up about being able to slap a lax permissive on this thing.
+}
+
+// Specific function overrides designed to kick in at certain moments.
+
