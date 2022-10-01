@@ -11,6 +11,8 @@
 	
 */
 
+define u64 FINAL2 = "Final2"
+
 // Although the license allows it, please do not include this script with your mod! It is an early work in progress that will be updated frequently. Also, using it will mean that you will have to adhere to the very strict license that this mod uses.
 // Of course, I'm well aware of the Spanish following that Sonic has. Therefore:
 // Aunque la licencia lo permite, ¡no incluya este script con su mod! Es un trabajo inicial en progreso que se actualizará con frecuencia. Además, usarlo significará que tendrá que cumplir con la licencia muy estricta que usa este mod.
@@ -22,12 +24,28 @@
 
 function void Standalone.playAudio(u8 sfxId) // And not in the way you were expecting it...
 {
+    //u8 sfxId = D0.u8
     //u64 soundKey = sfxId // Note to self, u64 is a string
-
-    if (sfxId == MUSIC_MAINBOSS && isMainCharacter(CHARACTER_KNUCKLES))
+    if (sfxId == MUSIC_BIGARMS)
+    {
+        if (global.zone == 0x17) // Spilt because something to do with binary operations. HOW archaic is this language that you can't do if statements like any normal one!?
+        {
+            Audio.playAudio("Final1", 0) // Function overrides will be used to get it to play when I want.
+        }
+        else
+        {
+            base.Standalone.playAudio(sfxId)
+        }
+    }
+    
+    else if (sfxId == MUSIC_MAINBOSS && isMainCharacter(CHARACTER_KNUCKLES)) // Checks for Knuckles' boss music
     {
         Audio.playAudio("BossEggrobo", 0) // Ta-da! We're using the PCT method since that's the one I know works. However, we're in Standalone.playAudio this time.
     }
+    /*else if ((sfxId == MUSIC_MAINBOSS || MUSIC_MINIBOSS_2) && objA0.value39 == 6)
+    {
+        Audio.playAudio("FBZLaser", 0)
+    }*/
     else
     {
         base.Standalone.playAudio(sfxId)
@@ -38,4 +56,18 @@ function void Standalone.playAudio(u8 sfxId) // And not in the way you were expe
 }
 
 // Specific function overrides designed to kick in at certain moments.
+// Someone really needs to make lemon plugins for Kate and VSCodium. I sick of telling it that it's 68K and and C. Especially when it starts thinking that address hooks are comments.
 
+//# address-hook(0x080058) end(0x080080)
+function void fn080058()
+{
+    base.fn080058()
+    Audio.playAudio("Final2", 0)
+}
+
+//# address-hook(0x081206) end(0x08122a)
+function void fn081206()
+{
+    base.fn081206()
+    Audio.playAudio("Final3", 0)
+}
