@@ -11,14 +11,22 @@
 	
 */
 
-define u64 FINAL2 = "Final2"
-
 // Although the license allows it, please do not include this script with your mod! It is an early work in progress that will be updated frequently. Also, using it will mean that you will have to adhere to the very strict license that this mod uses.
 // Of course, I'm well aware of the Spanish following that Sonic has. Therefore:
 // Aunque la licencia lo permite, ¡no incluya este script con su mod! Es un trabajo inicial en progreso que se actualizará con frecuencia. Además, usarlo significará que tendrá que cumplir con la licencia muy estricta que usa este mod.
 // If any bilinguals can help me do a more accurate translation that wasn't regurgitated by Google Translate, I'll hapilly utilise it.
 
 // Actually, I didn't want to GPL this. Damn, that means people are gonna breach my license again.
+
+// Config variables
+
+global u8 config.seperatefinalbossphases
+global u8 config.knuxboss
+global u8 config.eggrobotheme
+
+
+
+
 
 // Contextual audio overrides with an old friend of ours
 
@@ -42,6 +50,97 @@ function void Standalone.playAudio(u8 sfxId) // And not in the way you were expe
     {
         Audio.playAudio("BossEggrobo", 0) // Ta-da! We're using the PCT method since that's the one I know works. However, we're in Standalone.playAudio this time.
     }
+
+    else if (sfxId == MUSIC_SPECIALSTAGE)
+    {
+        if !global.sk_bluespheres // Thanks to Thorn for this!
+        {
+            if global.next_bluespheres == 0
+            {
+                Audio.playAudio("SS1", 0)
+            }
+            else if global.next_bluespheres == 1
+            {
+                Audio.playAudio("SS2", 0)
+            }
+            else if global.next_bluespheres == 2
+            {
+                Audio.playAudio("SS3", 0)
+            }
+            else if global.next_bluespheres == 3
+            {
+                Audio.playAudio("SS4", 0)
+            }
+            else if global.next_bluespheres == 4
+            {
+                Audio.playAudio("SS5", 0)
+            }
+            else if global.next_bluespheres == 5
+            {
+                Audio.playAudio("SS6", 0)
+            }
+            else if global.next_bluespheres == 6
+            {
+                Audio.playAudio("SS7", 0)
+            }
+            else if global.next_bluespheres == 7
+            {
+                Audio.playAudio("Continue", 0) // Joke involving the secret Special Stage
+            }
+            else
+            {
+                base.Standalone.playAudio(sfxId) // Final fallback in case a mod theoretically adds more S3 blue sphere layouts
+            }
+        }
+        else if global.sk_bluespheres // Thanks to Thorn for this!
+        {
+            if global.next_bluespheres == 0
+            {
+                Audio.playAudio("SS8", 0)
+            }
+            else if global.next_bluespheres == 1
+            {
+                Audio.playAudio("SS9", 0)
+            }
+            else if global.next_bluespheres == 2
+            {
+                Audio.playAudio("SS10", 0)
+            }
+            else if global.next_bluespheres == 3
+            {
+                Audio.playAudio("SS11", 0)
+            }
+            else if global.next_bluespheres == 4
+            {
+                Audio.playAudio("SS12", 0)
+            }
+            else if global.next_bluespheres == 5
+            {
+                Audio.playAudio("SS13", 0)
+            }
+            else if global.next_bluespheres == 6
+            {
+                Audio.playAudio("SS14", 0)
+            }
+            else if global.next_bluespheres == 7
+            {
+                Audio.playAudio("Continue", 0) // Joke involving the secret Special Stage
+            }
+            else
+            {
+                base.Standalone.playAudio(sfxId) // Final fallback in case a mod theoretically adds more S3 blue sphere layouts
+            }
+        }
+        else
+        {
+            base.Standalone.playAudio(sfxId)
+        }
+    }
+
+    else if (sfxId == MUSIC_LEVELCLEAR && objA0.countdown_value == 269)
+    {
+        //return // HEHAHOHO!
+    }
     /*else if ((sfxId == MUSIC_MAINBOSS || MUSIC_MINIBOSS_2) && objA0.value39 == 6)
     {
         Audio.playAudio("FBZLaser", 0)
@@ -56,7 +155,7 @@ function void Standalone.playAudio(u8 sfxId) // And not in the way you were expe
 }
 
 // Specific function overrides designed to kick in at certain moments.
-// Someone really needs to make lemon plugins for Kate and VSCodium. I sick of telling it that it's 68K and and C. Especially when it starts thinking that address hooks are comments.
+// Someone really needs to make lemon plugins for Kate and VSCodium. I sick of telling them that it's 68K and C. Especially when it starts thinking that address hooks are comments.
 
 //# address-hook(0x080058) end(0x080080)
 function void fn080058()
@@ -71,3 +170,34 @@ function void fn081206()
     base.fn081206()
     Audio.playAudio("Final3", 0)
 }
+
+/*
+//# address-hook(0x02e410) end(0x02e4d2)
+function void fn02e410()
+{
+    base.fn02e410()
+    SpecialMusic()
+}*/
+
+function void SpecialMusic()
+{
+    if (bluespheres.blue_remaining == 0) // You're winner!
+    {
+        if !(Audio.isPlayingAudio("SpecialClear"))
+        {
+            Audio.playAudio("SpecialClear", 0)
+        }
+    }
+    else // YOU LOSE
+    {
+        if !(Audio.isPlayingAudio("SpecialFail"))
+        {
+            Audio.playAudio("SpecialFail", 0)
+        }
+    }
+}
+
+/*function u8 BossHPZKnuckles.chooseMusicTrack() // Knuckles music override
+{
+    return 0x68 // The basegame actually does have a theme select, allowing you to choose what Knuckles song plays in this fight. What this does however is load in a custom ID.
+}*/
