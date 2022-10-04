@@ -20,11 +20,20 @@
 
 // Config variables
 
-global u8 config.seperatefinalbossphases
-global u8 config.knuxboss
-global u8 config.eggrobotheme
+global u8 config.boss.finalbossphases
+global u8 config.boss.knuxboss
+global u8 config.boss.eggrobo
 
+global u8 config.cutscene.aiz
+global u8 config.cutscene.hpz
+global u8 config.cutscene.ssz
 
+global u8 config.misc.ssztracks
+global u8 config.misc.continue //DANANANANANANANANANANANANANANANANA 
+
+// Other secret non-config variables; shhhh!
+
+global u8 sszcurrentsong
 
 
 
@@ -45,10 +54,38 @@ function void Standalone.playAudio(u8 sfxId) // And not in the way you were expe
             base.Standalone.playAudio(sfxId)
         }
     }
+
+    if (sfxId == 0x0a) // Yes, I really did do FBZ2 trickery here. It's a funny throwback to how Knuckles' boss music in Pocket Adventure is FBZ2.
+    {
+        if ((global.zone_act == 0x1601) && (global.zone_act == 0x1601)) // Checks if you're in HPZ
+        {
+            Audio.playAudio("KnuxHPZ", 0) // If so, plays the Knuckles song
+        }
+        else
+        {
+            base.Standalone.playAudio(sfxId)
+        }
+    }
     
     else if (sfxId == MUSIC_MAINBOSS && isMainCharacter(CHARACTER_KNUCKLES)) // Checks for Knuckles' boss music
     {
         Audio.playAudio("BossEggrobo", 0) // Ta-da! We're using the PCT method since that's the one I know works. However, we're in Standalone.playAudio this time.
+    }
+
+    else if (sfxId == MUSIC_SSZ)
+    {
+        if (sszcurrentsong == 2)
+        {
+            Audio.playAudio("SSZ2", 0)
+        }
+        else if (sszcurrentsong == 3)
+        {
+            Audio.playAudio("SSZ3", 0)
+        }
+        else 
+        {
+            base.Standalone.playAudio(sfxId)
+        }
     }
 
     else if (sfxId == MUSIC_SPECIALSTAGE)
@@ -172,7 +209,7 @@ function void fn081206()
 }
 
 /*
-//# address-hook(0x02e410) end(0x02e4d2)
+ address-hook(0x02e410) end(0x02e4d2)
 function void fn02e410()
 {
     base.fn02e410()
@@ -197,7 +234,50 @@ function void SpecialMusic()
     }
 }
 
-/*function u8 BossHPZKnuckles.chooseMusicTrack() // Knuckles music override
+function u8 BossHPZKnuckles.chooseMusicTrack() // Knuckles music override
 {
-    return 0x68 // The basegame actually does have a theme select, allowing you to choose what Knuckles song plays in this fight. What this does however is load in a custom ID.
-}*/
+    return 0x0a // The basegame actually does have a theme select, allowing you to choose what Knuckles song plays in this fight. It uses this funtion for it.
+    // So, what this script does is it changes the level music to AIZ1 and overrides that track in Standalone.playAudio to play the custom soundkey.
+    // Sadly, I can't just load in any old soundkey here because it only accepts u8 values.
+}
+
+// SSZ music handling
+
+//# address-hook(0x057c1e) end(0x057cd0)
+function void fn057c1e()
+{
+    sszcurrentsong = 1 // Preemptive reset code
+    base.fn057c1e()
+}
+
+
+//# address-hook(0x07a5a0) end(0x07a61c)
+function void fn07a5a0()
+{
+	base.fn07a5a0()
+
+	//D0.u8 = boss.remaining_hits
+	if (boss.remaining_hits == 0)
+    {
+        sszcurrentsong = 2
+    }
+}
+
+
+//# address-hook(0x07acf2) end(0x07ad72)
+function void fn07acf2()
+{
+	base.fn07acf2()
+
+	if (boss.remaining_hits == 0)
+	{
+        sszcurrentsong = 3
+    }
+}
+
+//# address-hook(0x057f18) end(0x057f3a)
+function void fn057f18()
+{
+    Audio.playAudio("SSZBoarding",0)
+    base.fn057f18()
+}
