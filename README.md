@@ -21,5 +21,5 @@ No SHC Splash
 Removes the trigger for the Sonic Hacking Contest splash screen, so you don't have to see it every time you boot up the game with SHC mods installed. Unlike all my other script mods, I have dedicated this to the public domain with the CC0 since it's only 5 lines long.
 
 But what about your music replacement mods?
-_
+-
 I don't feel right putting mods which don't have much code in them on GitHub. Because of that, you can find them in my cloud storage [here](https://mega.nz/folder/TiBkDZQD#HYsbMsR-LqBpL3PlbNhw9Q).
