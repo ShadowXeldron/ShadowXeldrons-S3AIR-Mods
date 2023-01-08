@@ -10,7 +10,7 @@ My first public mod for S3AIR. Simply put, this gives each character their own t
 
 Even More Themes [WIP]
 -
-## This mod is a work-in-progress and should not be considered feature complete!
+### This mod is a work-in-progress and should not be considered feature complete!
 A WIP project that I'm on and off about. Simply put, what this does is it expands the number of unique sound IDs and plays them at specific moments.
 
 Fun fact: This repository was originally meant for this project
