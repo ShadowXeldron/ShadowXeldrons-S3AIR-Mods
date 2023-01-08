@@ -7,7 +7,7 @@ These are the mods that have been copied here:
 
 Per-Character Themes
 -
-My first public mod for S3AIR. Simply put, this gives each character their own themes and jingles. It includes support for Extra Slot Mighty, and some addons can be found with a link in the mod's "extras" folder.
+My first public mod for S3AIR. Simply put, this gives each character their own themes and jingles. It also includes support for Extra Slot Mighty.
 
 Even More Themes [WIP]
 -
