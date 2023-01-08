@@ -1,0 +1,5 @@
+function void SHCSplash.showSplashScreen()
+{
+	// Yeah, this is all it does. Anticlimatic, amirite?
+	u8 LOL = 0x01
+}

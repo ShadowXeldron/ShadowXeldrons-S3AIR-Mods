@@ -1,0 +1,89 @@
+TROUBLE FOR NOTHING: THE SPEED SHOES BLUES, also known as "Why you should check a project's submission license instead of just assuming that its the default"
+
+I see you are curious enough to check in my extras folder. Now, you may be wondering WHY I found those wretched Speed Shoes so difficult. Well, there's two reasons:
+
+1. A certain blue erinaceus who rears his ugly head whenever the game boots.
+2. Somebody already did it, and all the Android kids (my term for mobile users who don't have PCs) get REALLY wingey when they think somebody stole a mod (well, when they aren't the ones stealing mods at least. But that's beyond the scope of this article).
+3. Replaying the song from the beginning every single frame
+
+Now, you may be wondering WHY I wanted to include per-character speed shoes music. Well, put simply, it's because Megamix Mania has it. That's the only reason why.
+
+Now, for this storied tale, I'll start with point 2 because its by far the most important.
+
+The main mod that I (and most people) use for Speed Shoes music is Dedicated Speed Shoes Music by Speed Shoes Music 2 by Lave slime (whose name I keep mispelling as Lavaslime, hands up if you've done that too!), which you can download at https://gamebanana.com/mods/54433. If you want to use its implementation instead of mine. This particular mod uses the following license:
+
+"Do whatever you want - edit, redistribute, use in your own music pack, whatever. No credit is needed, although it would certainly be nice."
+
+So, that mod's license is an informal license. These things aren't... great, since informal licenses aren't legally enforceable in some countries (read more at https://www.gnu.org/licenses/license-list.html#informal. I live in the UK, so I'm not sure whether they actually work here, but they are enforceable in America. Still, if I were Lave slime then I would have used the CC0 instead since it's basically the same but written in lawyerish and therefore applicable in more places. Also, don't get me started on that mod's license checklist, which. The checklists aren't enforceable however and were probably added after Lave slime set the license to this informal one. So, why didn't I just reuse the code from this mod? Well...
+
+I thought it was using GameBanana's default license, which is *deep breath* the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International, or CC-BY-NC-ND 4.0. Basically, what that means is that only the original uploader can use any of the mod's assets. Others are, however, perimitted to redistribute it on the sole condition that they provide attribution (what you lot call giving credit) and don't make any money off of it. So, basically, if one of the Android kids wanted to make a modpack using your CC-BY-NC-ND thing they can and they don't have to ask you for permission as long as they don't edit any of it. If you don't want people doing that, you should change your license text to something along the lines of "Reuse, redistribution or modificarion of this mod and any of its assets - commercial or otherwise - is expressly forbidden unless explicit permission is granted". Note that you cannot use any ripped graphics if you do that.
+
+So, you may be wondering, "well what does that have to do with your mod?" Well, my mod DOESN'T use the CC-BY-NC-ND, but rather the GNU General Public License version 3 (GNU GPL v3 for short), which is the exact same license that Eukayrot uses for Sonic 3 AIR. The reason why my mod uses such a license is because all versions prior to 1.4 actually used direct rips of basegame code. The GNU GPL v3 is an open source license that basically allows the code to be reused for any purpose as long as:
+
+1. The modified code uses the exact same license
+2. No DRM (anti-piracy in layman terms) is included. Sorry Bandwav.
+3. Any and all components must use a compatible license with similar terms. 
+
+So, if you've copied code from the Sonic 3 AIR GitHub repository or sonic3air_dev to use in mod and still demand that people don't use your stuff, you've basically commited copyright infringement and are now what the shills on the Sonic 3 AIR Discord server would call a "pirate". Big oof. Although, to be fair, you most likely downloaded a cracked ROM anyway and are likely already the archnemesis of that stupid S3AIR Discord. Mondo ouch. But, do I care? Not at all! SEGA Sammy produces pachinko machines for crying out loud, so if that doesn't scream "dodgy" then I don't know what does. And no S3AIR Discord, no amount of Appels and Yuji Nakas will be enough to convince me that downloading a 25+ years old delisted game is morally, ethically, and spiritualy wrong. I'm posh though so I bought the actual S3&K ROM when it was still up before SEGA went and swapped it out for the cashgrab remaster that we do not talk about. Anyway, where was I? Ah, yes, CC-BY-NC-ND. You may have noticed that point 3 states that all components need to have GPL-compatible license. Well, the CC-BY-NC-ND is completely incompatible with the GPL. Because I didn't know that Speed Shoes Music 2 has an informal "do as you please" license (in part fueled by all the people who similarly didn't see the license text asking for permission), I thought that I simply would not be able to use that code since 1. I would have no modify it, which breaches the "NoDerivatives" part of the CC-BY-NC-ND, and 2. even if I was allowed to modify it I still wouldn't be allowed to use it due to licensing reasons. Therefore, I had to... bend the rules slightly.
+
+My first attempt at adding speed shoes music was back in the days of canned-fix.lemon. While I was fixing up my mod for Terrelstudios (who requested the 1.4 patch on the grounds of all the previous versions being incompatible with Custom Major Music), I got side-tracked and left sonic-speed, tails-speed and knux-speed in the audio-replacements.json, with there even being a file called SonicSpeed.ogg in the mod's audio folder. Also, if you've looked in canned-fix.lemon, you may have come across this commented out code:
+
+/*else if (sfxId == "speedshoes") // Speedups hopefully
+		{
+			if (isMainCharacter(CHARACTER_KNUCKLES) && option.knux.gameover == 1)
+			{
+				soundKey = "knux-gameover"
+			}
+			else if (isMainCharacter(CHARACTER_TAILS) && option.tails.gameover == 1)
+			{
+				soundKey = "tails-gameover"
+			}
+			else if (isMainCharacter(CHARACTER_SONIC) && option.sonic.gameover == 1)
+			{
+				soundKey = "sonic-gameover"
+			}
+		}*/
+		
+Well, this was my vey first attempt at adding support for speed shoes music, requiring that a mod (any mod, but preferably Speed Shoes 2) attempted to execute Standalone.playAudio("speedshoes"). However, Standalone.playAudio can only accept u8 values, unlike Audio.playAudio which is able to take u64 values such as strings. So, back to the drawing board.
+
+The speed shoes languished in the to-do list for some time until I finished implementing a character detector that should be easier to expand and quicker to type (which we'll get back to later), and then languised for longer until I implemented all the Mighty stuff. Once that was done, I knew it was time for the innevitable... As of writing this, line 764 contains this line:
+
+// Don't get too excited boys(?), those were the EASY ones! Now it's the dreaded speed shoes.
+
+This time, I used function overrides to get my thing in place. So, despite the false assumption that I had about Speed Shoes Music 2's license, I had a nose in there. The functions that Speed Shoes Music 2 overrides are ItemEffect.ApplySpeedUp, changeMusicTempo and Character.updateBonusEffects. So, my first attempt was to attack ItemEffect.ApplySpeedUp. However, nothing happened! So, I sighed and waltzed over to the S3AIR GitHub to see how ChangeMusicTempo actually worked. So I tried that way (base.ItemEffect.ApplySpeedUp() actually calls ChangeMusicTempo(8), so the idea was to have it check if the tempo was being upped by eight), but it still wouldn't work. I sulked for a bit, then went to bed. The next morning, it was war with it again. I copied the full source of Speed Shoes 2 in to see what makes it tick, and then I noticed this:
+
+//# address-hook(0x01d90a) end(0x01d94e)
+
+I've looked at S3AIR's source code tons of times and saw that stuff everywhere, but every editor I have used recognises it as a comment. Therefore, I used to pay it no heed. But, this time I looked in the Oxygen Handbook. Where saw this:
+
+"Address Hooks
+Functions can have so-called address hooks. This is an associated ROM address for the function, to allow for indirect calls using addresses
+with the "call" keyword, like in call 0x123456 + D0.u16 .
+Whenever such a call is executed, the function with the resulting address's hook will get called. Or none at all, if there is no function with that
+hook, leading to the call having no effect."
+
+Kate, Gedit, GitHub and VSCodium flipping lied to me. So, I now knew what was going on and added in my version of that script, which instead of playing the music directly I decided to make it "similar but different" buy using a global u8 variable called speedShoesUsed. In testing, I only had sonic-speed initialised with SonicSpeed.ogg, so the idea was to play that when someone got a speedup and then stop it once a speedup ended. So, what went wrong? Well, the music would constantly restart every single frame, making a really horrible noise. So, I had to make another u8 variable that would decide if the song was playing in order to stop this from happening. Then, chooseFittingMusic would end the song and return everything to normal. With that out the way, I tried to implement the actual Per-Chracter aspect. I got some OGGs for everyone and set them up. What would happen then is that the music would be played via a function that picked a sound ID based off of a function that would return a u64 soundkey based off of your charID. This... actually worked kind of well, with Mighty, Tails and Knuckles accepting it with no issues. But, there was one... slight mishap. In the form of none other than that pitiful pincushion, Sonikku za Hejjihoggu, who in this case would only play his speed shoes music for a single frame before falling back on everything else. Now, I guess that this issue actually stemmed from the way that my character detector works. What happens is that the first thing it does is it sets a u8 variable to what the currently active character's character ID is, and then it changes the ID again if a specific mod is detected (for example, if you are playing as Extra Slot Mighty or if you are playing as Sonic with a mod named "Ultimate Mighty" active. It doesn't have to be Sotaknuck's Ultimate Mighty - you can name literally any mod Ultimate Mighty and it will set Mighty's ID). So, every vanilla S3AIR character has the following built-in character IDs: 0 for Sonic, 1 for Tails, and 2 for Knuckles. I'm guessing that because Sonic's ID was 0 it simply didn't return anything. So, I ended up scrapping that and messing around until I came to my current method: I reworked getSpeedSong into playSpeedSong, where instead of getting an ID it played the ID directly. I also ommited ItemEffect.ApplySpeedUp and changeMusicTempo entirely as so to differentiate it from Speed Shoes Music 2 just a little bit more.
+
+It was then that I discovered that Speed Shoes Music 2 has a very lax and permissive informal license and that I never had to do all that work in the first place. God dammit. Thankfully, implementing the customisation options was pretty easy and mostly painless.
+
+But, remember kids: Always check the license before you do something. You could end up with either less or more freedoms than what you may have thought.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

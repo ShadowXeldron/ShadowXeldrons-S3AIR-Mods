@@ -1,0 +1,527 @@
+{
+	"Metadata":
+	{
+		"Name": "Per-Character Themes",
+		"Author": "Dragon0307 / ShadowXeldron",
+		"Description": "A script mod to make it so that every character has seperate game over, level clear, 1-Up, invincibility and super themes. DO NOT DELETE LICENSE.txt WHEN REDISTRIBUTING OR I WILL MAKE YOU LISTEN TO THE GEMS SOUND DRIVER!",
+		"URL": "https://gamebanana.com/mods/331524",
+		"ModVersion": "1.5 - Speed of Might",
+		"GameVersion": "20.07.18.0"
+	},
+	"Settings":
+	{
+		"List":
+		[	
+			{
+				"InternalName": "KnuxClear",
+				"DisplayName": "Knuckles",
+				"Category": "Clear Jingles",
+				"Variable": "option.knux.clear",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			
+			{
+				"InternalName": "TailsClear",
+				"DisplayName": "Tails",
+				"Category": "Clear Jingles",
+				"Variable": "option.tails.clear",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			{
+				"InternalName": "SonicClear",
+				"DisplayName": "Sonic",
+				"Category": "Clear Jingles",
+				"Variable": "option.sonic.clear",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			{
+				"InternalName": "MightyClear",
+				"DisplayName": "Mighty",
+				"Category": "Clear Jingles",
+				"Variable": "option.mighty.clear",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			
+			{
+				"InternalName": "KnuxSpecial",
+				"DisplayName": "Knuckles",
+				"Category": "Special Stage Clear Jingles",
+				"Variable": "option.knux.specialclear",	
+				"DefaultValue": "2",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic CD US"
+				}
+			},
+			{
+				"InternalName": "TailsSpecial",
+				"DisplayName": "Tails",
+				"Category": "Special Stage Clear Jingles",
+				"Variable": "option.tails.specialclear",	
+				"DefaultValue": "2",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic CD US"
+				}
+			},
+						{
+				"InternalName": "SonicSpecial",
+				"DisplayName": "Sonic",
+				"Category": "Special Stage Clear Jingles",
+				"Variable": "option.sonic.specialclear",	
+				"DefaultValue": "2",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic CD US"
+				}
+			},
+			{
+				"InternalName": "MightySpecial",
+				"DisplayName": "Mighty",
+				"Category": "Special Stage Clear Jingles",
+				"Variable": "option.mighty.specialclear",	
+				"DefaultValue": "2",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic CD US"
+				}
+			},
+			{
+				"InternalName": "KnuxSuper",
+				"DisplayName": "Knuckles",
+				"Category": "Super Themes",
+				"Variable": "option.knux.super",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Custom Hyper Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "TailsSuper",
+				"DisplayName": "Tails",
+				"Category": "Super Themes",
+				"Variable": "option.tails.super",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Custom Hyper Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "SonicSuper",
+				"DisplayName": "Sonic",
+				"Category": "Super Themes",
+				"Variable": "option.sonic.super",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Custom Hyper Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "MightySuper",
+				"DisplayName": "Mighty",
+				"Category": "Super Themes",
+				"Variable": "option.mighty.super",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Custom Hyper Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "KnuxHyper",
+				"DisplayName": "Knuckles",
+				"Category": "Hyper Themes",
+				"Variable": "option.knux.hyper",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Custom Theme",
+					"2": "Custom Super Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "TailsHyper",
+				"DisplayName": "Tails",
+				"Category": "Hyper Themes",
+				"Variable": "option.tails.hyper",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Custom Theme",
+					"2": "Custom Super Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+						{
+				"InternalName": "SonicHyper",
+				"DisplayName": "Sonic",
+				"Category": "Hyper Themes",
+				"Variable": "option.sonic.hyper", 
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Custom Theme",
+					"2": "Custom Super Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "MightyHyper",
+				"DisplayName": "Tails",
+				"Category": "Hyper Themes",
+				"Variable": "option.mighty.hyper",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Disabled",
+					"1": "Custom Theme",
+					"2": "Custom Super Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "Knux1up",
+				"DisplayName": "Knuckles",
+				"Category": "Extra Life Jingles",
+				"Variable": "option.knux.1up",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "Tails1up",
+				"DisplayName": "Tails",
+				"Category": "Extra Life Jingles",
+				"Variable": "option.tails.1up",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+						{
+				"InternalName": "Sonic1up",
+				"DisplayName": "Sonic",
+				"Category": "Extra Life Jingles",
+				"Variable": "option.sonic.1up",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "Mighty1up",
+				"DisplayName": "Mighty",
+				"Category": "Extra Life Jingles",
+				"Variable": "option.mighty.1up",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "KnuxGameOver",
+				"DisplayName": "Knuckles",
+				"Category": "Game Over Jingles",
+				"Variable": "option.knux.gameover",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			{
+				"InternalName": "TailsGameOver",
+				"DisplayName": "Tails",
+				"Category": "Game Over Jingles",
+				"Variable": "option.tails.gameover",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			{
+				"InternalName": "SonicGameOver",
+				"DisplayName": "Sonic",
+				"Category": "Game Over Jingles",
+				"Variable": "option.sonic.gameover",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			{
+				"InternalName": "MightyGameOver",
+				"DisplayName": "Mighty",
+				"Category": "Game Over Jingles",
+				"Variable": "option.mighty.gameover",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			{
+				"InternalName": "KnuxInvincible",
+				"DisplayName": "Knuckles",
+				"Category": "Invincibility Jingles",
+				"Variable": "option.knux.invincible",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "TailsInvincible",
+				"DisplayName": "Tails",
+				"Category": "Invincibility Jingles",
+				"Variable": "option.tails.invincible",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "SonicInvincible",
+				"DisplayName": "Sonic",
+				"Category": "Invincibility Jingles",
+				"Variable": "option.sonic.invincible",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "MightyInvincible",
+				"DisplayName": "Sonic",
+				"Category": "Invincibility Jingles",
+				"Variable": "option.mighty.invincible",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "KnuxCredits",
+				"DisplayName": "Knuckles",
+				"Category": "Credits Themes",
+				"Variable": "option.knux.credits",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Credits Medley",
+					"3": "Sonic 3 Credits",
+					"4": "S3 Prototype Credits"
+				}
+			},
+			{
+				"InternalName": "TailsCredits",
+				"DisplayName": "Tails",
+				"Category": "Credits Themes",
+				"Variable": "option.tails.credits",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Credits Medley",
+					"3": "Sonic 3 Credits",
+					"4": "S3 Prototype Credits"
+				}
+			},
+			{
+				"InternalName": "SonicCredits",
+				"DisplayName": "Sonic",
+				"Category": "Credits Themes",
+				"Variable": "option.sonic.credits",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Credits Medley",
+					"3": "Sonic 3 Credits",
+					"4": "S3 Prototype Credits"
+				}
+			},
+			{
+				"InternalName": "MightyCredits",
+				"DisplayName": "Mighty",
+				"Category": "Credits Themes",
+				"Variable": "option.mighty.credits",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Credits Medley",
+					"3": "Sonic 3 Credits",
+					"4": "S3 Prototype Credits"
+				}
+			},
+			{
+				"InternalName": "KnuxSpeed",
+				"DisplayName": "Knuckles",
+				"Category": "Speed Shoes Music",
+				"Variable": "option.knux.speed",	
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Speed Shoes Music Compatability"
+				}
+			},
+			{
+				"InternalName": "TailsSpeed",
+				"DisplayName": "Tails",
+				"Category": "Speed Shoes Music",
+				"Variable": "option.tails.speed",	
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Speed Shoes Music Compatability"
+				}
+			},
+						{
+				"InternalName": "SonicSpeed",
+				"DisplayName": "Sonic",
+				"Category": "Speed Shoes Music",
+				"Variable": "option.sonic.speed",	
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Speed Shoes Music Compatability"
+				}
+			},
+			{
+				"InternalName": "MightySpeed",
+				"DisplayName": "Mighty",
+				"Category": "Speed Shoes Music",
+				"Variable": "option.mighty.speed",	
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Speed Shoes Music Compatability"
+				}
+			}
+		]
+	}
+}

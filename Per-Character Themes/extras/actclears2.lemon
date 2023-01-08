@@ -1,0 +1,100 @@
+// This is a cut down version of 1.4 that exclusively supports Act Clear and Special Stage clear themes. I made it specifically for Fire emerald (https://gamebanana.com/members/2079094)
+// Unlike actclears.lemon, this one is better-er thanks to the modified PlayMusic
+
+/*
+	This script file is the primary compnent of the Per-Character Themes mod for Sonic 3 A.I.R. 
+
+	Some code is taken from the Sonic 3 A.I.R script software distribution, Copyright (C) 2017-2022 by Eukaryot
+
+	This mod is published under the GNU GPLv3 open source software license, see LICENSE.txt
+	or https://www.gnu.org/licenses/gpl-3.0.en.html
+	
+*/
+
+/*
+
+Just so that I remember them, here's the constants that I need to know
+
+MUSIC_SUPER	
+MUSIC_EXTRALIFE	
+MUSIC_LEVELCLEAR	
+MUSIC_CREDITSMEDLEY
+MUSIC_INVINCIBLE
+MUSIC_GAMEOVER
+
+*/
+
+// Config options
+global u8 option.knux.clear
+global u8 option.knux.specialclear
+
+global u8 option.sonic.clear
+global u8 option.sonic.specialclear
+
+global u8 option.tails.clear
+global u8 option.tails.specialclear
+
+function void PlayMusic()
+{
+
+	u8 audioID = D0.u8 // This should tell us what the actual villager is going on.
+
+	if (audioID == MUSIC_LEVELCLEAR) // Act clear jingles; I need to figure out how to do the special stages at some point though
+	{
+		if (objA0.countdown_value == 269) // Shoddy attempt at a special stage check
+		{
+			if (isMainCharacter(CHARACTER_KNUCKLES))
+			{
+				if (option.knux.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					Audio.playAudio("knux-clear",0)
+				}
+				else if (option.knux.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					Audio.playAudio("cdus-clear",0)
+				}
+			}
+
+			else if (isMainCharacter(CHARACTER_KNUCKLES))
+			{
+				if (option.knux.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					Audio.playAudio("knux-clear",0)
+				}
+				else if (option.knux.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					Audio.playAudio("cdus-clear",0)
+				}
+			}
+
+			else if (isMainCharacter(CHARACTER_TAILS))
+			{
+				if (option.tails.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					Audio.playAudio("tails-clear",0)
+				}
+				else if (option.tails.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					Audio.playAudio("cdus-clear",0)
+				}
+			}
+
+			else if (isMainCharacter(CHARACTER_SONIC))
+			{
+				if (option.sonic.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					Audio.playAudio("sonic-clear",0)
+				}
+				else if (option.sonic.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					Audio.playAudio("cdus-clear",0)
+				}
+			}
+		}
+
+
+	else // Used for ensuring utmost compatability with mods.
+	{
+		base.PlayMusic() // If in doubt, get the game to sort it out. I'm a poet, but I actually did knowet.
+	}
+}
