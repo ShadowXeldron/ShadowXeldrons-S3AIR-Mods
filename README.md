@@ -1,6 +1,6 @@
 # ShadowXeldron's Sonic 3 AIR Mods
 
-This is the my nuclear waste disposal plant. Here, we dispose of nuclear waste. And I guess my Sonic mods are here as well.
+This is my nuclear waste disposal plant. Here, we dispose of nuclear waste. And I guess my Sonic mods are here as well.
 
 These are the mods that have been copied here:
 ## DISCLAIMER: All mods in this repository are licensed under the GNU GPL version 3.0; with the exception of No SHC Splash which is licensed under the CC0.
