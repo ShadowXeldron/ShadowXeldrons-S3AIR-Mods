@@ -259,6 +259,10 @@ function void PlayMusic()
 				{
 					Audio.playAudio("cdus-clear",0)
 				}
+				else
+				{
+					base.PlayMusic()
+				}
 			}
 
 			else if (charID == 1)
@@ -270,6 +274,10 @@ function void PlayMusic()
 				else if (option.tails.specialclear == 2) // If set to the SCD US clear theme
 				{
 					Audio.playAudio("cdus-clear",0)
+				}
+				else
+				{
+					base.PlayMusic()
 				}
 			}
 
@@ -283,6 +291,10 @@ function void PlayMusic()
 				{
 					Audio.playAudio("cdus-clear",0)
 				}
+				else
+				{
+					base.PlayMusic()
+				}
 			}
 
 			else if (charID == 3)
@@ -294,6 +306,10 @@ function void PlayMusic()
 				else if (option.mighty.specialclear == 2) // If set to the SCD US clear theme
 				{
 					Audio.playAudio("cdus-clear",0)
+				}
+				else
+				{
+					base.PlayMusic()
 				}
 			}
 		}
