@@ -235,7 +235,7 @@
 			},
 			{
 				"InternalName": "MightyHyper",
-				"DisplayName": "Tails",
+				"DisplayName": "Mighty",
 				"Category": "Hyper Themes",
 				"Variable": "option.mighty.hyper",
 				"DefaultValue": "1",
@@ -398,7 +398,7 @@
 			},
 			{
 				"InternalName": "MightyInvincible",
-				"DisplayName": "Sonic",
+				"DisplayName": "Mighty",
 				"Category": "Invincibility Jingles",
 				"Variable": "option.mighty.invincible",
 				"DefaultValue": "1",
