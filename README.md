@@ -20,6 +20,14 @@ No SHC Splash
 -
 Removes the trigger for the Sonic Hacking Contest splash screen, so you don't have to see it every time you boot up the game with SHC mods installed. Unlike all my other script mods, I have dedicated this to the public domain with the CC0 since it's only 5 lines long.
 
+
+Unnamed Character Mod [WIP]
+-
+### This mod is a work-in-progress and should not be considered feature complete!
+Something that a cobbled together over Easter. It's the start of a new character mod focused on speed and platforming and right now seems to be some kind of overpowered monstrosity. Just a heads up that it's *really* rough right now.
+
+
+
 But what about your music replacement mods?
 -
 I don't feel right putting mods which don't have much code in them on GitHub. Because of that, you can find them in my cloud storage [here](https://mega.nz/folder/TiBkDZQD#HYsbMsR-LqBpL3PlbNhw9Q).

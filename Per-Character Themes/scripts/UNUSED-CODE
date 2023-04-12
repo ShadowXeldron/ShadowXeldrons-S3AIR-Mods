@@ -1,0 +1,60 @@
+// This is code that I'm not really using, but I'm keeping around in case I need it
+
+function u8 getCharID() // Function that checks for character IDs for supported mods
+{
+	u8 charID = getMainCharacter() // It made me do this in development, even though it let me off before
+
+	/* For anyone reading this, I have a cheat sheet prepared for you all to know who's who under the wave of charIDs. 
+	I thought that charID would be less of a pain to work this than nested Mods.modIsActives
+		
+	charID == 0 - Sonic
+	charID == 1 - Tails
+	charID == 2 - Knuckles
+	charID == 3 - Mighty
+
+	These IDs are reserved for future installments to the Extra Slot Project
+
+	charID == 4 - Ray
+	charID == 5 - Amy
+	charID == 6 - Metal Sonic Kai (I'll also include Ultimate Metal in the mix as well)
+	(Espio, you will be sorely missed)
+			
+	These IDs meanwhile are going to be kept around for when Sotaknuck eventually caves in and updates the rest of his stuff. All Sotaknuck IDs start with "1"
+
+	charID == 10 - Ashura
+	charID == 11 - Wechnia
+	charID == 12 - Bluckles
+	charID == 13 - Chaos
+	charID == 14 - Shadow
+
+	Finally, I'm saving this for later:
+
+	charID == 666 - Sonic.EXE (There are METRIC CRAPTONS of EXE mods, so only the best ones are getting support on my end)
+
+	I'd also like to some of the following if they get proper moveset mods:
+			
+	- Silver
+	- Any Freedom Planet character
+	- Sally
+	- Cream
+	- Mario
+			
+	*/
+
+	// Mod detection
+	// This checks if you're playing as Sonic with Ultimate Mighty loaded, or straight-up playing as Extra Slot Might.
+	//Thanks to iCloudius for help on detecting if somebody is playing as Extra Slot Mighty.
+	
+	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00"))) 
+	{
+		charID = 3
+	}
+
+	if ((Mods.isModActive("3D2D Shadow") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1 && Mods.isModActive("Extra Slot 3D2D Shadow"))) 
+	{
+		charID = 14
+	}
+
+	return charID
+}
+

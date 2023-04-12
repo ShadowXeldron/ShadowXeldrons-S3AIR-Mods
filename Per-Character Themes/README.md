@@ -2,6 +2,8 @@ Per-Character Themes
 -
 Unique themes are cool
 
+### This is a WIP rewrite that is far from even usable. Please check the releases page for an actually functioning version!
+
 This is a simple mod that allows you to have different themes for each character. It is inspired by a similar idea from [Megamix Mania](https://gamebanana.com/mods/47886).   
   
 You choose between the new audio definitions or the vanilla Sonic 3 AIR settings. The following can be customized:  

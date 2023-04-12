@@ -1,0 +1,68 @@
+*insert name here* the *insert animal here*'s moveset
+
+(for now, I'll call him INH ths ISH)
+NOTE: This mod is designed with the default keyboard layout in mind.
+
+KEY
+C = Controller Y (D by default on keyboard)
+Any = Any face button (except Controller X)
+
+INH is built on top of Tails and shares a lot of his mechanics
+
+Differences from vanilla Tails:
+
+- You can't fly or spindash
+- You can start rolling while holding down either left or right
+
+CONTROLS
+
+C on the ground - Dash (working title)
+
+Slightly increases your speed and inverts your rolling state. The speed increase is more significant if you're either going slow or not moving at all
+
+It has a number of use cases:
+
+- Uncurling
+- Button mashing to achieve frankly ridiculous speeds
+- Brute forcing your way up steep slopes and around loops
+- Mass Destruction (Ooh yeah, Dada-dada, dada-dada, Baby baby, Da-dada-dada, dada-dada)
+
+This move is loosely inspired by the spamdash from Sonic Adventure as well as the dash move from Spark the Electric Jester.
+
+For some reason, you won't start rolling if you're holding either left or right when using this move. This is probably a glitch, and I'm still trying to crack the case on this one.
+
+NOTE: using any midair abilities will put you into Tails' "falling" state. They are also a bit glitchy - if you obtain a shield and then lose that sheild somehow, they will start to work somewhat differently. These changes are not intended and I'm intending to patch them out.
+
+Down + Any on the ground - Dodge Roll
+
+This is what you have instead of a spindash. Gives you a small amount of speed and puts you in a rolling state. This move also grants you some invulnerability frames. Can trigger any of the gimmicks that the spindash could.
+
+I find this ability to be mostly useful during boss fights.
+
+Any in midair while not holding up or down - Jet Burst
+
+A burst of horizontal momentumn. If you're ascending, it will cause you to go a bit higher. If you're descensing however it will cancel your downward momentum and keep you in the air. It's useful for platforming and midair correction alike.
+
+It's actually built on some of the code for the Fire Shield, so it should work similarly.
+
+Up + Any in midair - Rocket Boost
+
+Basically a double jump. This move is quite simple in concept and execution, and it excels at vertical platforming.
+
+Down + Any in midair - Re-Entry
+
+Makes you fall really, really fast. It was designed with being able to perform a quick descent in mind, and you can also use this move for badnik bounces. So, ironically enough, the move that was designed for sending you down can potentially give you more height than the one designed to send you up.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

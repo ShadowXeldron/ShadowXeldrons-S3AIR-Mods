@@ -42,4 +42,4 @@ Q. Do you intend to add features from other mods?
 A. Only if they're discontinued or don't work. Of course, if I think I can do it better than them I may consider it.  
   
 Q. How will the final release work?  
-A. It'll be right here in this repository, as well as wherever the community has run off to. And maybe it'll be on GameBanana as well.
+A. It'll be in this repository and maybe GameBannana. I'd also like to see if I can get it on the forums.

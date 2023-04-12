@@ -1,0 +1,432 @@
+include mhz_stickyvine
+
+/*
+	This script file is part of the Sonic 3 A.I.R. script software distribution.
+	Copyright (C) 2017-2023 by Eukaryot
+
+	Published under the GNU GPLv3 open source software license, see license.txt
+	or https://www.gnu.org/licenses/gpl-3.0.en.html
+*/
+
+global u8 noRollSound = 0
+//global option.dashButton = CONTROL_A
+
+
+//global u16 dashtimer = 0
+
+//define dashtimer =  u8[A0 + 0x35]	
+
+
+
+function void TailsPressedJumpInMidAir() # This is used for the midair abilities: Jet Burst, Rocket Boost and Re-Entry
+{
+
+		u8 input_state   = (char.character == CHARACTER_TAILS) ? control.tails.state   : control.player1.state
+
+	// Tails is manually controlled?
+	if (isMainCharacter(CHARACTER_TAILS) || tails.control_counter != 0)
+	{
+		// TailsStartFlight()
+		#if PRETEND
+		if (super.active)
+			u8[0xffffcbc0 + 0x20] = 1
+		else
+		#endif
+			u8[0xffffcce8 + 0x20] = 1		// That's 0x20 inside the shield object at 0xffffcce8
+		char.double_jump_state = 1
+
+		s16 vx
+		
+		if (control.tails.state & CONTROL_UP) // Rocket Boost - Gives you a vertical boost but cuts your horizontal momentumn
+		{
+			if char.velocity.y > -0x380
+			{
+				char.velocity.y = -0x380	// Slightly increasing double jump height for Super Sonic
+			}
+
+		}
+
+		else if (control.tails.state & CONTROL_DOWN) // Re-Entry - A quick downward blast that converts upwards momentumn into downwards momentumn.
+		{
+			if 0x800 < char.velocity.y // That is, if you're going up
+			{
+				vx = 0x800
+			}
+
+			else
+			{
+				vx = char.velocity.y + 0x800
+			}
+
+			//char.velocity.y 
+			char.velocity.y = vx
+			playSound(SFX_BOMBFALL)
+			//char.velocity.x = char.velocity.x / 2
+		}
+
+		else //if (input_state & (CONTROL_LEFT | CONTROL_RIGHT)) // Jet Burst - A sideways blast of speed
+		{
+
+			vx = 0x500
+			
+			if (char.flags & char.flag.FACING_LEFT)
+			{
+				//vx = -vx
+				char.velocity.x = char.velocity.x - (vx + char.velocity.x)
+			}
+
+			else
+			{
+				char.velocity.x = char.velocity.x + (vx - char.velocity.x)
+			}
+
+			//char.velocity.x = char.velocity.x + (vx - char.velocity.x)
+			if (char.velocity.y >= 0)
+			{
+				char.velocity.y = -1
+			}
+
+			else
+			{
+				char.velocity.y -= 1
+			}
+		}
+
+		char.flags &= ~(char.flag.ROLLING | char.flag.CONTROL_LOCK)
+
+		//char.velocity.y = 0
+		char.groundspeed = vx
+		//camera.locktime.player1 = 0x2000
+		ClearPositionBackup()
+		playSound(SFX_SPINDASH_RELEASE)
+	}
+#if STANDALONE
+	// Make an exception for AI Tails, e.g. on MHZ 1 (Sonic alone) start when Sonic jumps off early
+	else if (tails.ai_routine == 0x10)
+	{
+		TailsStartFlight()
+	}
+#endif
+}
+
+//function bool Character.UpdateSpindash-NO()
+//{
+//	if (!isMainCharacter(CHARACTER_TAILS))
+//	{
+//		base.Character.UpdateSpindash()
+//	}
+//}
+
+function bool Character.UpdateSpindash()
+{
+
+	if (!isMainCharacter(CHARACTER_TAILS))
+	{
+		base.Character.UpdateSpindash()
+	}
+
+	u8 input_state   = (char.character == CHARACTER_TAILS) ? control.tails.state   : control.player1.state
+	u8 input_pressed = (char.character == CHARACTER_TAILS) ? control.tails.pressed : control.player1.pressed
+
+	if (char.spindash == 0)
+	{
+		bool canStartSpindash = (char.state == char.state.COWERING) && (input_pressed & CONTROL_ABC)
+		if (!canStartSpindash)
+		{
+			// Nothing to see here
+			return false
+		}
+
+		// Start spindash
+		//char.double_jump_state = 1
+
+		s16 vx
+		
+			vx = 0x499
+			if (char.flags & char.flag.FACING_LEFT)
+			{
+				vx = -vx
+			}
+			char.velocity.x = vx
+			//char.velocity.y = -3
+
+		char.flags &= ~(char.flag.ROLLING | char.flag.CONTROL_LOCK)
+
+		//char.velocity.y = 0
+		char.groundspeed = vx
+		camera.locktime.player1 = 0x2000
+		ClearPositionBackup()
+		noRollSound = 1
+		char.state = char.state.SPINDASH
+		char.invuln.countdown = 30 
+		playSound(SFX_INSTASHIELD)
+	}
+	
+	Character.CheckAgainstMoveBorders()
+	Character.UpdateRotationOnGround()
+	partialUpdateCharacterOnGround()
+	//Character.CheckForStartRolling()
+
+	return true
+}
+
+//# address-hook(0x01174a) end(0x0117d8)
+//# address-hook(0x014f74) end(0x015000)
+function void Character.CheckForStartRolling() // This is only slightly modified to allow for uncurling and include detection as for whether or not you need to 
+{
+	u8 input_state = (char.character == CHARACTER_TAILS) ? control.tails.state : control.player1.state
+
+	if ((char.bonus_effect & char.bonus.INFINITE_INERTIA) == 0)
+	{
+		//if ((input_state & (CONTROL_LEFT | CONTROL_RIGHT)) == 0)	// No left or right pressed
+		//{
+			if (input_state & CONTROL_DOWN)
+			{
+				if (abs(char.groundspeed) >= 0x100)
+				{
+					// Start rolling
+					if ((char.flags & char.flag.ROLLING) == 0)
+					{
+						char.flags |= char.flag.ROLLING
+						char.hitbox_extends.x = 7
+						char.hitbox_extends.y = 14
+						char.state = char.state.ROLLING
+
+						s8 dy = (char.character == CHARACTER_TAILS) ? 1 : 5
+						char.position.y.u16 += (global.inv_gravity) ? -dy : dy
+						
+						if noRollSound == 0
+						{
+							playSound(SFX_ROLL)
+						}
+
+						if noRollSound == 1
+						{
+							
+							noRollSound = 0
+						}
+						
+						if (char.groundspeed == 0)
+							char.groundspeed = 0x200
+					}
+				}
+				
+				else if ((char.flags & char.flag.ON_OBJECT) == 0)
+				{
+					char.state = char.state.COWERING
+				#if STANDALONE
+					// Also slow down a little
+					if (char.groundspeed <= -4)
+						char.groundspeed += 4
+					else if (char.groundspeed >= 4)
+						char.groundspeed -= 4
+				#endif
+				}
+			}
+
+			else
+			{
+				// Stop crouching
+				if (char.state == char.state.COWERING)
+					char.state = char.state.RUNNING
+
+			#if STANDALONE
+				// Allow for starting the Super Peel-Out even if still moving slowly, just like handling for the spindash
+				//  (this logic here is active even if the Peel-Out is not enabled)
+				if ((input_state & CONTROL_UP) && abs(char.groundspeed) < 0x100 && (char.flags & char.flag.ON_OBJECT) == 0)
+				{
+					char.state = char.state.LOOKING_UP
+					if (char.groundspeed <= -4)
+						char.groundspeed += 4
+					else if (char.groundspeed >= 4)
+						char.groundspeed -= 4
+				}
+			#endif
+			}
+		//}
+	}
+}
+
+
+//# translated(0x0117da) end(0x0118ba)
+//# translated(0x015002) end(0x0150d8)
+//# translated(0x017710) end(0x0177e8)
+function bool Character.CheckStartJump()
+{
+	u8 input_pressed = (char.character == CHARACTER_TAILS) ? control.tails.pressed : control.player1.pressed
+	if ((input_pressed & CONTROL_ABC) == 0)
+	{
+		return false
+	}
+
+	if ((input_pressed & CONTROL_C))
+	{
+		dashAttack()
+		return false
+	}
+
+	D0 = char.rotation
+	if (global.inv_gravity)
+	{
+		D0.s8 = -D0.s8
+	}
+	else
+	{
+		D0.s8 += 0x80
+	}
+
+	pushA456()
+	fn00f72e()
+	popA456()
+
+	if (D1.s16 < 6)
+		return false
+
+	// Get jump acceleration depending on character
+	u16 acceleration
+	if (char.character != CHARACTER_KNUCKLES || competition_mode.active)
+	{
+		if (char.flags & char.flag.UNDERWATER)
+		{
+			acceleration = 0x380
+		}
+		else if (super.active && char.character == CHARACTER_SONIC)
+		{
+			acceleration = 0x800
+		}
+		else
+		{
+			acceleration = 0x680
+		}
+	}
+	else
+	{
+		if (char.flags & char.flag.UNDERWATER)
+		{
+			acceleration = 0x300
+		}
+		else
+		{
+			acceleration = 0x600
+		}
+	}
+
+	u8 angle = char.rotation - 0x40
+	s32 accel_x = (s32(lookupCos(angle)) * acceleration) >> 8
+	s32 accel_y = (s32(lookupSin(angle)) * acceleration) >> 8
+
+	char.velocity.x += accel_x
+	char.velocity.y += accel_y
+
+	char.flags |= char.flag.IN_AIR
+	char.flags &= ~char.flag.PUSHING
+
+	char.jumping = 1
+	char.on_convex_surface = 0
+
+	playSound(SFX_JUMP)
+
+	// Start roll jump
+	if (char.flags & char.flag.ROLLING)
+	{
+	#if STANDALONE
+		if (!Game.getSetting(SETTING_NO_CONTROL_LOCK))
+	#endif
+		{
+			char.hitbox_extends.x = char.hitbox.default.x
+			char.hitbox_extends.y = char.hitbox.default.y
+			char.flags |= char.flag.CONTROL_LOCK
+		}
+	}
+	else
+	{
+		char.hitbox_extends.x = 7
+		char.hitbox_extends.y = 14
+		char.flags |= char.flag.ROLLING
+		char.state = char.state.ROLLING
+
+		s8 dy = s8(char.hitbox_extends.y) - s8(char.hitbox.default.y)
+		char.position.y.u16 += global.inv_gravity ? dy : -dy
+
+	#if STANDALONE
+		// Glitch fix for Knuckles being unable to jump off underwater objects
+		//  -> Move him up a single pixel up so he won't stick to objects
+		// TODO: Does not work for the HCZ snake platforms
+		if (acceleration <= 0x300 && (char.flags & char.flag.ON_OBJECT))
+		{
+			--char.position.y.u16
+		}
+	#endif
+	}
+	return true
+}
+
+
+function void dashAttack()
+{
+		s32 vx
+
+		if (char.flags & char.flag.FACING_LEFT)
+		{
+			if char.groundspeed > -0x500
+			{
+				vx = -0x500
+			}
+
+			else
+			{
+				vx = char.groundspeed - 0x050
+			}
+		}
+
+		else
+		{
+			if char.groundspeed < 0x500
+			{
+				vx = 0x500
+			}
+
+			else
+			{
+				vx = char.groundspeed + 0x050
+			}
+		}
+
+		
+		
+			char.velocity.x = char.velocity.x + (vx - char.velocity.x)
+			if (char.velocity.y >= 0)
+			{
+				char.velocity.y = -1
+			}
+
+			else
+			{
+				char.velocity.y += -1
+			}
+
+		//	char.flags &= ~(char.flag.ROLLING | char.flag.CONTROL_LOCK)
+
+		//char.velocity.y = 0
+		char.groundspeed = vx
+		//camera.locktime.player1 = 0x2000
+		ClearPositionBackup()
+		
+
+		if (!(char.state == char.state.ROLLING))
+		{
+		
+			char.state = char.state.ROLLING
+			playSound(SFX_SPINDASH_RELEASE)
+		}
+
+		else
+		{
+			char.flags &= ~char.flag.ROLLING
+			char.state = char.state.RUNNING2
+			playSound(SFX_INSTASHIELD)
+			
+		}
+
+}
+
