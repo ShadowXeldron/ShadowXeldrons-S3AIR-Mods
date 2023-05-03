@@ -34,7 +34,7 @@
 	"Continue": { "Name": "Continue Screen", "File": "Continue.ogg", "Type": "Music" },
 	
 	// Save & Level Select
-	"SaveSelect": { "Name": "Save Select", "File": "Save.ogg", "Type": "Music" },
+	"SaveSelect": { "Name": "Save Select", "File": "SaveSelect.ogg", "Type": "Music" },
 	
 	// SSZ Variations
 	"SSZ2": { "Name": "Sky Sanctuary Part 2", "File": "SSZ2.ogg", "Type": "Music" },
