@@ -12,7 +12,7 @@ Have any suggestions? I'll consider throwing them in. Code contributions to the 
 ### Known Issues
 
  - The air abilities malfunction if you obtain a shield and then lose it.
- - It is impossible to complete the game because you will dash during the 
+ - It is impossible to complete the game because you will dash instead of jumping during the transtion cutscene from HPZ to SSZ.
 
 If you find a glitch, please report it on the [issues tab](https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods/issues)!
 ### Controls
@@ -58,15 +58,15 @@ Grants a horizontal boost
 Never Asked Questions
 -
   
-Q. Is this an Extra Slot mod?
+Q. Is this an Extra Slot mod? <br>
 A: No. Because of the GPL license, I am unable to statically link with or use functions from mods that are not available under a GPL-compatible license. This also means that you cannot make an extra slot version. Finally, if any of you ask for an extra slot version regardless of this message, I'll snap your ankles.
   
-Q. But what about Even More Themes? Isn't that a WIP?
+Q. But what about Even More Themes? Isn't that a WIP? <br>
 A: Nobody said that I can't have two WIPs at once. And besides, at least these projects actually have something playable already and aren't just those vaporware WIPs that never get anywhere. (or worse, the meaningless concepts that the GB kids keep posting)
 
-Q. kan u giv me purmishum 2 uze ur skript i wont chang it just put it in mi fnf sonci exe modd pak
+Q. kan u giv me purmishum 2 uze ur skript i wont chang it just put it in mi fnf sonci exe modd pak <br>
 A. The beauty of the GPL is that it means you don't actually need permission to utilise, modify and redistribute any GPL'd code, but I'd like to say that this mod will cause licensing complications if you try and bundle it with most scripts - especially ones that demand permission for usage. Instead, request users to download it on their own and have them load your mod above this one.
   
-Q. How will the final release work?
+Q. How will the final release work? <br>
 A. It'll be in this repository and maybe GameBannana. I'd also like to see if I can get it on the forums, but because of how strict the approval process is there's a possibility that it won't be able to be on there.
 
