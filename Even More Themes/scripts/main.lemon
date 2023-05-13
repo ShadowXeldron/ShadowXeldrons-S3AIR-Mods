@@ -292,9 +292,18 @@ function void fn07acf2()
     }
 }
 
+// SSZ Death Egg Boarding Sequence
 //# address-hook(0x057f18) end(0x057f3a)
 function void fn057f18()
 {
     Audio.playAudio("SSZBoarding",0)
     base.fn057f18()
+}
+
+// AIZ1 Intro
+//# address-hook(0x0674ac) end(0x067512)
+function void fn0674ac()
+{
+    Audio.playAudio("AIZOpening",0)
+    base.fn0674ac()
 }

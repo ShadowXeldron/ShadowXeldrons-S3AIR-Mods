@@ -46,7 +46,7 @@
 	"AIZOpening": { "Name": "AIZ Plane Cutscene", "File": "AIZOpening.ogg", "Type": "Jingle" },
 	
 	// LBZ Death Egg Launch
-	"LBZLaunch": { "Name": "LBZ Death Egg Launch Cutscene", "File": "LBZLaunch.ogg", "Type": "Jingle" },
+	"LBZLaunch": { "Name": "LBZ Death Egg Launch Cutscene", "File": "LBZLaunch.ogg", "Type": "Music" },
 	
 	// HPZ
 	// Eggman steals the Master Emerald

@@ -16,7 +16,7 @@ This will implement:
 *   Special Stage results music  
 *   Unique music for all 14 Special Stages (successfully implemented!)  
 *   Extra tracks for the following cutscenes:
-    *   The AIZ opening cutscene with the plane
+    *   The AIZ opening cutscene with the plane (successfully implemented!)
     *   The cutscene in LBZ where the Death Egg launches
     *   The cutscene in HPZ where Eggman steals the Master Emerald
     *   The cutscene in SSZ where Sonic and/or Tails board the Death Egg (successfully implemented!)
