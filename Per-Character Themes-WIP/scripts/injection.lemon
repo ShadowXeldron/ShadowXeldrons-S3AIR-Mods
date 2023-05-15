@@ -1,0 +1,69 @@
+// Per-Character Themes - Theme Injections File
+
+// set injected themes
+
+global function pct.injectClearTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.current.clear = soundKey
+	}
+}
+
+global function pct.injectSpecialClearTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.current.specialclear = soundKey
+	}
+}
+
+global function pct.inject1UpTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.current.1up = soundKey
+	}
+}
+
+
+global function pct.injectGameOverTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.gameover.clear = soundKey
+	}
+}
+
+global function pct.injectgameOverTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.current.specialclear = soundKey
+	}
+}
+
+global function pct.inject1UpTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.current.1up = soundKey
+	}
+}
+
+global function pct.injectInvincibilityTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.current.invincible = soundKey
+	}
+}
+
+
+global function pct.injectInvincibilityTheme(string soundkey)
+{
+	if (pct.enableInjecting)
+	{
+		pct.current.invincible = soundKey
+	}
+}

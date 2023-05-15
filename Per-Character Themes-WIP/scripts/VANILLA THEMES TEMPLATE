@@ -1,0 +1,151 @@
+	// Invincibility
+	
+	if (option.INSERTCHARACTERHERE.invincible == 1) // First and foremost, the provided file.
+	{
+		pct.current.sonic = "INSERTCHARACTERHERE-invincible"
+	}
+	else if (option.INSERTCHARACTERHERE.invincible == 2) // S&K option
+	{
+		pct.current.invincible = "2C"
+	}
+	else if (option.INSERTCHARACTERHERE.invincible == 3) // Sonic 3 option
+	{
+		pct.current.invincible = "2C_sonic3"
+	}
+	else
+	{
+		pct.current.invincible = "VANILLAFALLBACKHANDLING" // Fallback/Vanilla option
+	}
+
+	// Game Over
+
+	if (option.INSERTCHARACTERHERE.gameover == 1)
+	{
+		pct.current.gameover = "INSERTCHARACTERHERE-gameover"
+	}
+	else
+	{
+		pct.current.gameover = "VANILLAFALLBACKHANDLING"
+	}
+
+	// Special Clear
+
+	if (option.INSERTCHARACTERHERE.specialclear == 1) // If set to the standard character clear theme
+	{
+		pct.current.specialclear = "INSERTCHARACTERHERE-clear"
+	}
+	else if (option.INSERTCHARACTERHERE.specialclear == 2) // If set to the SCD US clear theme
+	{
+		pct.current.specialclear = "cdus-clear"
+	}
+	else
+	{
+		pct.current.specialclear = "VANILLAFALLBACKHANDLING"
+	}
+	
+	// Standard Clear
+
+	if (option.INSERTCHARACTERHERE.clear == 1) // If set to the standard character clear theme
+	{
+		pct.current.clear = "INSERTCHARACTERHERE-clear"
+	}
+	else
+	{
+		pct.current.clear = "VANILLAFALLBACKHANDLING"
+	}
+
+	// 1Ups
+	
+	if (option.INSERTCHARACTERHERE.1up == 1) // Custom theme
+	{
+		pct.current.1up = "INSERTCHARACTERHERE-1up"
+	}
+	else if (option.INSERTCHARACTERHERE.1up == 2) // Sonic & Knuckles
+	{
+		pct.current.1up = "2a"
+	}
+	else if (option.INSERTCHARACTERHERE.1up == 3) // Sonic 3
+	{
+		pct.current.1up = "2a_sonic3"
+	}
+	else
+	{
+		pct.current.1up = "VANILLAFALLBACKHANDLING"
+	}
+	
+
+	// Those dastardly super and hyper themes
+
+	if (option.INSERTCHARACTERHERE.hyper == 1)
+	{
+		pct.current.hyper = "INSERTCHARACTERHERE-hyper" // Custom hyper theme
+	}
+	else if (option.INSERTCHARACTERHERE.hyper == 2)
+	{
+		pct.current.hyper "INSERTCHARACTERHERE-super" // Custom super theme
+	}
+	else if (option.INSERTCHARACTERHERE.hyper == 3)
+	{
+		pct.current.hyper = "supertheme_sonic2" // Sonic 2
+	}
+	else if (option.INSERTCHARACTERHERE.hyper == 4)
+	{
+		pct.current.hyper = "2c" // Sonic & Knuckles
+	}
+	else if (option.INSERTCHARACTERHERE.hyper == 5)
+	{
+		pct.current.hyper = "2c_sonic3" // Sonic & Knuckles
+	}
+	else if (option.INSERTCHARACTERHERE.hyper == 6)
+	{
+		pct.current.hyper = "2E_proto" // Sonic 3 Unused Track
+	}
+	else
+	{
+		pct.current.hyper = "VANILLAFALLBACKHANDLING"
+	}
+
+
+	if (option.INSERTCHARACTERHERE.super == 1)
+	{
+		pct.current.super = "INSERTCHARACTERHERE-super" // Custom super theme
+	}
+	else if (option.INSERTCHARACTERHERE.super == 2)
+	{
+		pct.current.super = "INSERTCHARACTERHERE-hyper" // Custom hyper theme
+	}
+	else if (option.INSERTCHARACTERHERE.super == 3)
+	{
+		pct.current.super = "supertheme_sonic2" // Sonic 2
+	}
+	else if (option.INSERTCHARACTERHERE.super == 4)
+	{
+		pct.current.super = "2c" // Sonic & Knuckles
+	}
+	else if (option.INSERTCHARACTERHERE.super == 5)
+	{
+		pct.current.super = "2c_sonic3" // Sonic & Knuckles
+	}
+	else if (option.INSERTCHARACTERHERE.super == 6)
+	{
+		pct.current.super = "2E_proto" // Sonic 3 Unused Track
+	}
+	else
+	{
+		pct.current.super = "VANILLAFALLBACKHANDLING"
+	}
+
+	// Every PCT needs a PiTA, and this one's the stubborn speed shoes
+	
+	if (option.INSERTCHARACTERHERE.speed == 1)
+	{
+		pct.current.speed = "INSERTCHARACTERHERE-speed" // Custom sound key
+	}
+	else if (option.INSERTCHARACTERHERE.speed == 2)
+	{
+		pct.current.speed = "speedshoes" // Dedicated Speed Shoes Compatability
+	}
+	else
+	{
+		pct.current.speed = "VANILLAFALLBACKHANDLING" // This would be an illegal soundkey normally, so there's a zero% chance of anyone using it.
+	}

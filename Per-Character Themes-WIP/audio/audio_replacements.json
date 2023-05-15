@@ -1,0 +1,45 @@
+{
+
+// Sonic
+"sonic-clear": { "File": "SonicClear.ogg", "Type": "Jingle"},
+"sonic-gameover": { "File": "SonicGameOver.ogg", "Type": "Jingle"},
+"sonic-1up": { "File": "Sonic1Up.ogg", "Type": "Jingle"},
+"sonic-invincible": { "File": "SonicInvincible.ogg", "Type": "Music", "LoopStart": "139623"},
+"sonic-super": { "File": "SonicSuper.ogg", "Type": "Music", "LoopStart": "165375"},
+"sonic-hyper": { "File": "SonicHyper.ogg", "Type": "Music", "LoopStart": "186368"},
+"sonic-credits": { "File": "SonicCredits.ogg", "Type": "Music", "LoopStart": "759808"},
+"sonic-speed": { "File": "SonicSpeed.ogg", "Type": "Music", "LoopStart": "759808"},
+// Tails
+"tails-clear": { "File": "TailsClear.ogg", "Type": "Jingle"},
+"tails-gameover": { "File": "TailsGameOver.ogg", "Type": "Jingle"},
+"tails-1up": { "File": "Tails1Up.ogg", "Type": "Jingle"},
+"tails-invincible": { "File": "TailsInvincible.ogg", "Type": "Music", "LoopStart": "38846"},
+"tails-super": { "File": "TailsSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"tails-hyper": { "File": "TailsHyper.ogg", "Type": "Music", "LoopStart": "247432"}, // www.youtube.com/watch?v=v3GdxonZHdI
+"tails-credits": { "File": "TailsCredits.ogg", "Type": "Music", "LoopStart": "186368"},
+"tails-speed": { "File": "TailsSpeed.ogg", "Type": "Music", "LoopStart": "0"},
+// Knuckles
+"knux-clear": { "File": "KnucklesClear.ogg", "Type": "Jingle"},
+"knux-gameover": { "File": "KnucklesGameOver.ogg", "Type": "Music", "LoopStart": "229376"},
+"knux-1up": { "File": "Knuckles1Up.ogg", "Type": "Jingle"},
+"knux-invincible": { "File": "KnucklesInvincible.ogg", "Type": "Music", "LoopStart": "43008"},
+"knux-super": { "File": "KnucklesSuper.ogg", "Type": "Music", "LoopStart": "129024"},
+"knux-hyper": { "File": "KnucklesHyper.ogg", "Type": "Music", "LoopStart": "848736"}, // www.youtube.com/watch?v=Hv_9sSwyewA
+"knux-credits": { "File": "KnucklesCredits.ogg", "Type": "Music", "LoopStart": "602112"},
+"knux-speed": { "File": "KnucklesSpeed.ogg", "Type": "Music", "LoopStart": "759808"},
+
+// Mod Characters
+// Mighty (SegaSonic)
+"mighty-clear": { "File": "MightyClear.ogg", "Type": "Jingle"},
+"mighty-gameover": { "File": "MightyGameOver.ogg", "Type": "Jingle"},
+"mighty-1up": { "File": "Mighty1Up.ogg", "Type": "Jingle"},
+"mighty-invincible": { "File": "MightyInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"mighty-super": { "File": "MightySuper.ogg", "Type": "Music", "LoopStart": "0"},
+"mighty-hyper": { "File": "MightyHyper.ogg", "Type": "Music", "LoopStart": "0"}, // www.youtube.com/watch?v=vd1YvioTbac
+"mighty-credits": { "File": "MightyCredits.ogg", "Type": "Music", "LoopStart": "0"}, // Sonic Mania - Credits
+"mighty-speed": { "File": "MightySpeed.ogg", "Type": "Music", "LoopStart": "1097401"},
+
+// Misc.
+"cdus-clear": { "File": "CDUSClear.ogg", "Type": "Jingle"},
+}
+// if (isMainCharacter(CHARACTER_SONIC))

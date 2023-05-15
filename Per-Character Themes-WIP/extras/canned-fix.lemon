@@ -1,0 +1,328 @@
+// This was a failed attempt at fixing incompatabilities with other mods. Frankly, I just gave up and threw everything out so that I could start again.
+
+/*
+	This script file is part of the Sonic 3 A.I.R. script software distribution.
+	Copyright (C) 2017-2022 by Eukaryot
+
+	Published under the GNU GPLv3 open source software license, see license.txt
+	or https://www.gnu.org/licenses/gpl-3.0.en.html
+
+
+I had some lyrics here once, but I removed them because they were too much to scroll past.
+
+*/
+
+
+
+constant u8 SoundRegType.TYPE_MUSIC  = 0		// Looping, uses music channel (0)
+constant u8 SoundRegType.TYPE_JINGLE = 1		// Not looping, uses jingle channel (1) and aborts or pauses music
+constant u8 SoundRegType.TYPE_SOUND  = 2		// Sound effect (can be one-shot playback or continuous)
+
+constant u8 AudioContext.CONTEXT_MUSIC = 0x00		// Use music volume setting
+constant u8 AudioContext.CONTEXT_SOUND = 0x01		// Use sound volume setting
+
+constant u8 FastMusicFlag.MUSIC_TEMPO = 0x01
+constant u8 FastMusicFlag.SUPER_THEME = 0x02
+
+global u8 fastMusicFlags
+global u8 alternatingRingSoundState
+
+// Here come the options...
+
+global u8 option.knux.clear
+global u8 option.knux.specialclear
+global u8 option.knux.1up
+global u8 option.knux.super
+global u8 option.knux.hyper
+global u8 option.knux.gameover
+global u8 option.knux.invincible
+global u8 option.knux.credits
+
+global u8 option.sonic.clear
+global u8 option.sonic.specialclear
+global u8 option.sonic.1up
+global u8 option.sonic.super
+global u8 option.sonic.hyper
+global u8 option.sonic.gameover
+global u8 option.sonic.invincible
+global u8 option.sonic.credits
+
+global u8 option.tails.clear
+global u8 option.tails.specialclear
+global u8 option.tails.1up
+global u8 option.tails.super
+global u8 option.tails.hyper
+global u8 option.tails.gameover
+global u8 option.tails.invincible
+global u8 option.tails.credits
+
+/* This function is here only for script mods that want to change the sound key, e.g. to play a custom music track / sound effect
+function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
+{
+	// Default implementation: No change
+	return soundKey
+}
+
+
+// This function is here only for script mods that also want to change the sound reg type of a sound key
+function u8 Standalone.getModdedSoundRegType(u64 soundKey, u8 sfxId, u8 soundRegType)
+{
+	// Default implementation: No change
+	return soundRegType
+}*/
+
+//function void Standalone.playAudio(u8 sfxId)
+function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
+{
+		// Choose whether it's music, a jingle or a sound effect
+	//u8 soundRegType = 0
+	if (sfxId <= 0x24)
+	{
+		soundRegType = SoundRegType.TYPE_MUSIC
+	}
+	else if (sfxId <= 0x2b)
+	{
+		soundRegType = (sfxId == 0x26 || sfxId == 0x28) ? SoundRegType.TYPE_MUSIC : SoundRegType.TYPE_JINGLE
+	}
+	else if (sfxId <= 0x30)
+	{
+		soundRegType = SoundRegType.TYPE_MUSIC
+	}
+	else if (sfxId <= 0x32)
+	{
+		soundRegType = SoundRegType.TYPE_JINGLE
+	}
+	else if (sfxId <= 0xdb)
+	{
+		soundRegType = SoundRegType.TYPE_SOUND
+	}
+	else
+	{
+		soundRegType = SoundRegType.TYPE_JINGLE
+	}
+
+		// Clear music for level results, emerald jingle, drowning music and outro music
+	if (sfxId == 0x29 || sfxId == 0x2b || sfxId == 0x31 || sfxId == 0xdc)
+	{
+		Audio.stopChannel(0)
+	}
+
+	if (sfxId == 0x2a)
+		{
+			// Extra life jingle
+			if (isMainCharacter(CHARACTER_KNUCKLES) && option.knux.1up == 1)
+			{
+				soundKey = "knux-1up"
+				//soundRegType = SoundRegType.TYPE_JINGLE
+			}
+			else if (isMainCharacter(CHARACTER_TAILS) && option.tails.1up == 1)
+			{
+				soundKey = "tails-1up"
+			}
+			else if (isMainCharacter(CHARACTER_SONIC) && option.sonic.1up == 1)
+			{
+				soundRegType = SoundRegType.TYPE_SOUND
+				soundKey = "sonic-1up"
+				//soundRegType = SoundRegType.TYPE_JINGLE
+				//Audio.playAudio("sonic-1up")
+			}
+			else if (Game.getSetting(SETTING_AUDIO_EXTRALIFE_JINGLE) == 0)
+			{
+				soundKey = "2a_sonic3"
+			}
+			else if (Game.getSetting(SETTING_AUDIO_EXTRALIFE_JINGLE) == 0x10)
+			{
+				if (!isSonicAndKnucklesZone())
+				{
+					soundKey = "2a_sonic3"
+				}
+			}
+		}
+	else if (sfxId == 0x2c)
+	{
+		// Invincibility Theme
+		if (isMainCharacter(CHARACTER_KNUCKLES) && option.knux.invincible == 1)
+		{
+			soundKey = "knux-invincible"
+			//soundRegType = 0
+		}
+		else if (isMainCharacter(CHARACTER_TAILS) && option.tails.invincible == 1)
+		{
+			soundKey = "tails-invincible"
+		}
+		else if (isMainCharacter(CHARACTER_SONIC) && option.sonic.invincible == 1)
+		{
+			soundKey = "sonic-invincible"
+		}
+	}
+
+	else if (sfxId == 0xf0)
+	{
+		// Super Theme
+
+		if (isMainCharacter(CHARACTER_KNUCKLES))
+		{
+			if (super.active == 0xff && option.knux.hyper == 1)
+			{
+				//soundRegType = 0
+				soundKey = "knux-hyper"
+			}
+			else if (option.knux.super == 1)
+			{
+				soundKey = "knux-super"
+			}
+		}
+		else if (isMainCharacter(CHARACTER_TAILS))
+		{
+			if (super.active.tails == 0xff && option.tails.hyper == 1)
+			{
+				soundKey = "tails-hyper"
+				//soundRegType = SoundRegType.TYPE_JINGLE
+			}
+			else if (option.tails.super == 1)
+			{
+				soundKey = "tails-super"
+			}
+		}
+		else if (isMainCharacter(CHARACTER_SONIC))
+			{
+				if (super.active == 0xff && option.sonic.hyper == 1)
+				{
+					soundKey = "sonic-hyper"
+				}
+				else if (option.sonic.super == 1)
+				{
+					soundKey = "sonic-super"
+				}
+			}
+		}
+	//} I'm apparently not allowed to have this curly bracket
+	
+	else if (sfxId == 0x27) // Game over themes
+	{
+		if (isMainCharacter(CHARACTER_KNUCKLES) && option.knux.gameover == 1)
+			{
+				soundKey = "knux-gameover"
+			}
+			else if (isMainCharacter(CHARACTER_TAILS) && option.tails.gameover == 1)
+			{
+				soundKey = "tails-gameover"
+			}
+			else if (isMainCharacter(CHARACTER_SONIC) && option.sonic.gameover == 1)
+			{
+				soundKey = "sonic-gameover"
+			}
+		}
+
+		/*else if (sfxId == "speedshoes") // Speedups hopefully
+		{
+			if (isMainCharacter(CHARACTER_KNUCKLES) && option.knux.gameover == 1)
+			{
+				soundKey = "knux-gameover"
+			}
+			else if (isMainCharacter(CHARACTER_TAILS) && option.tails.gameover == 1)
+			{
+				soundKey = "tails-gameover"
+			}
+			else if (isMainCharacter(CHARACTER_SONIC) && option.sonic.gameover == 1)
+			{
+				soundKey = "sonic-gameover"
+			}
+		}*/
+
+	else if (sfxId == 0xdc) // Custom credits theme implementation (I can't believe that I forgot this last time)
+	{
+		if (isMainCharacter(CHARACTER_KNUCKLES) && option.knux.credits == 1)
+		{
+			soundKey = "knux-credits"
+		}
+		else if (isMainCharacter(CHARACTER_TAILS) && option.tails.credits == 1)
+		{
+			soundKey = "tails-credits"
+		}
+		else if (isMainCharacter(CHARACTER_SONIC) && option.sonic.credits == 1)
+		{
+			soundKey = "sonic-credits"
+		}
+	}
+
+	else if (sfxId == 0x29) // Act clear jingles; I need to figure out how to do the special stages at some point though
+	{
+		if (objA0.countdown_value == 269) // Shoddy attempt at a special stage check
+		{
+			if (isMainCharacter(CHARACTER_KNUCKLES))
+			{
+				if (option.knux.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					soundKey = "knux-clear"
+				}
+				else if (option.knux.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					soundKey = "cdus-clear"
+				}
+			}
+
+			else if (isMainCharacter(CHARACTER_KNUCKLES))
+			{
+				if (option.knux.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					soundKey = "knux-clear"
+				}
+				else if (option.knux.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					soundKey = "cdus-clear"
+				}
+			}
+
+			else if (isMainCharacter(CHARACTER_TAILS))
+			{
+				if (option.tails.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					soundKey = "tails-clear"
+				}
+				else if (option.tails.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					soundKey = "cdus-clear"
+				}
+			}
+
+			else if (isMainCharacter(CHARACTER_SONIC))
+			{
+				if (option.sonic.specialclear == 0x08) // If set to the standard character clear theme
+				{
+					soundKey = "sonic-clear"
+				}
+				else if (option.sonic.specialclear == 0x18) // If set to the SCD US clear theme
+				{
+					soundKey = "cdus-clear"
+				}
+			}
+			
+			else
+			{
+				if (isMainCharacter(CHARACTER_KNUCKLES) && option.knux.clear == 1)
+				{
+					soundKey = "knux-clear"
+				}
+				else if (isMainCharacter(CHARACTER_TAILS) && option.tails.clear == 1)
+				{
+					soundKey = "tails-clear"
+				}
+				else if (isMainCharacter(CHARACTER_SONIC) && option.sonic.clear == 1)
+				{
+					soundKey = "sonic-clear"
+				}
+			}
+		}			
+		
+		else
+		{ 
+			soundKey = base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)	
+		}
+	}
+	
+	return soundKey
+}
+
+
+// Hey, you read my code! Well, it's mostly Eukaryot's code. Actually, there's slightly less Eukaryot now since I did some tidying up. But still. Regardless, the rewrite is finally here!

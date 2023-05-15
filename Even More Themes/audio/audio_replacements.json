@@ -67,7 +67,7 @@
 	"FBZLaser": { "Name": "Flying Battery Laser", "File": "FBZLaser.ogg", "Type": "Music" },
 	
 	// HPZ Knuckles
-	"HPZKnux": { "Name": "HPZ Knuckles Battle", "File": "HPZKnux.ogg", "Type": "Music" }, 
+	"KnuxHPZ": { "Name": "HPZ Knuckles Battle", "File": "HPZKnux.ogg", "Type": "Music" }, 
 	
 	// Final Boss
 	"Final1": { "Name": "Death Egg Robot Phase 1", "File": "FinalBoss1.ogg", "Type": "Music" },

@@ -1,0 +1,205 @@
+{
+
+// This is a concept on how to expand the mod with support for extra character mods.
+
+// Sonic
+"sonic-clear": { "File": "SonicClear.ogg", "Type": "Jingle"},
+"sonic-gameover": { "File": "SonicGameOver.ogg", "Type": "Jingle"},
+"sonic-1up": { "File": "Sonic1Up.ogg", "Type": "Jingle"},
+"sonic-invincible": { "File": "SonicInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"sonic-super": { "File": "SonicSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"sonic-credits": { "File": "SonicCredits.ogg", "Type": "Music", "LoopStart": "759808"},
+// Tails
+"tails-clear": { "File": "TailsClear.ogg", "Type": "Jingle"},
+"tails-gameover": { "File": "TailsGameOver.ogg", "Type": "Jingle"},
+"tails-1up": { "File": "Tails1Up.ogg", "Type": "Jingle"},
+"tails-invincible": { "File": "TailsInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"tails-super": { "File": "TailsSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"tails-credits": { "File": "TailsCredits.ogg", "Type": "Music", "LoopStart": "186368"},
+// Knuckles
+"knux-clear": { "File": "KnucklesClear.ogg", "Type": "Jingle"},
+"knux-gameover": { "File": "KnucklesGameOver.ogg", "Type": "Music", "LoopStart": "229376"},
+"knux-1up": { "File": "Knuckles1Up.ogg", "Type": "Jingle"},
+"knux-invincible": { "File": "KnucklesInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"knux-super": { "File": "KnucklesSuper.ogg", "Type": "Music", "LoopStart": "129024"},
+"knux-credits": { "File": "KnucklesCredits.ogg", "Type": "Music", "LoopStart": "602112"},
+// Misc.
+"cdus-clear": { "File": "CDUSClear.ogg", "Type": "Jingle"},
+
+// Mod Support
+
+// Bluestreak (Includes Ultimate versions by Sotaknuck)
+
+// Amy (Sonic CD JP)
+"amy-clear": { "File": "AmyClear.ogg", "Type": "Jingle"},
+"amy-gameover": { "File": "AmyGameOver.ogg", "Type": "Jingle"},
+"amy-1up": { "File": "Amy1Up.ogg", "Type": "Jingle"},
+"amy-invincible": { "File": "AmyInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-super": { "File": "AmySuper.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-credits": { "File": "AmyCredits.ogg", "Type": "Music", "LoopStart": "0"},
+// Metal (Sonic CD US)
+"metal-clear": { "File": "MetalClear.ogg", "Type": "Jingle"},
+"metal-gameover": { "File": "MetalGameOver.ogg", "Type": "Jingle"},
+"metal-1up": { "File": "Metal1Up.ogg", "Type": "Jingle"},
+"metal-invincible": { "File": "MetalInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"metal-super": { "File": "MetalSuper.ogg", "Type": "Music", "LoopStart": "0"}, // Doomsday Zone
+"metal-credits": { "File": "MetalCredits.ogg", "Type": "Music", "LoopStart": "0"},
+// Mighty (SegaSonic)
+"mighty-clear": { "File": "MightyClear.ogg", "Type": "Jingle"},
+"mighty-gameover": { "File": "MightyGameOver.ogg", "Type": "Jingle"},
+"mighty-1up": { "File": "Mighty1Up.ogg", "Type": "Jingle"},
+"mighty-invincible": { "File": "MightyInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"mighty-super": { "File": "MightySuper.ogg", "Type": "Music", "LoopStart": "0"},
+"mighty-credits": { "File": "MightyCredits.ogg", "Type": "Music", "LoopStart": "0"},
+
+// Sotaknuck
+
+// S3D2D Glitches
+// Ashura (Sonic Boll)
+"ashura-clear": { "File": "AshuraClear.ogg", "Type": "Jingle"},
+"ashura-gameover": { "File": "AshuraGameOver.ogg", "Type": "Jingle"},
+"ashura-1up": { "File": "Ashura1Up.ogg", "Type": "Jingle"},
+"ashura-invincible": { "File": "AshuraInvincible.ogg", "Type": "Music", "LoopStart": "372736"},
+"ashura-super": { "File": "AshuraSuper.ogg", "Type": "Music", "LoopStart": "215040"},
+"ashura-credits": { "File": "AshuraCredits.ogg", "Type": "Music", "LoopStart": "1017856"},
+// Alternate Ashura (Sonic 3D Blast Mega Drive)
+//"ashura-clear": { "File": "AshuraAltClear.ogg", "Type": "Jingle"},
+//"ashura-gameover": { "File": "AshuraAltGameOver.ogg", "Type": "Jingle"},
+//"ashura-1up": { "File": "AshuraAlt1Up.ogg", "Type": "Jingle"},
+//"ashura-invincible": { "File": "AshuraAltInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+//"ashura-super": { "File": "AshuraAltSuper.ogg", "Type": "Music", "LoopStart": "372736"},
+//"ashura-credits": { "File": "AshuraAltCredits.ogg", "Type": "Music", "LoopStart": "1591296"},
+// Wechnia (Sonic 3D in 2D Mars)
+"wechnia-clear": { "File": "WechniaClear.ogg", "Type": "Jingle"},
+"wechnia-gameover": { "File": "WechniaGameOver.ogg", "Type": "Jingle"},
+"wechnia-1up": { "File": "Wechnia1Up.ogg", "Type": "Jingle"},
+"wechnia-invincible": { "File": "WechniaInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"wechnia-super": { "File": "WechniaSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"wechnia-credits": { "File": "WechniaSuper.ogg", "Type": "Music", "LoopStart": "0"},
+// Bluckles (Sonic 3D Blast Saturn)
+"blux-clear": { "File": "BlucklesClear.ogg", "Type": "Jingle"},
+"blux-gameover": { "File": "BlucklesGameOver.ogg", "Type": "Jingle"},
+"blux-1up": { "File": "Bluckles1Up.ogg", "Type": "Jingle"},
+"blux-invincible": { "File": "BlucklesInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"blux-super": { "File": "BlucklesSuper.ogg", "Type": "Music", "LoopStart": "0"}, // Super Sonic Racing Instrumental
+"blux-credits": { "File": "BlucklesCredits.ogg", "Type": "Music", "LoopStart": "0"},
+// Other Sotaknuck Stuff
+// Extra Life (8-Bit Sonic 1 & 2)
+"extra-clear": { "File": "ExtraClear.ogg", "Type": "Jingle"},
+"extra-gameover": { "File": "ExtraGameOver.ogg", "Type": "Jingle"},
+"extra-1up": { "File": "Extra1Up.ogg", "Type": "Jingle"},
+"extra-invincible": { "File": "ExtraInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"extra-super": { "File": "ExtraSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"extra-credits": { "File": "ExtraCredits.ogg", "Type": "Music", "LoopStart": "0"}, // Sonic & the Black Knight - Fight the Knight (sincve its the mod's trailer theme)
+// Chaos (Sonic Adventure)
+"chaos-clear": { "File": "ChaosClear.ogg", "Type": "Jingle"},
+"chaos-gameover": { "File": "ChaosGameOver.ogg", "Type": "Jingle"},
+"chaos-1up": { "File": "Chaos1Up.ogg", "Type": "Jingle"},
+"chaos-invincible": { "File": "ChaosInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"chaos-super": { "File": "ChaosSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"chaos-credits": { "File": "ChaosCredits.ogg", "Type": "Music", "LoopStart": "0"},
+//Shadow (Shadow the Hedgehog; also, where's that DAMN fourth Chaos Emerald? I think I normally get it in either HCZ1 or AIZ2; can't remember)
+"shadow-clear": { "File": "ShadowClear.ogg", "Type": "Jingle"},
+"shadow-gameover": { "File": "ShadowGameOver.ogg", "Type": "Jingle"},
+"shadow-1up": { "File": "Shadow1Up.ogg", "Type": "Jingle"},
+"shadow-invincible": { "File": "ShadowInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"shadow-super": { "File": "ShadowSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"shadow-credits": { "File": "ShadowCredits.ogg", "Type": "Music", "LoopStart": "0"}, // '06 Version of All Hail Shadow
+// Lavaslime
+// NES Mario (Mario 1)
+"nesmario-clear": { "File": "NESMarioClear.ogg", "Type": "Jingle"},
+"nesmario-gameover": { "File": "NESMarioGameOver.ogg", "Type": "Jingle"},
+"nesmario-1up": { "File": "NESMario1Up.ogg", "Type": "Jingle"},
+"nesmario-invincible": { "File": "NESMarioInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"nesmario-super": { "File": "NESMarioSuper.ogg", "Type": "Music", "LoopStart": "0"}, // Break Free 8-bit from Super Mario Odyssey
+"nesmario-credits": { "File": "NESMarioCredits.ogg", "Type": "Music", "LoopStart": "0"}, // Mario 3 Ending
+//Virtual Hedgehog (Sonic Colours; Colours was actually my first Sonic game as well. Probably explains why I have a terrible sense of humor.)
+"virtual-clear": { "File": "VirtualClear.ogg", "Type": "Jingle"},
+"virtual-gameover": { "File": "VirtualGameOver.ogg", "Type": "Jingle"},
+"virtual-1up": { "File": "Virtual1Up.ogg", "Type": "Jingle"},
+"virtual-invincible": { "File": "VirtualInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"virtual-super": { "File": "VirtualSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"virtual-credits": { "File": "VirtualCredits.ogg", "Type": "Music", "LoopStart": "0"}, // '06 Version of All Hail Shadow
+
+// Fabchaotix
+// Nack the Weasel/Fang the Sniper (Sonic Triple Trouble 8/16-bit)
+"fang-clear": { "File": "FangClear.ogg", "Type": "Jingle"},
+"fang-gameover": { "File": "FangGameOver.ogg", "Type": "Jingle"},
+"fang-1up": { "File": "Fang1Up.ogg", "Type": "Jingle"},
+"fang-invincible": { "File": "FangInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"fang-super": { "File": "FangSuper.ogg", "Type": "Music", "LoopStart": "0"}, // SRB2 Super Theme played in the Mega Drive soundfont
+"fang-credits": { "File": "FangCredits.ogg", "Type": "Music", "LoopStart": "0"},
+// Misc.; that is characters who have too many versions of them or haven't been made yet, most likely the latter
+
+// Sonic EXE (Mixed)
+"exe-clear": { "File": "EXEClear.ogg", "Type": "Jingle"}, //  Sonic Unleashed E Rank in G Major - www.youtube.com/watch?v=vO-5uoknD60
+"exe-gameover": { "File": "EXEGameOver.ogg", "Type": "Jingle"}, // Sonic CD US Game Over theme, played backwards
+"exe-1up": { "File": "EXE1Up.ogg", "Type": "Jingle"}, // Sonic 2 1-Up jingle, played backwards with an echo effect
+"exe-invincible": { "File": "EXEInvincible.ogg", "Type": "Music", "LoopStart": "0"}, // Sonic CD US Final Boss Theme, 50% faster
+"exe-super": { "File": "EXESuper.ogg", "Type": "Music", "LoopStart": "0"}, // Pokken Tournament Battle - Burst Final; we always need more Pokken.
+"exe-credits": { "File": "EXECredits.ogg", "Type": "Music", "LoopStart": "0"}, // Shadow the Hedgehog - Almost Dead
+
+// Mario (Mixed)
+"mario-clear": { "File": "MarioClear.ogg", "Type": "Jingle"}, // Super Mario 3D World - Course Clear
+"mario-gameover": { "File": "MarioGameOver.ogg", "Type": "Jingle"}, // Paper Mario - Game Over
+"mario-1up": { "File": "Mario1Up.ogg", "Type": "Jingle"}, // Super Mario 64 - 1Up
+"mario-invincible": { "File": "MarioInvincible.ogg", "Type": "Music", "LoopStart": "0"}, // Mario Power Tennis - Starman
+"mario-super": { "File": "MarioSuper.ogg", "Type": "Music", "LoopStart": "0"}, // Super Mario Odyssey - Break Free
+"mario-credits": { "File": "MarioCredits.ogg", "Type": "Music", "LoopStart": "0"}, // Super Mario Odyssey - Jump Up Super Star
+
+// Silver (Sonic '06)
+"silver-clear": { "File": "SilverClear.ogg", "Type": "Jingle"},
+"silver-gameover": { "File": "SilverGameOver.ogg", "Type": "Jingle"},
+"silver-1up": { "File": "Silver1Up.ogg", "Type": "Jingle"},
+"silver-invincible": { "File": "SilverInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"silver-super": { "File": "SilverSuper.ogg", "Type": "Music", "LoopStart": "0"}, // Brawl Version of His World
+"silver-credits": { "File": "SilverCredits.ogg", "Type": "Music", "LoopStart": "0"},
+
+// Blaze (Sonic Rush & Sonic Rush Adventure)
+"blaze-clear": { "File": "BlazeClear.ogg", "Type": "Jingle"},
+"blaze-gameover": { "File": "BlazeGameOver.ogg", "Type": "Jingle"},
+"blaze-1up": { "File": "Blaze1Up.ogg", "Type": "Jingle"},
+"blaze-invincible": { "File": "BlazeInvincible.ogg", "Type": "Music", "LoopStart": "100352"},
+"blaze-super": { "File": "BlazeSuper.ogg", "Type": "Music", "LoopStart": "157696"},
+"blaze-credits": { "File": "BlazeCredits.ogg", "Type": "Music", "LoopStart": "544768"},
+
+// Cream (Sonic Rush Trilogy)
+"cream-clear": { "File": "CreamClear.ogg", "Type": "Jingle"},
+"cream-gameover": { "File": "CreamGameOver.ogg", "Type": "Jingle"},
+"cream-1up": { "File": "Cream1Up.ogg", "Type": "Jingle"},
+"cream-invincible": { "File": "CreamInvincible.ogg", "Type": "Music", "LoopStart": "43008"},
+"cream-super": { "File": "CreamSuper.ogg", "Type": "Music", "LoopStart": "415744"},
+"cream-credits": { "File": "CreamCredits.ogg", "Type": "Music", "LoopStart": "0"},
+
+// Sally (Sonic Forces; because SatAM is basically Forces but better)
+"sally-clear": { "File": "SallyClear.ogg", "Type": "Jingle"},
+"sally-gameover": { "File": "SallyGameOver.ogg", "Type": "Jingle"},
+"sally-1up": { "File": "Sally1Up.ogg", "Type": "Jingle"},
+"sally-invincible": { "File": "SallyInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"sally-super": { "File": "SallySuper.ogg", "Type": "Music", "LoopStart": "0"},
+"sally-credits": { "File": "SallyCredits.ogg", "Type": "Music", "LoopStart": "0"},
+
+// Other ideas; possibly make Ray share themes with Mighty? Also considering Sonic EXE
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

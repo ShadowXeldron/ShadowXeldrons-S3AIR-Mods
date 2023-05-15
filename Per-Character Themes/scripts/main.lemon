@@ -88,16 +88,34 @@ function u8 getCharID() // Function that checks for character IDs
 	charID == 6 - Metal Sonic Kai (I'll also include Ultimate Metal in the mix as well)
 	(Espio, you will be sorely missed)
 			
-	
-	The thing is, I don't actually use extra slots and I only added support so that the 1 year olds don't complain about hearing Sonic 2 music when playing as Extra Slot Harry Styles.
+	These IDs meanwhile are going to be kept around for when Sotaknuck eventually caves in and updates the rest of his stuff. All Sotaknuck IDs start with "1"
 
+	charID == 10 - Ashura
+	charID == 11 - Wechnia
+	charID == 12 - Bluckles
+	charID == 13 - Chaos
+	charID == 14 - Shadow
+
+	Finally, I'm saving this for later:
+
+	charID == 666 - Sonic.EXE (There are METRIC CRAPTONS of EXE mods, so )
+
+	I'd also like to some of the following if they get proper moveset mods:
+			
+	- Silver
+	- Any Freedom Planet character
+	- Sally
+	- Cream
+	- Mario (I'm well aware of the Lavaslime version, and I have some tracks at the ready)
+			
+	I'm also considering Appel, but I'm reluctant about it.
 	*/
 
 	// Mod detection; for now we've only got Mighty. I hope that you lot hurry up with Ray so that I can add it.
 	// This checks if you're playing as Sonic with Ultimate Mighty loaded, or straight-up playing as Extra Slot Might.
 	//Thanks to iCloudius for help on detecting if somebody is playing as Extra Slot Mighty.
 	
-	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1)) // No I am not changing this to global.xtrachar. GPL is serious buisness,
+	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00"))) 
 	{
 		charID = 3
 	}
@@ -436,7 +454,7 @@ function void PlayMusic()
 				}
 				else if (option.knux.hyper == 5)
 				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
+					Audio.playAudio("2c_sonic3",0) // Sonic 3
 				}
 				else if (option.knux.hyper == 6)
 				{
@@ -464,7 +482,7 @@ function void PlayMusic()
 				}
 				else if (option.knux.super == 5)
 				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
+					Audio.playAudio("2c_sonic3",0) // Sonic 3
 				}
 				else if (option.knux.super == 6)
 				{
@@ -527,7 +545,7 @@ function void PlayMusic()
 				}
 				else if (option.tails.super == 5)
 				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
+					Audio.playAudio("2c_sonic3",0) // Sonic 3
 				}
 				else if (option.tails.super == 6)
 				{
@@ -562,7 +580,7 @@ function void PlayMusic()
 				}
 				else if (option.sonic.hyper == 5)
 				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
+					Audio.playAudio("2c_sonic3",0) // Sonic 3
 				}
 				else if (option.sonic.hyper == 6)
 				{
@@ -571,25 +589,25 @@ function void PlayMusic()
 			}
 			else if (option.sonic.super != 0)
 			{
-				if (option.sonic.hyper == 1)
+				if (option.sonic.super == 1)
 				{
 					Audio.playAudio("sonic-super",0) // Custom super theme
 				}
-				else if (option.sonic.hyper == 2)
+				else if (option.sonic.super == 2)
 				{
 					Audio.playAudio("sonic-hyper",0) // Custom hyper theme
 				}
-				else if (option.sonic.hyper == 3)
+				else if (option.sonic.super == 3)
 				{
 					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
 				}
-				else if (option.sonic.hyper == 4)
+				else if (option.sonic.super == 4)
 				{
 					Audio.playAudio("2c",0) // Sonic & Knuckles
 				}
-				else if (option.sonic.hyper == 5)
+				else if (option.sonic.super == 5)
 				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
+					Audio.playAudio("2c_sonic3",0) // Sonic 3
 				}
 				else if (option.sonic.super == 6)
 				{
@@ -624,7 +642,7 @@ function void PlayMusic()
 				}
 				else if (option.mighty.hyper == 5)
 				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
+					Audio.playAudio("2c_sonic3",0) // Sonic 3
 				}
 				else if (option.mighty.hyper == 6)
 				{
@@ -651,7 +669,7 @@ function void PlayMusic()
 				}
 				else if (option.mighty.super == 5)
 				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
+					Audio.playAudio("2c_sonic3",0) // Sonic 3
 				}
 				else if (option.mighty.super == 6)
 				{

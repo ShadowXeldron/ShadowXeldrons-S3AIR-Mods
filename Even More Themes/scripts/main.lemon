@@ -34,15 +34,30 @@ global u8 config.misc.continue //DANANANANANANANANANANANANANANANANA
 // Other secret non-config variables; shhhh!
 
 global u8 sszcurrentsong
-
+global u8 knuxCutsceneStage = 0
 
 
 // Contextual audio overrides with an old friend of ours
 
 // This function is here only for script mods that want to change the sound key, e.g. to play a custom music track / sound effect
-function u64 NONEXISTENT.Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
+function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
 {
-	return soundKey
+    if (sfxId == MUSIC_MINIBOSS_2)
+    {
+        if (knuxCutsceneStage == 1) // In HPZ
+        {
+            soundKey = "HPZCutscene1"
+            return soundKey
+        }
+        else
+        {
+            return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
+        }
+    }
+
+    return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
+	
+    
 }
 
 function void PlayMusic() // Ta-da! We're using the PCT method since that's the one I know works.
@@ -61,22 +76,30 @@ function void PlayMusic() // Ta-da! We're using the PCT method since that's the 
         }
     }
 
-    else if (sfxId == 0x0a) // Yes, I really did do FBZ2 trickery here. It's a funny throwback to how Knuckles' boss music in Pocket Adventure is FBZ2.
+    else if (sfxId == 0x0a) // Yes, I really did do FBZ2 trickery here. It's a throwback to how Knuckles' boss music in Pocket Adventure is FBZ2.
     {
-        if ((global.zone_act == 0x1601) && (global.zone_act == 0x1601)) // Checks if you're in HPZ
+        if (global.zone_act == 0x1601) // Checks if you're in HPZ
         {
             Audio.playAudio("KnuxHPZ", 0) // If so, plays the Knuckles song
         }
         else
         {
             base.PlayMusic()
-        }//
+        }
     }
     
     else if (sfxId == MUSIC_MAINBOSS && isMainCharacter(CHARACTER_KNUCKLES)) // Checks for Knuckles' boss music
     {
         Audio.playAudio("BossEggrobo", 0)
     }
+
+    //else if (sfxId == MUSIC_MINIBOSS_2)
+    //{
+    //    if (knuxCutsceneStage == 1) // In HPZ
+    //    {
+    //        Audio.playAudio("HPZCutscene1", 0)
+    //    }
+    //}
 
     else if (sfxId == MUSIC_SSZ)
     {
@@ -180,10 +203,10 @@ function void PlayMusic() // Ta-da! We're using the PCT method since that's the 
         }
     }
 
-    else if ((sfxId == MUSIC_MAINBOSS || MUSIC_MINIBOSS_2) && objA0.value39 == 6)
-    {
-        Audio.playAudio("FBZLaser", 0)
-    }
+    //else if ((sfxId == MUSIC_MAINBOSS || MUSIC_MINIBOSS_2) && objA0.value39 == 6)
+    //{
+    //    Audio.playAudio("FBZLaser", 0)
+    //}
 
     else if (sfxId == MUSIC_CONTINUE)
     {
@@ -306,4 +329,14 @@ function void fn0674ac()
 {
     Audio.playAudio("AIZOpening",0)
     base.fn0674ac()
+}
+
+//# address-hook(0x064ca6) end(0x064d14)
+// HPZ Master Emerald Cutscene
+
+//# address-hook(0x064ca6) end(0x064d14)
+function void fn064ca6()
+{
+    knuxCutsceneStage = 1
+    base.fn064ca6()
 }
