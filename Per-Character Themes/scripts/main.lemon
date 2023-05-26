@@ -13,6 +13,11 @@
 	
 */
 
+// Preprocessor directive for people to use
+#define PCT_ACTIVE
+
+#define PCT_LITE = 0
+
 /*
 
 Just so that I remember them, here's the constants that I need to know
@@ -75,6 +80,12 @@ function u8 getCharID() // Function that checks for character IDs
 
 	/* For anyone reading this, I have a cheat sheet prepared for you all to know who's who under the wave of charIDs. 
 	I thought that charID would be less of a pain to work this than nested Mods.modIsActives
+
+	Note to self: make some "extra nots" so I don't have to actually use ESU. 
+	I much perfer there to not be that many mods active at once, especially when testing, and having a quintillion extra slot mods active to avoid potentially wrecking
+	my save while testing is antithetical to that
+
+	Anyway, without further ado, behold the charIDs.
 		
 	charID == 0 - Sonic
 	charID == 1 - Tails
@@ -85,10 +96,10 @@ function u8 getCharID() // Function that checks for character IDs
 
 	charID == 4 - Ray
 	charID == 5 - Amy
-	charID == 6 - Metal Sonic Kai (I'll also include Ultimate Metal in the mix as well)
+	charID == 6 - Metal Sonic Kai (I'll also include Ultimate Metal and that Extra Slot Metal which has been running around GB in the mix as well)
 	(Espio, you will be sorely missed)
 			
-	These IDs meanwhile are going to be kept around for when Sotaknuck eventually caves in and updates the rest of his stuff. All Sotaknuck IDs start with "1"
+	These IDs meanwhile are going to be kept around for when somebody inevitably converts Sotaknuck's stuff into an extra slot. (which, to be fair, is about 70% of extra slots anyway)
 
 	charID == 10 - Ashura
 	charID == 11 - Wechnia
@@ -114,11 +125,16 @@ function u8 getCharID() // Function that checks for character IDs
 	// Mod detection; for now we've only got Mighty. I hope that you lot hurry up with Ray so that I can add it.
 	// This checks if you're playing as Sonic with Ultimate Mighty loaded, or straight-up playing as Extra Slot Might.
 	//Thanks to iCloudius for help on detecting if somebody is playing as Extra Slot Mighty.
+ 
+	// Here's a preprocessor definition for the version without the extra character support.
+	#if PCT_LITE == 0
 	
 	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00"))) 
 	{
 		charID = 3
 	}
+
+	#endif
 
 	return charID
 }
@@ -876,13 +892,21 @@ function void playSpeedSong()
 	}
 }
 
+// Another fix from TimerBunneh; wish I had you around when I first implemented this feature
+#if STANDALONE
+
 function void Character.updateBonusEffects() 
 {
 	
 	//u8 speedSongPlaying = 0 // Used to check if the speed song is playing
-	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP) // Yet all my attempts failed
+	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP)
+
+	if (super.active || super.active.tails)
+	{
+		speedupped == false // I don't want the speed shoes music playing while super
+	}
 	base.Character.updateBonusEffects()
-	if (speedupped)
+	if (speedupped) 
 	{
 		playSpeedSong()
 	}
@@ -891,3 +915,48 @@ function void Character.updateBonusEffects()
 		chooseFittingMusic()
 	}
 }
+
+function void Standalone.setFastMusicFlag(u8 flag, bool enable)
+{
+	// Update flags
+	bool wasFastMusicMode = (fastMusicFlags != 0)
+	if (enable)
+		fastMusicFlags |= flag
+	else
+		fastMusicFlags &= ~flag
+
+	// Any change?
+	bool shouldBeFastMusicMode = (fastMusicFlags != 0)
+	if (shouldBeFastMusicMode != wasFastMusicMode)
+	{
+		// Switch to fast music, or back to normal
+		//  -> In the Oxygen engine, this is implemented as an audio modifier for channel 0
+		if (shouldBeFastMusicMode)
+		{
+			Audio.enableAudioModifier(0, 0, "_fast", 0x14000 /*1.25f*/) // Can't use floats since they've not been invented yet; sticking to the fixed point until then
+		}
+		else
+		{
+			Audio.disableAudioModifier(0, 0)
+		}
+	}
+}
+
+/* Commented out because it seems to be 1:1 with the basegame. Also, floats haven't been invented yet
+
+function void Standalone.setFastMusicFlagWithSpeedup(u8 flag, float relativeSpeed)
+{
+	if (relativeSpeed <= 1.0f)
+	{
+		Standalone.setFastMusicFlag(flag, false)
+	}
+	else
+	{
+		fastMusicFlags |= flag
+		Audio.enableAudioModifier(0, 0, "_fast", relativeSpeed)
+	}
+}
+*/
+#endif
+
+// Eukaryot if you add six button pad support I'll stop calling you Prokaryot and stop moaning about having to manually compile the previews

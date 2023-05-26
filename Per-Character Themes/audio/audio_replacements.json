@@ -3,7 +3,7 @@
 // Sonic
 "sonic-clear": { "File": "SonicClear.ogg", "Type": "Jingle"},
 "sonic-gameover": { "File": "SonicGameOver.ogg", "Type": "Jingle"},
-"sonic-1up": { "File": "Sonic1Up.ogg", "Type": "Jingle"},
+"sonic-1up": { "File": "Sonic1Up.ogg", "Type": "Jingle"}, // alright, which one of you jerks keeps removing my Sonic1UP? If I have to point my missiles at Sega or Wave Master then I won't be happy.
 "sonic-invincible": { "File": "SonicInvincible.ogg", "Type": "Music", "LoopStart": "139623"},
 "sonic-super": { "File": "SonicSuper.ogg", "Type": "Music", "LoopStart": "165375"},
 "sonic-hyper": { "File": "SonicHyper.ogg", "Type": "Music", "LoopStart": "186368"},
