@@ -1,3 +1,5 @@
+// First version of the script from the Sonic DS pack
+
 // Custom scripts for the Sonic DS Music Pack
 
 include bosschanges
@@ -10,7 +12,7 @@ include bosschanges
 
 	Some code is taken from the Sonic 3 A.I.R script software distribution, Copyright (C) 2017-2023 by Eukaryot
 
-	Some code is taken from the Even More Themes and Per-Character Themes projects, Copyright (C) 2022-2023 by ShadowXeldron
+	Some code is taken from the Even More Themes project, Copyright (C) 2022-2023 by ShadowXeldron
 
 	This mod is published under the GNU GPLv3 open source software license, see LICENSE.txt
 	or https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -32,9 +34,6 @@ global u8 option.boss.bigarms
 global u8 option.boss.deatheggrobot
 global u8 option.boss.mecha
 global u8 option.boss.knux
-global u8 option.boss.lbz2
-global u8 option.boss.lrz2
-global u8 option.boss.dez2
 
 global u8 option.invincibility
 global u8 option.allegro
@@ -47,8 +46,7 @@ global u8 option.credits
 function void playAllegroTrack(u8 bossType)
 {
     // This'll probably butcher performance
-    // USAGE: pass 1 for a midboss, 2 for a big boss, 3 for Big Arms, 4 for Knuckles, 5 for Mecha Sonic, 6 for Super Mecha Sonic and 7 for the SSZ reused bosses, 8 for LRZ2, 9 for LBZ2, 10 for DEZ2
-    
+    // USAGE: pass 1 for a midboss, 2 for a big boss, 3 for Big Arms, 4 for Knuckles, 5 for Mecha Sonic, 6 for Super Mecha Sonic and 7 for the
     u64 soundkey
 
     if (bossType == 1)
@@ -120,10 +118,6 @@ function void playAllegroTrack(u8 bossType)
         {
             soundkey = "30-allegro"
         }
-        else if option.boss.mecha == 2
-        {
-            soundkey = "mechavsknux-allegro"
-        }
         else
         {
             soundkey = "30-alt-allegro"
@@ -140,42 +134,6 @@ function void playAllegroTrack(u8 bossType)
         soundkey = "advance-allegro"
     }
 
-    else if (bossType == 8)
-    {
-        if option.boss.lrz2 == 0
-        {
-            soundkey = "19-lrz-allegro"
-        }
-        else
-        {
-            soundkey = "19-allegro"
-        }
-    }
-
-    else if (bossType == 9)
-    {
-        if option.boss.lbz2 == 0
-        {
-            soundkey = "19-lbz-allegro"
-        }
-        else
-        {
-            soundkey = "19-allegro"
-        }
-    }
-
-    else if (bossType == 10)
-    {
-        if option.boss.dez2 == 0
-        {
-            soundkey = "19-lbz-allegro"
-        }
-        else
-        {
-            soundkey = "19-allegro"
-        }
-    }
-
     if (!Audio.isPlayingAudio(soundkey))
     {
         Audio.playAudio(soundkey, 0)
@@ -184,6 +142,11 @@ function void playAllegroTrack(u8 bossType)
     {
         return // empty handed
     }
+}
+
+function void playLBZAllegroTrack()
+{
+
 }
 
 function u64 setInvincibilityMusic()
@@ -363,6 +326,9 @@ function u64 setInvincibilityMusic()
     }
 
     return soundkey
+
+
+
 }
 
 function u64 setClearMusic()
@@ -424,10 +390,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 {
     if (sfxId == 0x29) // Act Clear music setup
     {
-        if (objA0.countdown_value == 269) // Special stage check
-        {
-            return "32-special" 
-        }
         if (option.clear != 6)
         {
             return setClearMusic()
@@ -445,56 +407,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
             Audio.playAudio(0x2a, 1)
             return false
         }
-        else
-        {
-            return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-        }
-    }
-
-     // 
-    
-    else if (sfxId == 0x19) // Act 2 Boss Music
-    {
-        if global.zone_act == 0x1600 // Lava Reef Act 2
-        {
-            if option.boss.lrz2 == 0
-            {
-                return "19-lrz"
-            }
-
-            else
-            {
-                return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-            }
-
-        }
-
-        if global.zone_act.apparent == 0x0601 // Launch Base Act 2
-        {
-            if option.boss.lbz2 == 0
-            {
-                return "19-lbz"
-            }
-
-            else
-            {
-                return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-            }
-        }
-
-        if global.zone_act = 0x0b01 // Death Egg Act 2
-        {
-            if option.boss.dez2 == 0
-            {
-                return "19-lbz"
-            }
-
-            else
-            {
-                return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType) // I wish it could be more efficient than this
-            }
-        }
-
         else
         {
             return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
@@ -558,11 +470,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
             if (option.boss.mecha == 1)
             {
                 return "30-alt"
-            }
-
-            if (option.boss.mecha == 2)
-            {
-                return "mechavsknux"
             }
 
             else
@@ -744,5 +651,3 @@ function u8 BossHPZKnuckles.chooseMusicTrack() // Knuckles music override; porte
         return base.BossHPZKnuckles.chooseMusicTrack()
     }
 }
-
-// They say Zero is so cool that his farts sound like romantic trumpets

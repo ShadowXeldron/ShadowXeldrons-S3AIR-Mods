@@ -2,7 +2,7 @@
 
 // This file features the bosses in alphabetical order because I'm using the GitHub repository as a reference.
 // Also, I don't care what the manual or the Encyclospeedia calls the bosses. If I think it's called Spinning Top Dude then I'm calling it Spinning Top Dude.
-// Finally, to any music nuts out there who are going "ERM, AKSHULLY" when seeing my functions and soundkey names, the reason why I'm using the term "allegro" is because it's what the Sonic Rush Adventure album usues to denote the "phase 2" tracks.
+// Finally, to any music nuts out there who are going "ERM, AKSHULLY" when seeing my functions and soundkey names, the reason why I'm using the term "allegro" is because it's what the Sonic Rush album usues to denote the "phase 2" tracks.
 
 global u8 MechaSonicBehavePlease = 0
 
@@ -16,7 +16,7 @@ function void Boss.AIZ1.RegularUpdate() // AIZ1 "Fire Breath" Boss, obviously
     }
 }
 
-// Why can't all the other bosses use similar, human-friendly function names like Fire Breath does?
+// Why can't all the other bosses use simialr, human-friendly function names like Fire Breath does?
 
 //# address-hook(0x069be2) end(0x069c64)
 function void fn069be2() // AIZ2 Boss - the Egg Fire Mech
@@ -61,7 +61,7 @@ function void fn07fb92() // DEZ2 Boss - not the Death Egg Robot, but the Spiny S
     base.fn07fb92()
     if (boss.remaining_hits == 4)
     {
-        playAllegroTrack(10)
+        playAllegroTrack(2)
     }
 }
 
@@ -153,7 +153,7 @@ function void fn073fe2() // The first of the LBZ2 wrecking balls of death, the E
     base.fn073fe2()
     if (boss.remaining_hits == 4)
     {
-        playAllegroTrack(9)
+        playAllegroTrack(2)
     }
 }
 
@@ -161,20 +161,9 @@ function void fn073fe2() // The first of the LBZ2 wrecking balls of death, the E
 function void fn0734fa() // The second LBZ2 boss - the diligent Death Egg defender known as the Egg Tower
 {
     base.fn0734fa()
-    if isMainCharacter(CHARACTER_KNUCKLES)
+    if (boss.remaining_hits == 4) // This boss actually takes 9 hits, but I don't think it's possible for a boss to have 4.5 remaining HP
     {
-         if (boss.remaining_hits == 0) // This boss actually takes 9 hits, but I don't think it's possible for a boss to have 4.5 remaining HP
-        {
-            playAllegroTrack(9)
-        }
-    }
-        
-    else
-    {
-        if (boss.remaining_hits == 4) // This boss actually takes 9 hits, but I don't think it's possible for a boss to have 4.5 remaining HP
-        {
-            playAllegroTrack(9)
-        }
+        playAllegroTrack(2)
     }
 }
 
@@ -184,12 +173,9 @@ function void fn0734fa() // The second LBZ2 boss - the diligent Death Egg defend
 function void fn074fd2()  // And, finally, the last of LBZ2's boss gauntlet: the mech the myth the legend, Big Arms! Famous for it's appearance in the 3DS version of Sonic Generations.
 {
     base.fn074fd2()
-    if !isMainCharacter(CHARACTER_KNUCKLES)
+    if (boss.remaining_hits == 4)
     {
-        if (boss.remaining_hits == 4)
-        {
-            playAllegroTrack(3)
-        }
+        playAllegroTrack(3)
     }
 }
 
@@ -208,7 +194,7 @@ function void fn078c14() // He who haunts LRZ1... the Nightmare Hand.
 function void fn07981e() // The LRZ2 Bombing Machine. Since the boss appearing itself is effectively a second phase, it plays the allegro track on initialisation.
 {
     base.fn07981e()
-    playAllegroTrack(8)
+    playAllegroTrack(2)
 }
 
 //# address-hook(0x088a62) end(0x088ae0)
