@@ -482,7 +482,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
             }
         }
 
-        if global.zone_act = 0x0b01 // Death Egg Act 2
+        if global.zone_act.apparent = 0x0b01 // Death Egg Act 2; this was actually causing an issue in SSZ. Fixed by changing it from global.zone_act to global.zone_act.apparent
         {
             if option.boss.dez2 == 0
             {
@@ -553,14 +553,14 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
             }
         }
 
-        if global.zone == 0x0a // SSZ
+        if (global.zone == 0x0a) // SSZ
         {
             if (option.boss.mecha == 1)
             {
                 return "30-alt"
             }
 
-            if (option.boss.mecha == 2)
+            else if (option.boss.mecha == 2) // Well this one caused me buttloads of trouble. Damn update.
             {
                 return "mechavsknux"
             }
