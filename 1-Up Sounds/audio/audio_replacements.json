@@ -1,0 +1,16 @@
+{
+
+// Sonic
+"1Up-SCD": { "File": "SCD.ogg", "Type": "Sound"},
+"1Up-TimeStone": { "File": "SCD-TimeStone.ogg", "Type": "Sound"},
+"1Up-SMB1": { "File": "SMB1.ogg", "Type": "Sound"},
+"1Up-SMW": { "File": "Mario.ogg", "Type": "Sound"},
+"1Up-MM": { "File": "MM.ogg", "Type": "Sound"},
+"1Up-MMX": { "File": "MMX.ogg", "Type": "Sound"},
+"1Up-S06": { "File": "Sonic06.ogg", "Type": "Sound"},
+"1Up-SA": { "File": "SonicAdventure.ogg", "Type": "Sound"},
+"1Up-SR": { "File": "SonicRush.ogg", "Type": "Sound"},
+"1Up-Kirby": { "File": "Kirby.ogg", "Type": "Sound"},
+
+}
+// if (isMainCharacter(CHARACTER_SONIC))

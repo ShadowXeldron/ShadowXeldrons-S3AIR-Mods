@@ -283,7 +283,7 @@ function void fn0781e4() // The Egg Golem from SOZ, however, does have a health 
 //# translated(0x07d3be) end(0x07d3c6)
 function void fn07d312() // Mecha Sonic from SSZ, who thinks you pests have lived long enough. He also agrees with me that Gamebanana is a better modding than ProBoards.
 {
-    if (boss.remaining_hits == 0)
+    if (boss.remaining_hits == 0) 
     {
         MechaSonicBehavePlease = 1  // A kludge for Super Mecha Sonic
     }
@@ -294,7 +294,8 @@ function void fn07d312() // Mecha Sonic from SSZ, who thinks you pests have live
         {
             if MechaSonicBehavePlease == 1
             {
-                playAllegroTrack(6)
+                playAllegroTrack(6) // Guess what buttholes THIS DOESN'T WORK ARRRRGH
+                // If you fix this I'll buy you a bag of chocolate buttons and present unto you my eternal gratitude
             }
             else
             {

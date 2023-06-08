@@ -1,0 +1,35 @@
+global u8 option.1upSound
+
+
+constant array<string> ONEUP_SOUNDS =
+{
+    "1Up-SCD",
+    "1Up-TimeStone",
+    "1Up-SMB1",
+    "1Up-SMW",
+    "1Up-MM",
+    "1Up-MMX",
+    "1Up-S06",
+    "1Up-SA",
+    "1Up-SR",
+    "1Up-Kirby"
+}
+
+//global string current1UpSound = ""
+//current1UpSound = ONEUP_SOUNDS[option.1upSound]
+
+
+function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType) // Yes I did copy this from Timer's tutorial
+{
+
+    if (sfxId == 0x2a) // The 1up sound
+    {
+        Audio.playAudio(ONEUP_SOUNDS[option.1upSound], 1)
+        return false
+    }
+
+    else
+    {
+        return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
+    }
+}

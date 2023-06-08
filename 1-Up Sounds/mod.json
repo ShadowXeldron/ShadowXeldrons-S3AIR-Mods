@@ -1,0 +1,38 @@
+{
+	"Metadata":
+	{
+		"Name": "1-Up Sounds",
+		"UniqueID": "ShadowXeldron-1UpSounds",
+		"Author": "ShadowXeldron",
+		"Description": "A small mod that adds 1-up sound effects that don't interfere with the music. Made to experiment with constant arrys as a new",
+		"URL": "https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods",
+		"ModVersion": "1.Up"
+	},
+	"Settings":
+	{
+		"List":
+		[	
+			{
+				"InternalName": "1UpSound",
+				"DisplayName": "1-Up Sound",
+				//"Category": "Clear Jingles",
+				"Variable": "option.1upSound",
+				"DefaultValue": "0",
+				"Options":
+				{
+					"0": "Sonic CD",
+					"1": "Sonic CD Time Stone",
+					"2": "Super Mario Bros.",
+					"3": "Super Mario World",
+					"4": "Mega Man",
+					"5": "Mega Man X",
+					"6": "Sonic '06",
+					"7": "Sonic Adventure",
+					"8": "Sonic Rush",
+					"9": "Kirby"
+				}
+			},
+		]
+	}
+	
+}
