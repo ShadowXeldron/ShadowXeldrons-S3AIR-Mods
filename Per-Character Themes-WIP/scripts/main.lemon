@@ -1,4 +1,6 @@
-// Yet another rewrite... God, these are getting annoying. I HOPE this one's more futureproof.
+// Once again, I have rewritten another worthless object. If you've been keeping count, we're now at our third rewrite. And this time, it's unrelated to compatibility!
+// This time, the focus is on maintainability. Elseif chains are annoying to make, annoying to debug, and overall annoying to have to deal with
+
 // Now with added commentary!
 
 /*
@@ -12,6 +14,8 @@
 	or https://www.gnu.org/licenses/gpl-3.0.en.html
 	
 */
+
+include constant-arrays // The audio keys are in here
 
 /*
 
@@ -105,662 +109,86 @@ function u8 getCharID() // Function that checks for character IDs
 	return charID
 }
 
-function void PlayMusic()
+function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
 {
-	u8 audioID = D0.u8 // This should tell us what sound ID is being played. Is this redundant? Probably, but the basegame code does it all the time.
-	u8 charID = getCharID() // Used to check who is being played as
-	
-	// Let the triple trouble begin.
-	if (audioID == MUSIC_INVINCIBLE) // Invincibility jingles
+	u64 originalSoundkey = soundKey
+
+	// Time for a refreshing new begining! 
+
+	u8 charID = getCharID() // the CharID system is used to easily add support for extra characters.
+
+	// I know you don't actually need the curly brackets, but I think it makes things tidier.
+
+	if sfxId == MUSIC_INVINCIBLE
 	{
-		if (charID == 2) // It was starting from the 1.5 devcycle that I realised my nicely optimised code is going to plummet in quality. Aw gum drops.
+		// Like it or not, elseif chains are always going to be a requirement. However, with constant arrays we can at least offset some of the issues.
+
+		if (charID == 2) // Knuckles
 		{
-			if (option.knux.invincible == 1) // First and foremost, the provided file.
-			{
-				Audio.playAudio("knux-invincible",0)
-			}
-			else if (option.knux.invincible == 2) // S&K option
-			{
-				Audio.playAudio("2C",0)
-			}
-			else if (option.knux.invincible == 3) // Sonic 3 option
-			{
-				Audio.playAudio("2C_sonic3",0)
-			}
-			else
-			{
-				base.PlayMusic() // Fallback/Vanilla option
-			}
+			soundKey = KNUX_INVINCIBLE[option.knux.invincible]
 		}
-		else if (charID == 1)
+
+		if (charID == 1) // Tails
 		{
-			if (option.tails.invincible == 1) // First and foremost, the provided file.
-			{
-				Audio.playAudio("tails-invincible",0)
-			}
-			else if (option.tails.invincible == 2) // S&K option
-			{
-				Audio.playAudio("2C",0)
-			}
-			else if (option.tails.invincible == 3) // Sonic 3 option
-			{
-				Audio.playAudio("2C_sonic3",0)
-			}
-			else
-			{
-				base.PlayMusic() // Fallback/Vanilla option
-			}
+			soundKey = TAILS_INVINCIBLE[option.tails.invincible]
 		}
-		
-		else if (charID == 0) // Going backwards from 2 to 0 and then to 3 kind of upsets my malfunctioning cranium, but that is what must be done. 
+
+		if (charID == 0) // Sonic
 		{
-			if (option.sonic.invincible == 1) // First and foremost, the provided file.
-			{
-				Audio.playAudio("sonic-invincible",0)
-			}
-			else if (option.sonic.invincible == 2) // S&K option
-			{
-				Audio.playAudio("2C",0)
-			}
-			else if (option.sonic.invincible == 3) // Sonic 3 option
-			{
-				Audio.playAudio("2C_sonic3",0)
-			}
-			else
-			{
-				base.PlayMusic() // Fallback/Vanilla option
-			}
-		}
-		
-		else if (charID == 3) // It's Mighty, remember?
-		{
-			if (option.mighty.invincible == 1) // First and foremost, the provided file.
-			{
-				Audio.playAudio("mighty-invincible",0)
-			}
-			else if (option.mighty.invincible == 2) // S&K option
-			{
-				Audio.playAudio("2C",0)
-			}
-			else if (option.mighty.invincible == 3) // Sonic 3 option
-			{
-				Audio.playAudio("2C_sonic3",0)
-			}
-			else
-			{
-				base.PlayMusic() // Fallback/Vanilla option
-			}
-		}
-		else
-		{
-			base.PlayMusic() // This is a last-ditch final fallback method to ensure compatability.
+			soundKey = SONIC_INVINCIBLE[option.sonic.invincible]
 		}
 	}
 
-	else if (audioID == MUSIC_GAMEOVER) // Game over themes. Thankfully, there's no basegame options for this theme so I can keeo my nice and tidy code.
+	if sfxId == MUSIC_GAMEOVER
 	{
-		if (charID == 2 && option.knux.gameover == 1)
+
+		if (charID == 2) // Knuckles
 		{
-			Audio.playAudio("knux-gameover",0)
+			soundKey = KNUX_GAMEOVER[option.knux.gameover]
 		}
 
-		else if (charID == 1 && option.tails.gameover == 1)
+		if (charID == 1) // Tails
 		{
-			Audio.playAudio("tails-gameover",0)
+			soundKey = TAILS_GAMEOVER[option.tails.gameover]
 		}
 
-		else if (charID == 0 && option.sonic.gameover == 1)
+		if (charID == 0) // Sonic
 		{
-			Audio.playAudio("sonic-gameover",0)
-		}
-
-		else if (charID == 3 && option.sonic.gameover == 1)
-		{
-			Audio.playAudio("mighty-gameover",0)
-		}
-
-		else
-		{
-			Audio.playAudio(MUSIC_GAMEOVER,0) 
-			// The vanilla game over theme is convinced that its a sound effect, so it tries to play in channel one. Thus leaving the music on. 
-			// Therefore, I am asking it to play the game over theme directly. While the compatability takes a slight hit, at least it works as intended
+			soundKey = SONIC_GAMEOVER[option.sonic.gameover]
 		}
 	}
 
-	else if (audioID == MUSIC_LEVELCLEAR) // Act clear jingles
+	if sfxId == MUSIC_LEVELCLEAR
 	{
-		if (objA0.countdown_value == 269) // Shoddy attempt at a special stage check
+		if (charID == 2) // Knuckles
 		{
-			if (charID == 2)
-			{
-				if (option.knux.specialclear == 1) // If set to the standard character clear theme
-				{
-					Audio.playAudio("knux-clear",0)
-				}
-				else if (option.knux.specialclear == 2) // If set to the SCD US clear theme
-				{
-					Audio.playAudio("cdus-clear",0)
-				}
-				else
-				{
-					base.PlayMusic()
-				}
-			}
-
-			else if (charID == 1)
-			{
-				if (option.tails.specialclear == 1) // If set to the standard character clear theme
-				{
-					Audio.playAudio("tails-clear",0)
-				}
-				else if (option.tails.specialclear == 2) // If set to the SCD US clear theme
-				{
-					Audio.playAudio("cdus-clear",0)
-				}
-				else
-				{
-					base.PlayMusic()
-				}
-			}
-
-			else if (charID == 0)
-			{
-				if (option.sonic.specialclear == 1) // If set to the standard character clear theme
-				{
-					Audio.playAudio("sonic-clear",0)
-				}
-				else if (option.sonic.specialclear == 2) // If set to the SCD US clear theme
-				{
-					Audio.playAudio("cdus-clear",0)
-				}
-				else
-				{
-					base.PlayMusic()
-				}
-			}
-
-			else if (charID == 3)
-			{
-				if (option.mighty.specialclear == 1) // If set to the standard character clear theme
-				{
-					Audio.playAudio("mighty-clear",0)
-				}
-				else if (option.mighty.specialclear == 2) // If set to the SCD US clear theme
-				{
-					Audio.playAudio("cdus-clear",0)
-				}
-				else
-				{
-					base.PlayMusic()
-				}
-			}
+			soundKey = KNUX_ACTCLEAR[option.knux.gameover]
 		}
 
-		else
+		if (charID == 1) // Tails
 		{
-			if (charID == 2 && option.knux.clear == 1)
-			{
-				Audio.playAudio("knux-clear",0)
-			}
-			else if (charID == 1 && option.tails.clear == 1)
-			{
-				Audio.playAudio("tails-clear",0)
-			}
-			else if (charID == 0 && option.sonic.clear == 1)
-			{
-				Audio.playAudio("sonic-clear",0)
-			}
-			
-			else if (charID == 3 && option.mighty.clear == 1)
-			{
-				Audio.playAudio("mighty-clear",0)
-			}
-			else
-			{
-				base.PlayMusic()
-			}
+			soundKey = TAILS_GAMEOVER[option.tails.gameover]
+		}
+
+		if (charID == 0) // Sonic
+		{
+			soundKey = SONIC_GAMEOVER[option.sonic.gameover]
 		}
 	}
 
-	else if (audioID == MUSIC_EXTRALIFE)
+
+	// Soundkey has been set. 
+
+	if soundKey == "VANILLA HANDLING" // Used when disabling the mod's crazy stuff 
 	{
-		// Extra life jingle
-		// These need to be played in the sound effect channel to avoid causing the music to stop. Therefore, we're using the same solution as Eukayrot did for Standalone.playAudio.
-		// Also, we're back to needing those full custom options again.
-		if (charID == 2)
-		{
-			if (option.knux.1up == 1) // Custom theme
-			{
-				Audio.playOverride("knux-1up", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.knux.1up == 2) // Sonic & Knuckles
-			{
-				Audio.playOverride("2a", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.knux.1up == 3) // Sonic 3
-			{
-				Audio.playOverride("2a_sonic3", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else // Vanilla/Fallback option
-			{
-				base.PlayMusic()
-			}
-		}
-		else if (charID == 1)
-		{
-			if (option.tails.1up == 1) // Custom theme
-			{
-				Audio.playOverride("tails-1up", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.tails.1up == 2) // Sonic & Knuckles
-			{
-				Audio.playOverride("2a", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.tails.1up == 3) // Sonic 3
-			{
-				Audio.playOverride("2a_sonic3", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else // Vanilla/Fallback option
-			{
-				base.PlayMusic()
-			}
-		}
-		else if (charID == 0)
-		{
-			if (option.sonic.1up == 1) // Custom theme
-			{
-				Audio.playOverride("sonic-1up", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.sonic.1up == 2) // Sonic & Knuckles
-			{
-				Audio.playOverride("2a", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.sonic.1up == 3) // Sonic 3
-			{
-				Audio.playOverride("2a_sonic3", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else // Vanilla/Fallback option
-			{
-				base.PlayMusic()
-			}
-		}
-		else if (charID == 3)
-		{
-			if (option.mighty.1up == 1) // Custom theme
-			{
-				Audio.playOverride("mighty-1up", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.mighty.1up == 2) // Sonic & Knuckles
-			{
-				Audio.playOverride("2a", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else if (option.mighty.1up == 3) // Sonic 3
-			{
-				Audio.playOverride("2a_sonic3", AudioContext.CONTEXT_MUSIC, 1, 0)
-			}
-			else // Vanilla/Fallback option
-			{
-				base.PlayMusic()
-			}
-		}
-		else
-		{
-			base.PlayMusic() // Of course, this still functions as it always should.
-		}
+		return originalSoundkey
+	}
+
+	else
+	{
+		return soundKey
 	}
 	
-	else if (audioID == MUSIC_SUPER)
-	{
-		// Super Theme
-		// These were a massive pain back in 1.3, and now they're a massive pain AGAIN, since I now need to do this super customisation stuff.
-
-		if (charID == 2)
-		{
-			if (super.active == 0xff && option.knux.hyper != 0) // Zero means that hyper themes are disabled
-			{
-				if (option.knux.hyper == 1)
-				{
-					Audio.playAudio("knux-hyper",0) // Custom hyper theme
-				}
-				else if (option.knux.hyper == 2)
-				{
-					Audio.playAudio("knux-super",0) // Custom super theme
-				}
-				else if (option.knux.hyper == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2 (not the Tails one I provided. Is it redundant? Yes. Do I care? No.)
-				}
-				else if (option.knux.hyper == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.knux.hyper == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
-				}
-				else if (option.knux.hyper == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-
-			}
-			else if (option.knux.super != 0)
-			{
-				if (option.knux.super == 1)
-				{
-					Audio.playAudio("knux-super",0) // Custom super theme
-				}
-				else if (option.knux.super == 2)
-				{
-					Audio.playAudio("knux-hyper",0) // Custom hyper theme
-				}
-				else if (option.knux.super == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
-				}
-				else if (option.knux.super == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.knux.super == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
-				}
-				else if (option.knux.super == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-			}
-			else
-			{
-				base.PlayMusic() // For some reason, it only notices this particular instance of base.PlayMusic 
-			}			
-		}
-
-		else if (charID == 1)
-		{
-			if (super.active.tails == 0xff && option.tails.hyper != 0)
-			{
-				if (option.tails.hyper == 1)
-				{
-					Audio.playAudio("tails-hyper",0) // Custom hyper theme
-				}
-				else if (option.tails.hyper == 2)
-				{
-					Audio.playAudio("tails-super",0) // Custom super theme
-				}
-				else if (option.tails.hyper == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
-				}
-				else if (option.tails.hyper == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.tails.hyper == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic 3
-				}
-				else if (option.tails.hyper == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-
-			}
-			else if (option.tails.super != 0)
-			{
-				if (option.tails.super == 1)
-				{
-					Audio.playAudio("tails-super",0) // Custom super theme
-				}
-				else if (option.tails.super == 2)
-				{
-					Audio.playAudio("tails-hyper",0) // Custom hyper theme
-				}
-				else if (option.tails.super == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
-				}
-				else if (option.tails.super == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.tails.super == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
-				}
-				else if (option.tails.super == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-			}
-			else
-			{
-				base.PlayMusic() // For some reason, it only notices this particular instance of base.PlayMusic 
-			}
-		}
-
-		else if (charID == 0)
-		{
-			if (super.active == 0xff && option.sonic.hyper != 0)
-			{
-				if (option.sonic.hyper == 1)
-				{
-					Audio.playAudio("sonic-hyper",0) // Custom hyper theme
-				}
-				else if (option.sonic.hyper == 2)
-				{
-					Audio.playAudio("sonic-super",0) // Custom super theme
-				}
-				else if (option.sonic.hyper == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
-				}
-				else if (option.sonic.hyper == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.sonic.hyper == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
-				}
-				else if (option.sonic.hyper == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-			}
-			else if (option.sonic.super != 0)
-			{
-				if (option.sonic.hyper == 1)
-				{
-					Audio.playAudio("sonic-super",0) // Custom super theme
-				}
-				else if (option.sonic.hyper == 2)
-				{
-					Audio.playAudio("sonic-hyper",0) // Custom hyper theme
-				}
-				else if (option.sonic.hyper == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
-				}
-				else if (option.sonic.hyper == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.sonic.hyper == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
-				}
-				else if (option.sonic.super == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-			}
-			else
-			{
-				base.PlayMusic() // For some reason, it only notices this particular instance of base.PlayMusic 
-			}
-		}
-
-		else if (charID == 3) // C'mon! We're into the final stretch!
-		{
-			if (super.active == 0xff && option.mighty.hyper != 0)
-			{
-				if (option.mighty.hyper == 1)
-				{
-					Audio.playAudio("mighty-hyper",0) // Custom hyper theme
-				}
-				else if (option.mighty.hyper == 2)
-				{
-					Audio.playAudio("mighty-super",0) // Custom super theme
-				}
-				else if (option.mighty.hyper == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
-				}
-				else if (option.mighty.hyper == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.mighty.hyper == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
-				}
-				else if (option.mighty.hyper == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-			}
-			else if (option.mighty.super != 0)
-			{
-				if (option.mighty.super == 1)
-				{
-					Audio.playAudio("mighty-super",0) // Custom super theme
-				}
-				else if (option.mighty.super == 2)
-				{
-					Audio.playAudio("mighty-hyper",0) // Custom hyper theme
-				}
-				else if (option.mighty.super == 3)
-				{
-					Audio.playAudio("supertheme_sonic2",0) // Sonic 2
-				}
-				else if (option.mighty.super == 4)
-				{
-					Audio.playAudio("2c",0) // Sonic & Knuckles
-				}
-				else if (option.mighty.super == 5)
-				{
-					Audio.playAudio("2c_sonic3",0) // Sonic & Knuckles
-				}
-				else if (option.mighty.super == 6)
-				{
-					Audio.playAudio("2E_proto",0) // Sonic 3 Unused Track
-				}
-			}
-
-			else
-			{
-				base.PlayMusic() // For some reason, it only notices this particular instance of base.PlayMusic 
-			}
-		}
-
-		else
-		{
-			base.PlayMusic() // Final fallback. Y'know, just in case...
-		}
-
-		
-	}
-
-	else if (audioID == MUSIC_CREDITSMEDLEY) // Custom credits theme implementation; I'm absolutely not looking foward to testing this...
-	{
-		if (charID == 2 && option.knux.credits != 0)
-		{
-			if (option.knux.credits == 1)
-			{
-				Audio.playAudio("knux-credits",0) // Custom theme
-			}
-			else if (option.knux.credits == 2)
-			{
-				Audio.playAudio("DC",0) // S&K Credits Medley
-			}
-			else if (option.knux.credits == 3)
-			{
-				Audio.playAudio("26",0) // Sonic 3 Credits
-			}
-			else if (option.knux.credits == 4)
-			{
-				Audio.playAudio("26_proto",0) // Sonic 3 Beta Credits
-			}
-		}
-		else if (charID == 1 && option.tails.credits != 0)
-		{
-			if (option.tails.credits == 1)
-			{
-				Audio.playAudio("tails-credits",0) // Custom theme
-			}
-			else if (option.tails.credits == 2)
-			{
-				Audio.playAudio("DC",0) // S&K Credits Medley
-			}
-			else if (option.tails.credits == 3)
-			{
-				Audio.playAudio("26",0) // Sonic 3 Credits
-			}
-			else if (option.tails.credits == 4)
-			{
-				Audio.playAudio("26_proto",0) // Sonic 3 Beta Credits
-			}
-		}
-		else if (charID == 0 && option.sonic.credits != 0)
-		{
-			if (option.sonic.credits == 1)
-			{
-				Audio.playAudio("sonic-credits",0) // Custom theme
-			}
-			else if (option.sonic.credits == 2)
-			{
-				Audio.playAudio("DC",0) // S&K Credits Medley
-			}
-			else if (option.sonic.credits == 3)
-			{
-				Audio.playAudio("26",0) // Sonic 3 Credits
-			}
-			else if (option.sonic.credits == 4)
-			{
-				Audio.playAudio("26_proto",0) // Sonic 3 Beta Credits
-			}
-		}
-		else if (charID == 3 && option.mighty.credits != 0)
-		{
-			if (option.mighty.credits == 1)
-			{
-				Audio.playAudio("mighty-credits",0) // Custom theme
-			}
-			else if (option.mighty.credits == 2)
-			{
-				Audio.playAudio("DC",0) // S&K Credits Medley
-			}
-			else if (option.mighty.credits == 3)
-			{
-				Audio.playAudio("26",0) // Sonic 3 Credits
-			}
-			else if (option.mighty.credits == 4)
-			{
-				Audio.playAudio("26_proto",0) // Sonic 3 Beta Credits
-			}
-		}
-		else
-		{
-			base.PlayMusic()
-		}
-	}
-
-	else // And finally, the ultimate compatability enforcer: Fallback base.PlayMusic.
-	{
-		base.PlayMusic() // If in doubt, get the game to sort it out. I'm a poet, but I actually did knowet.
-	}
 }
 
 // Don't get too excited boys(?), those were the EASY ones! Now it's the dreaded speed shoes.
@@ -839,10 +267,10 @@ function void playSpeedSong()
 		}
 		else
 		{
-			soundKey = "VANILLAFALLBACKHANDLING" // This would be an illegal soundkey normally, so there's a zero% chance of anyone using it.
+			soundKey = "VANILLA FALLBACK HANDLING" // This would be an illegal soundkey normally, so there's a zero% chance of anyone using it.
 		}
 	}
-	if (soundKey == "VANILLAFALLBACKHANDLING")
+	if (soundKey == "VANILLA FALLBACK HANDLING")
 	{
 		return
 	}
@@ -858,13 +286,23 @@ function void playSpeedSong()
 	}
 }
 
+// Another fix from TimerBunneh; wish I had you around when I first implemented this feature
+#if STANDALONE
+
 function void Character.updateBonusEffects() 
 {
 	
 	//u8 speedSongPlaying = 0 // Used to check if the speed song is playing
-	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP) // Yet all my attempts failed
+	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP)
+
+	if (super.active || super.active.tails)
+	{
+		speedupped == false // I don't want the speed shoes music playing while super
+	}
+	
 	base.Character.updateBonusEffects()
-	if (speedupped)
+	
+	if (speedupped) 
 	{
 		playSpeedSong()
 	}
@@ -873,3 +311,5 @@ function void Character.updateBonusEffects()
 		chooseFittingMusic()
 	}
 }
+
+#endif

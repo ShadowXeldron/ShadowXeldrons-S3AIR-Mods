@@ -218,7 +218,7 @@ function void PlayMusic() // Ta-da! We're using the PCT method since that's the 
 
     else if (sfxId == 0x2f) // Thanks to TimerBunneh for this
     {
-        if global.game_mode ==0x4c
+        if global.game_mode == 0x4c
         {
             Audio.playAudio("SaveSelect",0)
         }

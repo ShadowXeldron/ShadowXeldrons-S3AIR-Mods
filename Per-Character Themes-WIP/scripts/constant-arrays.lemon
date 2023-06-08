@@ -1,0 +1,109 @@
+// I thought that the mod was a bit messy, so a lot of it has been split up into its own section.
+
+
+// Knuckles Themes
+
+constant array<string> KNUX_INVINCIBLE =
+{
+    "VANILLA HANDLING", // Null soundkey; this tells the game to just default to the initial soundkey
+    "knux-invincible",
+    "2C",
+    "2C_sonic3"
+}
+
+constant array<string> KNUX_GAMEOVER =
+{
+    "VANILLA HANDLING",
+    "knux-gameover"
+}
+
+constant array<string> KNUX_ACTCLEAR =
+{
+    "VANILLA HANDLING",
+    "knux-clear"
+}
+
+constant array<string> KNUX_SPECIALCLEAR =
+{
+    "VANILLA HANDLING",
+    "knux-clear",
+    "cdus-clear"
+}
+
+constant array<string> KNUX_EXTRALIFE =
+{
+    "VANILLA HANDLING",
+    "knux-1up",
+    "2a",
+    "2a_sonic3"
+}
+
+constant array<string> KNUX_SUPER =
+{
+    "VANILLA HANDLING",
+    "knux-super",
+    "knux-hyper",
+    "supertheme_sonic2",
+    "2C",
+    "2C_sonic3",
+    "2E_proto"
+}
+
+constant array<string> KNUX_HYPER = // Now that I think of it, do I really need this particular table? I'll keep it around anyway in case I manage to come up with something that only works as a hyper theme 
+{
+    "VANILLA HANDLING",
+    "knux-hyper",
+    "knux-super",
+    "supertheme_sonic2",
+    "2C",
+    "2C_sonic3",
+    "2E_proto"
+}
+
+constant array<string> KNUX_CREDITS =
+{
+    "VANILLA HANDLING",
+    "knux-credits",
+    "DC",
+    "26",
+    "26_proto"
+}
+
+constant array<string> KNUX_SPEED =
+{
+    "VANILLA HANDLING",
+    "knux-speed",
+    "speedshoes" // For compatability with Dedicated Speed Shoes
+}
+
+// Tails Themes
+
+constant array<string> TAILS_INVINCIBLE =
+{
+    "VANILLA HANDLING",
+    "tails-invincible",
+    "2C",
+    "2C_sonic3"
+}
+
+constant array<string> TAILS_GAMEOVER =
+{
+    "VANILLA HANDLING",
+    "tails-gameover"
+}
+
+// Sonic Themes
+
+constant array<string> SONIC_INVINCIBLE =
+{
+    "VANILLA HANDLING",
+    "sonic-invincible",
+    "2C",
+    "2C_sonic3"
+}
+
+constant array<string> SONIC_GAMEOVER =
+{
+    "VANILLA HANDLING",
+    "sonic-gameover"
+}
