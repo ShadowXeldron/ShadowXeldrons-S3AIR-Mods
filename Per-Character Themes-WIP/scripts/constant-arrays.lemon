@@ -38,22 +38,11 @@ constant array<string> KNUX_EXTRALIFE =
     "2a_sonic3"
 }
 
-constant array<string> KNUX_SUPER =
+constant array<string> KNUX_SUPER = // I deemed the hyper table superflous, so I just rearranged the config file to have the hyper themes use the same numbers as the super themes
 {
     "VANILLA HANDLING",
     "knux-super",
     "knux-hyper",
-    "supertheme_sonic2",
-    "2C",
-    "2C_sonic3",
-    "2E_proto"
-}
-
-constant array<string> KNUX_HYPER = // Now that I think of it, do I really need this particular table? I'll keep it around anyway in case I manage to come up with something that only works as a hyper theme 
-{
-    "VANILLA HANDLING",
-    "knux-hyper",
-    "knux-super",
     "supertheme_sonic2",
     "2C",
     "2C_sonic3",
@@ -92,6 +81,54 @@ constant array<string> TAILS_GAMEOVER =
     "tails-gameover"
 }
 
+constant array<string> TAILS_ACTCLEAR =
+{
+    "VANILLA HANDLING",
+    "tails-clear"
+}
+
+constant array<string> TAILS_SPECIALCLEAR =
+{
+    "VANILLA HANDLING",
+    "tails-clear",
+    "cdus-clear"
+}
+
+constant array<string> TAILS_EXTRALIFE =
+{
+    "VANILLA HANDLING",
+    "tails-1up",
+    "2a",
+    "2a_sonic3"
+}
+
+constant array<string> TAILS_SUPER = 
+{
+    "VANILLA HANDLING",
+    "tails-super",
+    "tails-hyper",
+    "supertheme_sonic2",
+    "2C",
+    "2C_sonic3",
+    "2E_proto"
+}
+
+constant array<string> TAILS_CREDITS =
+{
+    "VANILLA HANDLING",
+    "tails-credits",
+    "DC",
+    "26",
+    "26_proto"
+}
+
+constant array<string> TAILS_SPEED =
+{
+    "VANILLA HANDLING",
+    "tails-speed",
+    "speedshoes"
+}
+
 // Sonic Themes
 
 constant array<string> SONIC_INVINCIBLE =
@@ -106,4 +143,52 @@ constant array<string> SONIC_GAMEOVER =
 {
     "VANILLA HANDLING",
     "sonic-gameover"
+}
+
+constant array<string> SONIC_ACTCLEAR =
+{
+    "VANILLA HANDLING",
+    "sonic-clear"
+}
+
+constant array<string> SONIC_SPECIALCLEAR =
+{
+    "VANILLA HANDLING",
+    "sonic-clear",
+    "cdus-clear"
+}
+
+constant array<string> SONIC_EXTRALIFE =
+{
+    "VANILLA HANDLING",
+    "sonic-1up",
+    "2a",
+    "2a_sonic3"
+}
+
+constant array<string> SONIC_SUPER = 
+{
+    "VANILLA HANDLING",
+    "sonic-super",
+    "sonic-hyper",
+    "supertheme_sonic2",
+    "2C",
+    "2C_sonic3",
+    "2E_proto"
+}
+
+constant array<string> SONIC_CREDITS =
+{
+    "VANILLA HANDLING",
+    "sonic-credits",
+    "DC",
+    "26",
+    "26_proto"
+}
+
+constant array<string> SONIC_SPEED =
+{
+    "VANILLA HANDLING",
+    "sonic-speed",
+    "speedshoes"
 }

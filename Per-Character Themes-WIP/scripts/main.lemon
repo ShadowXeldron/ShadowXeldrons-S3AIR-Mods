@@ -17,6 +17,12 @@
 
 include constant-arrays // The audio keys are in here
 
+// Preprocessor directive for people to use
+#define PCT_ACTIVE
+
+// Additional preprocessor directive used by the mod - this automatically sets the mod to "lite" mode, which omits extra character support. This is to keep the filesize small.
+#define PCT_LITE = 0
+
 /*
 
 Just so that I remember them, here's the constants that I need to know
@@ -100,14 +106,22 @@ function u8 getCharID() // Function that checks for character IDs
 	// Mod detection; for now we've only got Mighty. I hope that you lot hurry up with Ray so that I can add it.
 	// This checks if you're playing as Sonic with Ultimate Mighty loaded, or straight-up playing as Extra Slot Might.
 	//Thanks to iCloudius for help on detecting if somebody is playing as Extra Slot Mighty.
-	
-	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1)) // No I am not changing this to global.xtrachar. GPL is serious buisness,
+
+	// This only runs if PCT_LITE is false. Every character supported increases the filesize, and the web version is played on notoriously crap devices that can't handle many mods.
+	#if PCT_LITE == 0
+
+
+	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00")))  // No I am not changing this to global.xtrachar. GPL is serious buisness,
 	{
 		charID = 3
 	}
 
+	#endif
+
 	return charID
 }
+
+
 
 function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
 {
@@ -139,6 +153,26 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		}
 	}
 
+	if sfxId == MUSIC_EXTRALIFE
+	{
+		// Like it or not, elseif chains are always going to be a requirement. However, with constant arrays we can at least offset some of the issues.
+
+		if (charID == 2) // Knuckles
+		{
+			soundKey = KNUX_EXTRALIFE[option.knux.1up]
+		}
+
+		if (charID == 1) // Tails
+		{
+			soundKey = TAILS_EXTRALIFE[option.tails.1up]
+		}
+
+		if (charID == 0) // Sonic
+		{
+			soundKey = SONIC_EXTRALIFE[option.sonic.1up]
+		}
+	}
+
 	if sfxId == MUSIC_GAMEOVER
 	{
 
@@ -160,19 +194,98 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 
 	if sfxId == MUSIC_LEVELCLEAR
 	{
+
+		if (objA0.countdown_value == 269) // Special Stage
+		{
+			if (charID == 2) // Knuckles
+			{
+				soundKey = KNUX_SPECIALCLEAR[option.knux.specialclear]
+			}
+
+			if (charID == 1) // Tails
+			{
+				soundKey = KNUX_SPECIALCLEAR[option.tails.specialclear]
+			}
+
+			if (charID == 0) // Sonic
+			{
+				soundKey = KNUX_SPECIALCLEAR[option.sonic.specialclear]
+			}
+		}
+
+		else // Normal Act Clear
+		{
+			if (charID == 2) // Knuckles
+			{
+				soundKey = KNUX_ACTCLEAR[option.knux.clear]
+			}
+
+			if (charID == 1) // Tails
+			{
+				soundKey = TAILS_ACTCLEAR[option.tails.clear]
+			}
+
+			if (charID == 0) // Sonic
+			{
+				soundKey = SONIC_ACTCLEAR[option.sonic.clear]
+			}
+		}
+	}
+
+	if sfxId == MUSIC_SUPER
+	{
+		if (super.active == 0xff || super.active.tails == 0xff) // Hyper Forms. Tails uses his own variable for some reason.
+		{
+			if (charID == 2) // Knuckles
+			{
+				soundKey = KNUX_SUPER[option.knux.hyper] // We only have one super table since all the tracks are the same
+			}
+
+			if (charID == 1) // Tails
+			{
+				soundKey = TAILS_SUPER[option.tails.hyper]
+			}
+
+			if (charID == 0) // Sonic
+			{
+				soundKey = SONIC_SUPER[option.sonic.hyper]
+			}
+		}
+
+		else // Normal super forms
+		{
+			if (charID == 2) // Knuckles
+			{
+				soundKey = KNUX_SUPER[option.knux.super]
+			}
+
+			if (charID == 1) // Tails
+			{
+				soundKey = TAILS_SUPER[option.tails.super]
+			}
+
+			if (charID == 0) // Sonic
+			{
+				soundKey = SONIC_SUPER[option.sonic.super]
+			}
+		}
+	}
+
+	if sfxId == MUSIC_CREDITSMEDLEY
+	{
 		if (charID == 2) // Knuckles
 		{
-			soundKey = KNUX_ACTCLEAR[option.knux.gameover]
+			soundKey = KNUX_CREDITS[option.knux.credits]
 		}
 
 		if (charID == 1) // Tails
 		{
-			soundKey = TAILS_GAMEOVER[option.tails.gameover]
+			soundKey = TAILS_CREDITS[option.tails.credits]
 		}
 
 		if (charID == 0) // Sonic
 		{
-			soundKey = SONIC_GAMEOVER[option.sonic.gameover]
+			soundKey = SONIC_CREDITS[option.sonic.credits]
 		}
 	}
 
@@ -182,6 +295,13 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 	if soundKey == "VANILLA HANDLING" // Used when disabling the mod's crazy stuff 
 	{
 		return originalSoundkey
+	}
+
+	else if originalSoundkey == MUSIC_EXTRALIFE 
+	{
+		// These need to be played in the sound effect channel to avoid causing the music to stop. Therefore, we're using the same solution as Eukayrot did for Standalone.playAudio
+		Audio.playOverride(soundKey, AudioContext.CONTEXT_MUSIC, 1, 0)
+		return false // Non-void functions have to return a value
 	}
 
 	else
@@ -205,75 +325,35 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 
 // This function was used for checking speed shoes music. Knuckles, Mighty and Tails cooperated just fine, but that wretched blue rat simply wouldn't work.
 
+#if STANDALONE
 function void playSpeedSong()
 {
 	u64 soundKey // This initialises the variable that will be fed into the sound player
 	u8 charID = (getCharID()) // Usage here is the same as in PlayMusic - it's to check who you are playing as.
 
-	if (charID == 2)
+	if (charID == 2) // Knuckles
 	{
-		if (option.knux.speed == 1)
-		{
-			soundKey = "knux-speed" // Custom sound key
-		}
-		else if (option.knux.speed == 2)
-		{
-			soundKey = "speedshoes" // Dedicated Speed Shoes Compatability
-		}
-		else
-		{
-			soundKey = "VANILLA FALLBACK HANDLING" // This would be an illegal soundkey normally, so there's a zero% chance of anyone using it.
-		}
+		soundKey = KNUX_SPEED[option.knux.speed]
 	}
-	else if (charID == 1)
+
+	if (charID == 1) // Tails
 	{
-		if (option.tails.speed == 1)
-		{
-			soundKey = "tails-speed" // Custom sound key
-		}
-		else if (option.tails.speed == 2)
-		{
-			soundKey = "speedshoes" // Dedicated Speed Shoes Compatability
-		}
-		else
-		{
-			soundKey = "VANILLA FALLBACK HANDLING" // This would be an illegal soundkey normally, so there's a zero% chance of anyone using it.
-		}
+		soundKey = TAILS_SPEED[option.tails.speed]
 	}
-	else if (charID == 0)
+
+	if (charID == 0) // Sonic
 	{
-		if (option.sonic.speed == 1)
-		{
-			soundKey = "sonic-speed" // Custom sound key
-		}
-		else if (option.sonic.speed == 2)
-		{
-			soundKey = "speedshoes" // Dedicated Speed Shoes Compatability
-		}
-		else
-		{
-			soundKey = "VANILLA FALLBACK HANDLING" // This would be an illegal soundkey normally, so there's a zero% chance of anyone using it.
-		}
+		soundKey = SONIC_SPEED[option.sonic.speed]
 	}
-	else if (charID == 3)
-	{
-		if (option.mighty.speed == 1)
-		{
-			soundKey = "mighty-speed" // Custom sound key
-		}
-		else if (option.mighty.speed == 2)
-		{
-			soundKey = "speedshoes" // Dedicated Speed Shoes Compatability
-		}
-		else
-		{
-			soundKey = "VANILLA FALLBACK HANDLING" // This would be an illegal soundkey normally, so there's a zero% chance of anyone using it.
-		}
-	}
-	if (soundKey == "VANILLA FALLBACK HANDLING")
+
+	// Soundkey Fallback Go!
+
+	if (soundKey == "VANILLA HANDLING")
 	{
 		return
 	}
+
+	// Otherwise, fire the long boomy thingies
 
 	else if (!Audio.isPlayingAudio(soundKey))
 	{
@@ -287,7 +367,6 @@ function void playSpeedSong()
 }
 
 // Another fix from TimerBunneh; wish I had you around when I first implemented this feature
-#if STANDALONE
 
 function void Character.updateBonusEffects() 
 {

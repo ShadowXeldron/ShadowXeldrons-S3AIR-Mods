@@ -14,7 +14,9 @@ constant array<string> ONEUP_SOUNDS =
     "1Up-S06",
     "1Up-SA",
     "1Up-SR",
-    "1Up-Kirby"
+    "1Up-Kirby",
+    "1Up-STT",
+    "1Up-STT16"
 }
 
 //global string current1UpSound = ""

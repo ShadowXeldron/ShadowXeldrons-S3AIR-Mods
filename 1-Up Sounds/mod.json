@@ -6,7 +6,7 @@
 		"Author": "ShadowXeldron",
 		"Description": "A small mod that adds 1-up sound effects that don't interfere with the music. Made to experiment with constant arrys as a new",
 		"URL": "https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods",
-		"ModVersion": "1.1Up"
+		"ModVersion": "1.2Up"
 	},
 	"Settings":
 	{
@@ -31,7 +31,9 @@
 					"8": "Sonic '06",
 					"9": "Sonic Adventure",
 					"10": "Sonic Rush",
-					"11": "Kirby"
+					"11": "Kirby",
+					"12": "Sonic Triple Trouble",
+					"13": "Sonic Triple Trouble 16-Bit"
 				}
 			},
 		]

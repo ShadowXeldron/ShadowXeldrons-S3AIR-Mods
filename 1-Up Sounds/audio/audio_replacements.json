@@ -13,6 +13,8 @@
 "1Up-SA": { "File": "SonicAdventure.ogg", "Type": "Sound"},
 "1Up-SR": { "File": "SonicRush.ogg", "Type": "Sound"},
 "1Up-Kirby": { "File": "Kirby.ogg", "Type": "Sound"},
+"1Up-STT": { "File": "TripleTrouble.ogg", "Type": "Sound"},
+"1Up-STT16": { "File": "TripleTrouble16.ogg", "Type": "Sound"},
 
 }
 // if (isMainCharacter(CHARACTER_SONIC))
