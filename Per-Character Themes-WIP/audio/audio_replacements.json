@@ -1,6 +1,6 @@
 {
 
-// Sonic
+// Sonic (Mania)
 "sonic-clear": { "File": "SonicClear.ogg", "Type": "Jingle"},
 "sonic-gameover": { "File": "SonicGameOver.ogg", "Type": "Jingle"},
 "sonic-1up": { "File": "Sonic1Up.ogg", "Type": "Jingle"},
@@ -9,7 +9,7 @@
 "sonic-hyper": { "File": "SonicHyper.ogg", "Type": "Music", "LoopStart": "186368"},
 "sonic-credits": { "File": "SonicCredits.ogg", "Type": "Music", "LoopStart": "759808"},
 "sonic-speed": { "File": "SonicSpeed.ogg", "Type": "Music", "LoopStart": "759808"},
-// Tails
+// Tails (Sonic 2)
 "tails-clear": { "File": "TailsClear.ogg", "Type": "Jingle"},
 "tails-gameover": { "File": "TailsGameOver.ogg", "Type": "Jingle"},
 "tails-1up": { "File": "Tails1Up.ogg", "Type": "Jingle"},
@@ -18,7 +18,7 @@
 "tails-hyper": { "File": "TailsHyper.ogg", "Type": "Music", "LoopStart": "247432"}, // www.youtube.com/watch?v=v3GdxonZHdI
 "tails-credits": { "File": "TailsCredits.ogg", "Type": "Music", "LoopStart": "186368"},
 "tails-speed": { "File": "TailsSpeed.ogg", "Type": "Music", "LoopStart": "0"},
-// Knuckles
+// Knuckles (Knuckles' Chaotix)
 "knux-clear": { "File": "KnucklesClear.ogg", "Type": "Jingle"},
 "knux-gameover": { "File": "KnucklesGameOver.ogg", "Type": "Music", "LoopStart": "229376"},
 "knux-1up": { "File": "Knuckles1Up.ogg", "Type": "Jingle"},
@@ -38,6 +38,36 @@
 "mighty-hyper": { "File": "MightyHyper.ogg", "Type": "Music", "LoopStart": "0"}, // www.youtube.com/watch?v=vd1YvioTbac
 "mighty-credits": { "File": "MightyCredits.ogg", "Type": "Music", "LoopStart": "0"}, // Sonic Mania - Credits
 "mighty-speed": { "File": "MightySpeed.ogg", "Type": "Music", "LoopStart": "1097401"},
+
+// Ray (Sonic GT)
+"ray-clear": { "File": "RayClear.ogg", "Type": "Jingle"},
+"ray-gameover": { "File": "RayGameOver.ogg", "Type": "Jingle"},
+"ray-1up": { "File": "Ray1Up.ogg", "Type": "Jingle"},
+"ray-invincible": { "File": "RayInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"ray-super": { "File": "RaySuper.ogg", "Type": "Music", "LoopStart": "0"},
+"ray-hyper": { "File": "RayHyper.ogg", "Type": "Music", "LoopStart": "0"},
+"ray-credits": { "File": "RayCredits.ogg", "Type": "Music", "LoopStart": "0"},
+"ray-speed": { "File": "RaySpeed.ogg", "Type": "Music", "LoopStart": "0"},
+
+//Shadow (Shadow '05)
+"shadow-clear": { "File": "ShadowClear.ogg", "Type": "Jingle"},
+"shadow-gameover": { "File": "ShadowGameOver.ogg", "Type": "Jingle"},
+"shadow-1up": { "File": "Shadow1Up.ogg", "Type": "Jingle"},
+"shadow-invincible": { "File": "ShadowInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"shadow-super": { "File": "ShadowSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"shadow-hyper": { "File": "ShadowHyper.ogg", "Type": "Music", "LoopStart": "0"},
+"shadow-credits": { "File": "ShadowCredits.ogg", "Type": "Music", "LoopStart": "0"}, // '06 Version of All Hail Shadow
+"shadow-speed": { "File": "ShadowSpeed.ogg", "Type": "Music", "LoopStart": "0"},
+
+// Amy (Sonic CD)
+"amy-clear": { "File": "AmyClear.ogg", "Type": "Jingle"},
+"amy-gameover": { "File": "AmyGameOver.ogg", "Type": "Jingle"},
+"amy-1up": { "File": "Amy1Up.ogg", "Type": "Jingle"},
+"amy-invincible": { "File": "AmyInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-super": { "File": "AmySuper.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-hyper": { "File": "AmyHyper.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-credits": { "File": "AmyCredits.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-speed": { "File": "AmySpeed.ogg", "Type": "Music", "LoopStart": "0"},
 
 // Misc.
 "cdus-clear": { "File": "CDUSClear.ogg", "Type": "Jingle"},

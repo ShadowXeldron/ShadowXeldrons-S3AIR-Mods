@@ -77,6 +77,36 @@ global u8 option.mighty.invincible
 global u8 option.mighty.credits
 global u8 option.mighty.speed
 
+global u8 option.ray.clear
+global u8 option.ray.specialclear
+global u8 option.ray.1up
+global u8 option.ray.super
+global u8 option.ray.hyper
+global u8 option.ray.gameover
+global u8 option.ray.invincible
+global u8 option.ray.credits
+global u8 option.ray.speed
+
+global u8 option.shadow.clear
+global u8 option.shadow.specialclear
+global u8 option.shadow.1up
+global u8 option.shadow.super
+global u8 option.shadow.hyper
+global u8 option.shadow.gameover
+global u8 option.shadow.invincible
+global u8 option.shadow.credits
+global u8 option.shadow.speed
+
+global u8 option.amy.clear
+global u8 option.amy.specialclear
+global u8 option.amy.1up
+global u8 option.amy.super
+global u8 option.amy.hyper
+global u8 option.amy.gameover
+global u8 option.amy.invincible
+global u8 option.amy.credits
+global u8 option.amy.speed
+
 global u8 speedShoesUsed // We don't need this anymore
 
 function u8 getCharID() // Function that checks for character IDs
@@ -166,6 +196,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = MIGHTY_INVINCIBLE[option.mighty.invincible]
 		}
+
+		if (charID == 4) // Ray
+		{
+			soundKey = RAY_INVINCIBLE[option.ray.invincible]
+		}
+
+		if (charID == 5) // Shadow
+		{
+			soundKey = SHADOW_INVINCIBLE[option.shadow.invincible]
+		}
+
+		if (charID == 6) // Amy
+		{
+			soundKey = AMY_INVINCIBLE[option.amy.invincible]
+		}
 	}
 
 	if sfxId == MUSIC_EXTRALIFE
@@ -191,6 +236,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = MIGHTY_EXTRALIFE[option.mighty.1up]
 		}
+
+		if (charID == 4) // Ray
+		{
+			soundKey = RAY_EXTRALIFE[option.ray.1up]
+		}
+
+		if (charID == 5) // Shadow
+		{
+			soundKey = SHADOW_EXTRALIFE[option.shadow.1up]
+		}
+
+		if (charID == 6) // Amy
+		{
+			soundKey = AMY_EXTRALIFE[option.amy.1up]
+		}
 	}
 
 	if sfxId == MUSIC_GAMEOVER
@@ -214,6 +274,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		if (charID == 3) // Mighty
 		{
 			soundKey = MIGHTY_GAMEOVER[option.mighty.gameover]
+		}
+
+		if (charID == 4) // Ray
+		{
+			soundKey = RAY_GAMEOVER[option.ray.gameover]
+		}
+
+		if (charID == 5) // Shadow
+		{
+			soundKey = SHADOW_GAMEOVER[option.shadow.gameover]
+		}
+
+		if (charID == 6) // Amy
+		{
+			soundKey = AMY_GAMEOVER[option.amy.gameover]
 		}
 	}
 
@@ -241,6 +316,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = MIGHTY_SPECIALCLEAR[option.mighty.specialclear]
 			}
+
+			if (charID == 4) // Ray
+			{
+				soundKey = RAY_SPECIALCLEAR[option.ray.specialclear]
+			}
+
+			if (charID == 5) // Shadow
+			{
+				soundKey = SHADOW_SPECIALCLEAR[option.shadow.specialclear]
+			}
+
+			if (charID == 6) // Amy
+			{
+				soundKey = AMY_SPECIALCLEAR[option.amy.specialclear]
+			}
 		}
 
 		else // Normal Act Clear
@@ -263,6 +353,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			if (charID == 3) // Mighty
 			{
 				soundKey = MIGHTY_ACTCLEAR[option.mighty.clear]
+			}
+
+			if (charID == 4) // Ray
+			{
+				soundKey = RAY_ACTCLEAR[option.ray.clear]
+			}
+
+			if (charID == 5) // Shadow
+			{
+				soundKey = SHADOW_ACTCLEAR[option.shadow.clear]
+			}
+
+			if (charID == 6) // Amy
+			{
+				soundKey = AMY_ACTCLEAR[option.amy.clear]
 			}
 		}
 	}
@@ -290,6 +395,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = MIGHTY_SUPER[option.mighty.hyper]
 			}
+
+			if (charID == 4) // Ray
+			{
+				soundKey = RAY_SUPER[option.ray.hyper]
+			}
+
+			if (charID == 5) // Shadow
+			{
+				soundKey = SHADOW_SUPER[option.shadow.hyper]
+			}
+
+			if (charID == 6) // Amy
+			{
+				soundKey = AMY_SUPER[option.amy.hyper]
+			}
 		}
 
 		else // Normal super forms
@@ -312,6 +432,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			if (charID == 3) // Mighty
 			{
 				soundKey = MIGHTY_SUPER[option.mighty.super]
+			}
+
+			if (charID == 4) // Ray
+			{
+				soundKey = RAY_SUPER[option.ray.super]
+			}
+
+			if (charID == 5) // Shadow
+			{
+				soundKey = SHADOW_SUPER[option.shadow.super]
+			}
+
+			if (charID == 6) // Amy
+			{
+				soundKey = AMY_SUPER[option.amy.super]
 			}
 		}
 	}
@@ -336,6 +471,21 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		if (charID == 3) // Mighty
 		{
 			soundKey = MIGHTY_CREDITS[option.mighty.credits]
+		}
+
+		if (charID == 4) // Ray
+		{
+			soundKey = RAY_CREDITS[option.ray.credits]
+		}
+
+		if (charID == 5) // Shadow
+		{
+			soundKey = SHADOW_CREDITS[option.shadow.credits]
+		}
+
+		if (charID == 6) // Amy
+		{
+			soundKey = AMY_CREDITS[option.amy.credits]
 		}
 	}
 
@@ -399,6 +549,21 @@ function void playSpeedSong()
 	if (charID == 3) // Mighty
 	{
 		soundKey = MIGHTY_SPEED[option.mighty.speed]
+	}
+
+	if (charID == 4) // Ray
+	{
+		soundKey = RAY_SPEED[option.ray.speed]
+	}
+
+	if (charID == 5) // Shadow
+	{
+		soundKey = SHADOW_SPEED[option.shadow.speed]
+	}
+
+	if (charID == 6) // Amy
+	{
+		soundKey = AMY_SPEED[option.amy.speed]
 	}
 
 	// Soundkey Fallback Go!
