@@ -84,21 +84,16 @@ function u8 getCharID() // Function that checks for character IDs
 	u8 charID = getMainCharacter() // It made me do this in development, even though it let me off before
 
 	/* For anyone reading this, I have a cheat sheet prepared for you all to know who's who under the wave of charIDs. 
-	I thought that charID would be less of a pain to work this than nested Mods.modIsActives
+	I thought that charID would be less of a pain to work this than nested Mods.modIsActives.
 		
 	charID == 0 - Sonic
 	charID == 1 - Tails
 	charID == 2 - Knuckles
 	charID == 3 - Mighty
-
-	These IDs are reserved for future installments to the Extra Slot Project
-
 	charID == 4 - Ray
-	charID == 5 - Amy
-	charID == 6 - Metal Sonic Kai (I'll also include Ultimate Metal in the mix as well)
-	(Espio, you will be sorely missed)
-			
-	
+	charID == 5 - Shadow
+	charID == 6 - Amy
+
 	The thing is, I don't actually use extra slots and I only added support so that the 1 year olds don't complain about hearing Sonic 2 music when playing as Extra Slot Harry Styles.
 
 	*/
@@ -114,6 +109,21 @@ function u8 getCharID() // Function that checks for character IDs
 	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00")))  // No I am not changing this to global.xtrachar. GPL is serious buisness,
 	{
 		charID = 3
+	}
+
+	if ((Mods.isModActive("Ray the Flying Squirrel") && isMainCharacter(CHARACTER_TAILS)) || (Mods.isModActive("Extra Slot Ray") && u8[0xffffE654] == 2 ))
+	{
+		charID = 4
+	}
+
+	if ((Mods.isModActive("3D2D Shadow") && isMainCharacter(CHARACTER_SONIC)) || (Mods.isModActive("Extra Slot 3D2D Shadow") && u8[0xffffE654] == 5 ))
+	{
+		charID = 5
+	}
+
+	if ((Mods.isModActive("Amy Rose") && isMainCharacter(CHARACTER_TAILS)) || (Mods.isModActive("Extra Slot Amy") && u8[0xffffE654] == 3 ))
+	{
+		charID = 6
 	}
 
 	#endif
@@ -151,6 +161,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = SONIC_INVINCIBLE[option.sonic.invincible]
 		}
+
+		if (charID == 3) // Mighty
+		{
+			soundKey = MIGHTY_INVINCIBLE[option.mighty.invincible]
+		}
 	}
 
 	if sfxId == MUSIC_EXTRALIFE
@@ -171,6 +186,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = SONIC_EXTRALIFE[option.sonic.1up]
 		}
+
+		if (charID == 3) // Mighty
+		{
+			soundKey = MIGHTY_EXTRALIFE[option.mighty.1up]
+		}
 	}
 
 	if sfxId == MUSIC_GAMEOVER
@@ -189,6 +209,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		if (charID == 0) // Sonic
 		{
 			soundKey = SONIC_GAMEOVER[option.sonic.gameover]
+		}
+
+		if (charID == 3) // Mighty
+		{
+			soundKey = MIGHTY_GAMEOVER[option.mighty.gameover]
 		}
 	}
 
@@ -211,6 +236,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = KNUX_SPECIALCLEAR[option.sonic.specialclear]
 			}
+
+			if (charID == 3) // Mighty
+			{
+				soundKey = MIGHTY_SPECIALCLEAR[option.mighty.specialclear]
+			}
 		}
 
 		else // Normal Act Clear
@@ -228,6 +258,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			if (charID == 0) // Sonic
 			{
 				soundKey = SONIC_ACTCLEAR[option.sonic.clear]
+			}
+
+			if (charID == 3) // Mighty
+			{
+				soundKey = MIGHTY_ACTCLEAR[option.mighty.clear]
 			}
 		}
 	}
@@ -250,6 +285,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = SONIC_SUPER[option.sonic.hyper]
 			}
+
+			if (charID == 3) // Mighty
+			{
+				soundKey = MIGHTY_SUPER[option.mighty.hyper]
+			}
 		}
 
 		else // Normal super forms
@@ -267,6 +307,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			if (charID == 0) // Sonic
 			{
 				soundKey = SONIC_SUPER[option.sonic.super]
+			}
+
+			if (charID == 3) // Mighty
+			{
+				soundKey = MIGHTY_SUPER[option.mighty.super]
 			}
 		}
 	}
@@ -286,6 +331,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		if (charID == 0) // Sonic
 		{
 			soundKey = SONIC_CREDITS[option.sonic.credits]
+		}
+
+		if (charID == 3) // Mighty
+		{
+			soundKey = MIGHTY_CREDITS[option.mighty.credits]
 		}
 	}
 
@@ -344,6 +394,11 @@ function void playSpeedSong()
 	if (charID == 0) // Sonic
 	{
 		soundKey = SONIC_SPEED[option.sonic.speed]
+	}
+
+	if (charID == 3) // Mighty
+	{
+		soundKey = MIGHTY_SPEED[option.mighty.speed]
 	}
 
 	// Soundkey Fallback Go!

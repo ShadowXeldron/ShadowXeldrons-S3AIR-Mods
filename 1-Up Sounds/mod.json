@@ -6,7 +6,8 @@
 		"Author": "ShadowXeldron",
 		"Description": "A small mod that adds 1-up sound effects that don't interfere with the music. Made to experiment with constant arrys as a new",
 		"URL": "https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods",
-		"ModVersion": "1.2Up"
+		"ModVersion": "1.2Up",
+		"GameVersion": "22.09.10.0"
 	},
 	"Settings":
 	{
