@@ -586,17 +586,13 @@ function void playSpeedSong()
 	}
 }
 
-// Another fix from TimerBunneh; wish I had you around when I first implemented this feature
-
 function void Character.updateBonusEffects() 
 {
-	
-	//u8 speedSongPlaying = 0 // Used to check if the speed song is playing
 	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP)
 
-	if (super.active || super.active.tails)
+	if (super.active == 0x01 || super.active.tails == 0x01)
 	{
-		speedupped == false // I don't want the speed shoes music playing while super
+		speedupped = false // I don't want the speed shoes music playing while super
 	}
 	
 	base.Character.updateBonusEffects()
@@ -605,6 +601,7 @@ function void Character.updateBonusEffects()
 	{
 		playSpeedSong()
 	}
+	
 	if ((speedupped) && (((char.bonus_effect & char.bonus.SPEED_UP)) == 0))
 	{	
 		chooseFittingMusic()

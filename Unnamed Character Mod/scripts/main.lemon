@@ -259,7 +259,7 @@ function bool Character.CheckStartJump()
 		return false
 	}
 
-	if ((input_pressed & CONTROL_C))
+	if (Input.buttonPressed(BUTTON_B))
 	{
 		dashAttack()
 		return false
