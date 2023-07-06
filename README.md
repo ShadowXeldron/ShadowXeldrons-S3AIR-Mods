@@ -26,6 +26,13 @@ Unnamed Character Mod [WIP]
 ### This mod is a work-in-progress and should not be considered feature complete!
 Something that a cobbled together over Easter. It's the start of a new character mod focused on speed and platforming and right now seems to be some kind of overpowered monstrosity. Just a heads up that it's *really* rough right now.
 
+You Are Dead
+-
+A silly joke mod that replaces the game over and continue music with the game over theme from Total Distortion, or as I like to call it, the You Are Dead song.
+
+Seperare Eggrobo Boss Music
+-
+Adds unique boss music for Knuckles. This was meant as a part of Even More Themes, but I decided that I want to have a per-act version of the "pinch phase" music from the DS Pack in the mod instead. Since having Knuckles-specific stuff would probably make the mod to complicated, I've opted to split it off into its own script.
 
 
 But what about your music replacement mods?

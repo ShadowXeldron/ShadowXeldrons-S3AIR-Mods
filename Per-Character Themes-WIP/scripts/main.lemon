@@ -136,24 +136,30 @@ function u8 getCharID() // Function that checks for character IDs
 	#if PCT_LITE == 0
 
 
-	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00")))  // No I am not changing this to global.xtrachar. GPL is serious buisness,
+	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) && u8[0xffffe654] == 0 || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00")))  // No I am not changing this to global.xtrachar. GPL is serious buisness,
 	{
 		charID = 3
 	}
 
-	if ((Mods.isModActive("Ray the Flying Squirrel") && isMainCharacter(CHARACTER_TAILS)) || (Mods.isModActive("Extra Slot Ray") && u8[0xffffE654] == 2 ))
+	if ((Mods.isModActive("Ray the Flying Squirrel") && isMainCharacter(CHARACTER_TAILS)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra Slot Ray") && u8[0xffffE654] == 2 ))
 	{
 		charID = 4
 	}
 
-	if ((Mods.isModActive("3D2D Shadow") && isMainCharacter(CHARACTER_SONIC)) || (Mods.isModActive("Extra Slot 3D2D Shadow") && u8[0xffffE654] == 5 ))
+	if ((Mods.isModActive("3D2D Shadow") && isMainCharacter(CHARACTER_SONIC)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra Slot 3D2D Shadow") && u8[0xffffE654] == 5 ))
 	{
 		charID = 5
 	}
 
-	if ((Mods.isModActive("Amy Rose") && isMainCharacter(CHARACTER_TAILS)) || (Mods.isModActive("Extra Slot Amy") && u8[0xffffE654] == 3 ))
+	if ((Mods.isModActive("Amy Rose") && isMainCharacter(CHARACTER_TAILS)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra Slot Amy") && u8[0xffffE654] == 3 ))
 	{
 		charID = 6
+	}
+
+	// This is in preparation for the eventual release of the Sage mod. Assuming I can think of anything to go with it.
+	if (Mods.isModActive("starfall-sage-main") && isSecondCharacter(CHARACTER_TAILS) && u8[0xffffe654] == 0 || (Mods.isModActive("starfall-sage-es") && u8[0xffffE654] == 0xff))
+	{
+		charID = 7
 	}
 
 	#endif
