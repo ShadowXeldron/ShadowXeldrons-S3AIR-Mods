@@ -60,9 +60,6 @@
 	
 	// Fights
 	
-	// Eggrobo Battles
-	"BossEggrobo": { "Name": "Eggrobo Fights", "File": "BossRobo.ogg", "Type": "Music" },
-	
 	// FBZ Laser
 	"FBZLaser": { "Name": "Flying Battery Laser", "File": "FBZLaser.ogg", "Type": "Music" },
 	
