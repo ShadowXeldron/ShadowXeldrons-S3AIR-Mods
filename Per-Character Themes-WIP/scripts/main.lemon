@@ -172,7 +172,7 @@ function u8 getCharID() // Function that checks for character IDs
 	}
 
 	// This is in preparation for the eventual release of the Sage mod. Assuming I can think of anything to go with it.
-	if (Mods.isModActive("starfall-sage-main") && isSecondCharacter(CHARACTER_TAILS) && u8[0xffffe654] == 0 || (Mods.isModActive("starfall-sage-es") && u8[0xffffE654] == 0xff))
+	if (Mods.isModActive("starfall-sage-main") && isMainCharacter(CHARACTER_TAILS) && u8[0xffffe654] == 0 || (Mods.isModActive("starfall-sage-es") && u8[0xffffE654] == 0xff))
 	{
 		charID = 0 // Temporary value until the mod comes out
 	}
@@ -685,3 +685,4 @@ function void Character.updateBonusEffects()
 #endif
 
 // Beat Invaders was snubbed for GOTY
+
