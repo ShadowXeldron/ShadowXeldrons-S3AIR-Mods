@@ -98,6 +98,18 @@
 					"1": "Custom Theme"
 				}
 			},
+			{
+				"InternalName": "AshuraClear",
+				"DisplayName": "Ashura",
+				"Category": "Clear Jingles",
+				"Variable": "option.ashura.clear",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
 			
 			{
 				"InternalName": "KnuxSpecial",
@@ -182,6 +194,19 @@
 				"DisplayName": "Amy",
 				"Category": "Special Stage Clear Jingles",
 				"Variable": "option.amy.specialclear",	
+				"DefaultValue": "2",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic CD US"
+				}
+			},
+			{
+				"InternalName": "AshuraSpecial",
+				"DisplayName": "Ashura",
+				"Category": "Special Stage Clear Jingles",
+				"Variable": "option.ashura.specialclear",	
 				"DefaultValue": "2",
 				"Options":
 				{
@@ -298,6 +323,23 @@
 				"DisplayName": "Amy",
 				"Category": "Super Themes",
 				"Variable": "option.amy.super",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Custom Hyper Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
+			{
+				"InternalName": "AshuraSuper",
+				"DisplayName": "Ashura",
+				"Category": "Super Themes",
+				"Variable": "option.ashura.super",
 				"DefaultValue": "1",
 				"Options":
 				{
@@ -430,6 +472,23 @@
 					"6": "Unused Track"
 				}
 			},
+			{
+				"InternalName": "AshuraHyper",
+				"DisplayName": "Ashura",
+				"Category": "Hyper Themes",
+				"Variable": "option.ashura.hyper",
+				"DefaultValue": "2",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Super Theme",
+					"2": "Custom Theme",
+					"3": "Sonic 2",
+					"4": "Sonic & Knuckles",
+					"5": "Sonic 3",
+					"6": "Unused Track"
+				}
+			},
 			
 			{
 				"InternalName": "Knux1up",
@@ -501,7 +560,7 @@
 					"3": "Sonic 3"
 				}
 			},
-						{
+			{
 				"InternalName": "Shadow1up",
 				"DisplayName": "Shadow",
 				"Category": "Extra Life Jingles",
@@ -519,7 +578,21 @@
 				"InternalName": "Amy1up",
 				"DisplayName": "Amy",
 				"Category": "Extra Life Jingles",
-				"Variable": "option.Amy.1up",
+				"Variable": "option.amy.1up",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "Ashura1up",
+				"DisplayName": "Ashura",
+				"Category": "Extra Life Jingles",
+				"Variable": "option.ashura.1up",
 				"DefaultValue": "1",
 				"Options":
 				{
@@ -607,6 +680,18 @@
 				"DisplayName": "Amy",
 				"Category": "Game Over Jingles",
 				"Variable": "option.amy.gameover",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme"
+				}
+			},
+			{
+				"InternalName": "AshuraGameOver",
+				"DisplayName": "Ashura",
+				"Category": "Game Over Jingles",
+				"Variable": "option.ashura.gameover",
 				"DefaultValue": "1",
 				"Options":
 				{
@@ -704,6 +789,20 @@
 				"DisplayName": "Amy",
 				"Category": "Invincibility Jingles",
 				"Variable": "option.amy.invincible",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Sonic & Knuckles",
+					"3": "Sonic 3"
+				}
+			},
+			{
+				"InternalName": "AshuraInvincible",
+				"DisplayName": "Ashura",
+				"Category": "Invincibility Jingles",
+				"Variable": "option.ashura.invincible",
 				"DefaultValue": "1",
 				"Options":
 				{
@@ -819,6 +918,21 @@
 					"4": "S3 Prototype Credits"
 				}
 			},
+			{
+				"InternalName": "AshuraCredits",
+				"DisplayName": "Ashura",
+				"Category": "Credits Themes",
+				"Variable": "option.ashura.credits",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					"2": "Credits Medley",
+					"3": "Sonic 3 Credits",
+					"4": "S3 Prototype Credits"
+				}
+			},
 			
 			{
 				"InternalName": "KnuxSpeed",
@@ -910,7 +1024,20 @@
 					"1": "Custom Theme",
 					//"2": "Speed Shoes Music Compatability"
 				}
-			}
+			},
+			{
+				"InternalName": "AshuraSpeed",
+				"DisplayName": "Ashura",
+				"Category": "Speed Shoes Music",
+				"Variable": "option.ashura.speed",	
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Vanilla Handling",
+					"1": "Custom Theme",
+					//"2": "Speed Shoes Music Compatability"
+				}
+			},
 		]
 	}
 }

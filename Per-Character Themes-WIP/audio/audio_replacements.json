@@ -69,7 +69,20 @@
 "amy-credits": { "File": "AmyCredits.ogg", "Type": "Music", "LoopStart": "0"},
 "amy-speed": { "File": "AmySpeed.ogg", "Type": "Music", "LoopStart": "0"},
 
+// Ashura (3D Blast Mega Drive)
+"ashura-clear": { "File": "AshuraClear.ogg", "Type": "Jingle"},
+"ashura-gameover": { "File": "AshuraGameOver.ogg", "Type": "Jingle"},
+"ashura-1up": { "File": "Ashura1Up.ogg", "Type": "Jingle"},
+"ashura-invincible": { "File": "AshuraInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"ashura-super": { "File": "AshuraSuper.ogg", "Type": "Music", "LoopStart": "61886"},
+"ashura-hyper": { "File": "AshuraHyper.ogg", "Type": "Music", "LoopStart": "0"},
+"ashura-credits": { "File": "AshuraCredits.ogg", "Type": "Music", "LoopStart": "1234733"},
+"ashura-speed": { "File": "AshuraSpeed.ogg", "Type": "Music", "LoopStart": "0"},
+
 // Misc.
 "cdus-clear": { "File": "CDUSClear.ogg", "Type": "Jingle"},
+
+// NOTE TO SELF: Raid the entire Frontiers and Little Tail Bronx soundtracks when the Sage mod comes out
+
 }
 // if (isMainCharacter(CHARACTER_SONIC))

@@ -107,6 +107,16 @@ global u8 option.amy.invincible
 global u8 option.amy.credits
 global u8 option.amy.speed
 
+global u8 option.ashura.clear
+global u8 option.ashura.specialclear
+global u8 option.ashura.1up
+global u8 option.ashura.super
+global u8 option.ashura.hyper
+global u8 option.ashura.gameover
+global u8 option.ashura.invincible
+global u8 option.ashura.credits
+global u8 option.ashura.speed
+
 global u8 speedShoesUsed // We don't need this anymore
 
 function u8 getCharID() // Function that checks for character IDs
@@ -156,11 +166,18 @@ function u8 getCharID() // Function that checks for character IDs
 		charID = 6
 	}
 
-	// This is in preparation for the eventual release of the Sage mod. Assuming I can think of anything to go with it.
-	if (Mods.isModActive("starfall-sage-main") && isSecondCharacter(CHARACTER_TAILS) && u8[0xffffe654] == 0 || (Mods.isModActive("starfall-sage-es") && u8[0xffffE654] == 0xff))
+	if ((Mods.isModActive("3D2D Glitches: Sonic 3 With Bluckles") && isMainCharacter(CHARACTER_SONIC)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra slot 3D in 2D Ashura") && u8[0xffffE654] == 168 ))
 	{
 		charID = 7
 	}
+
+	// This is in preparation for the eventual release of the Sage mod. Assuming I can think of anything to go with it.
+	if (Mods.isModActive("starfall-sage-main") && isSecondCharacter(CHARACTER_TAILS) && u8[0xffffe654] == 0 || (Mods.isModActive("starfall-sage-es") && u8[0xffffE654] == 0xff))
+	{
+		charID = 0 // Temporary value until the mod comes out
+	}
+
+	
 
 	#endif
 
@@ -217,6 +234,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = AMY_INVINCIBLE[option.amy.invincible]
 		}
+
+		if (charID == 7) // Ashura
+		{
+			soundKey = ASHURA_INVINCIBLE[option.ashura.invincible]
+		}
 	}
 
 	if sfxId == MUSIC_EXTRALIFE
@@ -257,6 +279,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = AMY_EXTRALIFE[option.amy.1up]
 		}
+
+		if (charID == 7) // Ashura
+		{
+			soundKey = ASHURA_EXTRALIFE[option.ashura.1up]
+		}
 	}
 
 	if sfxId == MUSIC_GAMEOVER
@@ -296,12 +323,17 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = AMY_GAMEOVER[option.amy.gameover]
 		}
+
+		if (charID == 7) // Ashura
+		{
+			soundKey = ASHURA_GAMEOVER[option.ashura.gameover]
+		}
 	}
 
 	if sfxId == MUSIC_LEVELCLEAR
 	{
 
-		if (objA0.countdown_value == 269) // Special Stage
+		if (global.game_mode == 0x48) // Special Stage
 		{
 			if (charID == 2) // Knuckles
 			{
@@ -336,6 +368,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			if (charID == 6) // Amy
 			{
 				soundKey = AMY_SPECIALCLEAR[option.amy.specialclear]
+			}
+
+			if (charID == 7) // Ashura
+			{
+				soundKey = ASHURA_SPECIALCLEAR[option.ashura.specialclear]
 			}
 		}
 
@@ -374,6 +411,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			if (charID == 6) // Amy
 			{
 				soundKey = AMY_ACTCLEAR[option.amy.clear]
+			}
+
+			if (charID == 7) // Ashura
+			{
+				soundKey = ASHURA_ACTCLEAR[option.ashura.clear]
 			}
 		}
 	}
@@ -416,6 +458,15 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = AMY_SUPER[option.amy.hyper]
 			}
+			if (charID == 7) // Ashura
+			{
+				soundKey = ASHURA_SUPER[option.ashura.hyper]
+			}
+
+			if (charID == 7) // Ashura
+			{
+				soundKey = ASHURA_SUPER[option.ashura.hyper]
+			}
 		}
 
 		else // Normal super forms
@@ -454,6 +505,13 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = AMY_SUPER[option.amy.super]
 			}
+
+			if (charID == 7) // Ashura
+			{
+				soundKey = ASHURA_SUPER[option.ashura.super]
+			}
+
+			
 		}
 	}
 
@@ -492,6 +550,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		if (charID == 6) // Amy
 		{
 			soundKey = AMY_CREDITS[option.amy.credits]
+		}
+
+		if (charID == 7) // Ashura
+		{
+			soundKey = ASHURA_CREDITS[option.ashura.credits]
 		}
 	}
 
@@ -571,6 +634,11 @@ function void playSpeedSong()
 	{
 		soundKey = AMY_SPEED[option.amy.speed]
 	}
+	
+	if (charID == 7) // Ashura
+	{
+		soundKey = ASHURA_SPEED[option.ashura.speed]
+	}
 
 	// Soundkey Fallback Go!
 
@@ -594,9 +662,9 @@ function void playSpeedSong()
 
 function void Character.updateBonusEffects() 
 {
-	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP)
+	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP) 
 
-	if (super.active == 0x01 || super.active.tails == 0x01)
+	if (super.active || super.active.tails)
 	{
 		speedupped = false // I don't want the speed shoes music playing while super
 	}
@@ -615,3 +683,5 @@ function void Character.updateBonusEffects()
 }
 
 #endif
+
+// Beat Invaders was snubbed for GOTY

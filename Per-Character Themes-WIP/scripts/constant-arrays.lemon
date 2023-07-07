@@ -451,3 +451,67 @@ constant array<string> AMY_SPEED =
     "amy-speed",
     "speedshoes"
 }
+
+// That one pallate bug from Sonic 2 which everyone seems to like
+
+constant array<string> ASHURA_INVINCIBLE =
+{
+    "VANILLA HANDLING",
+    "ashura-invincible",
+    "2C",
+    "2C_sonic3"
+}
+
+constant array<string> ASHURA_GAMEOVER =
+{
+    "VANILLA HANDLING",
+    "ashura-gameover"
+}
+
+constant array<string> ASHURA_ACTCLEAR =
+{
+    "VANILLA HANDLING",
+    "ashura-clear"
+}
+
+constant array<string> ASHURA_SPECIALCLEAR =
+{
+    "VANILLA HANDLING",
+    "ashura-clear",
+    "cdus-clear"
+}
+
+constant array<string> ASHURA_EXTRALIFE =
+{
+    "VANILLA HANDLING",
+    "ashura-1up",
+    "2a",
+    "2a_sonic3"
+}
+
+constant array<string> ASHURA_SUPER = 
+{
+    "VANILLA HANDLING",
+    "ashura-super",
+    "ashura-hyper",
+    "supertheme_sonic2",
+    "2C",
+    "2C_sonic3",
+    "2E_proto"
+}
+
+constant array<string> ASHURA_CREDITS =
+{
+    "VANILLA HANDLING",
+    "ashura-credits",
+    "DC",
+    "26",
+    "26_proto"
+}
+
+constant array<string> ASHURA_SPEED =
+{
+    "VANILLA HANDLING",
+    "ashura-speed",
+    "speedshoes"
+}
