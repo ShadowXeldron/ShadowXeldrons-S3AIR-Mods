@@ -563,7 +563,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 
 	if soundKey == "VANILLA HANDLING" // Used when disabling the mod's crazy stuff 
 	{
-		return originalSoundkey
+		return base.Standalone.getModdedSoundKey(originalSoundkey, sfxId, soundRegType)
 	}
 
 	else if originalSoundkey == MUSIC_EXTRALIFE 

@@ -1,0 +1,30 @@
+// I had to break out the Grandia music for this, and I usually reserve that for when I'm rescuing my Linux installation whenever GRUB decides to die on me.
+// You could say this script itself was a rescue mission in its own right
+
+function string getCharacterSpriteKey(u8 character, bool isSuperActive)
+{
+	// Default implementation: No key set
+	if (super.active == 0xff || super.active.tails == 0xff)
+	{
+		if character == CHARACTER_SONIC
+		{
+			return "character_hypersonic"
+		}
+
+		else if character == CHARACTER_TAILS
+		{
+			return "character_hypertails"
+		}
+
+		else if character == CHARACTER_KNUCKLES
+		{
+			return "character_hyperknuckles"
+		}
+
+		else 
+			return base.getCharacterSpriteKey(character, isSuperActive)
+	}
+
+	else
+		return base.getCharacterSpriteKey(character, isSuperActive)
+}
