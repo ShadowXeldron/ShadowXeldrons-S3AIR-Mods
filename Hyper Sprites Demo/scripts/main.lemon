@@ -13,8 +13,15 @@ function string getCharacterSpriteKey(u8 character, bool isSuperActive)
 
 		else if character == CHARACTER_TAILS
 		{
-			return "character_hypertails"
-		}
+			if (u8[0xffffe654] == 0xff || Mods.isModActive("starfall-sage-main") && u8[0xffffe654] == 0)
+			{
+				return "cybersage_hyper" // temp name
+
+			}
+			else
+			{
+				return "character_hypertails"
+			}
 
 		else if character == CHARACTER_KNUCKLES
 		{
