@@ -1,41 +1,33 @@
+// Version 2 of the DS Pack Scripts. This one had a stupid bug that made the game think it was in DEZ2 whenever a boss showed up. This was because I entered a single equals sign instead of two.
+// I am still embarassed about that.
+
 // Custom scripts for the Sonic DS Music Pack
+
+include bosschanges
+
+// Script file for the More Extra Themes mod for S3AIR.
 
 /*
 	This script file is the primary compnent of the Even More Themes mod for Sonic 3 A.I.R.
 	Copyright (C) 2023 by ShadowXeldron
-    A copy of this code can be found here: https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods/tree/main/Sonic%20DS%20Pack%20Scripts
-
-    Older versions of the mod's scripts may also be found within the "extras" folder for this mod.
 
 	Some code is taken from the Sonic 3 A.I.R script software distribution, Copyright (C) 2017-2023 by Eukaryot
-    The source code for Sonic 3 AIR may be found here: https://github.com/Eukaryot/sonic3air
 
 	Some code is taken from the Even More Themes and Per-Character Themes projects, Copyright (C) 2022-2023 by ShadowXeldron
-    The source code for Even More Themes may be found here: https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods/tree/main/Even%20More%20Themes
-    The source code for Per-Character Themes may be found here: https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods/tree/main/Per-Character%20Themes
 
 	This mod is published under the GNU GPLv3 open source software license, see LICENSE.txt
 	or https://www.gnu.org/licenses/gpl-3.0.en.html
 
-    Sonic the Hedgehog is a registered trademark of Sega. Copyright infringement is fully intended.
-    Do not buy the official releases because they are all rushed out for Christmas and are all bad
 */
-
-include bosschanges
 
 // Declare Settings Variables
 
-global u8 option.zone.aiz1
-global u8 option.zone.aiz2
 global u8 option.zone.hcz1
 global u8 option.zone.hcz2
 global u8 option.zone.mgz2
 global u8 option.zone.cnz2
 global u8 option.zone.icz1
 global u8 option.zone.icz2
-global u8 option.zone.ssz
-global u8 option.zone.dez1
-global u8 option.zone.dez2
 global u8 option.zone.alz
 global u8 option.zone.emz
 
@@ -201,28 +193,9 @@ function u64 setInvincibilityMusic()
 {
     u64 soundkey
 
-    if global.zone_act.apparent == 0x0000 // AIZ1
+    if global.zone == 0x00 // AIZ
     {
-        if (option.zone.aiz1 == 0)
-        {
-            soundkey = "aiz-invincible"
-        }
-        else
-        {
-            soundkey = "2C-colours" 
-        }
-    }
-
-    if global.zone_act.apparent == 0x0001 // AIZ2
-    {
-        if (option.zone.aiz2 == 0)
-        {
-            soundkey = "aiz-invincible"
-        }
-        else
-        {
-            soundkey = "2C-colours" 
-        }
+        soundkey = "aiz-invincible"
     }
 
     else if global.zone_act.apparent == 0x0100 // HCZ1; here's the first instance of weird stuff
@@ -384,36 +357,13 @@ function u64 setInvincibilityMusic()
 
     else if global.zone == 0x0a // SSZ
     {
-        soundkey = "ssz-invincible" // While SSZ does have a custom option now, it's just the Act 2 version of the song and as such doesn't
+        soundkey = "ssz-invincible"
     }
 
-    // Unfortunately, the above statement about having no customisation options in the S&K portion of the game is now outdated as of V3. If V2 was like having a V2 shot at me, V3 is, uh, trolling.
-
-    else if global.zone_act.apparent == 0x0600 // DEZ1
+    else if global.zone == 0x0b // DEZ, which means this stupid function is finally over!
     {
-        if (option.zone.dez1 == 0)
-        {
-            soundkey = "dez-invincible"
-        }
-        else
-        {
-            soundkey = "2C-colours" 
-        }
+        soundkey = "dez-invincible"
     }
-
-    else if global.zone_act.apparent == 0x0601 // DEZ2, which means this stupid function is finally over!
-    {
-        if (option.zone.dez2 == 0)
-        {
-            soundkey = "dez-invincible"
-        }
-        else
-        {
-            soundkey = "2C-colours" 
-        }
-    }
-
-    // I hate elseifs so bloody much. That's why I went and found a more fun method that's less of a nightmare to debug in the form of constant arrays.
 
     return soundkey
 }
@@ -477,7 +427,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 {
     if (sfxId == 0x29) // Act Clear music setup
     {
-        if (global.game_mode == 0x48) // Special stage check
+        if (objA0.countdown_value == 269) // Special stage check
         {
             return "32-special" 
         }
@@ -640,37 +590,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 
     // Zone Music Selection
 
-    else if (sfxId == 0x01) // AIZ1
-    {
-        if (option.zone.aiz1 == 1)
-        {
-            return "01-alt"
-        }
-
-        else
-        {
-            return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-        }
-    }
-
-    else if (sfxId == 0x02) // AIZ2
-    {
-        if (option.zone.aiz2 == 1)
-        {
-            return "02-alt"
-        }
-
-        if (option.zone.aiz2 == 2)
-        {
-            return "02-alt2"
-        }
-
-        else
-        {
-            return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-        }
-    }
-
     else if (sfxId == 0x03) // HCZ1
     {
         if (option.zone.hcz1 == 1)
@@ -758,60 +677,10 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
             return "sa1-icz"
         }
 
-        else if (option.zone.icz2 == 2)
+        if (option.zone.icz2 == 2)
         {
             return "0c-alt"
         }
-
-        else
-        {
-            return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-        }
-    }
-
-    else if (sfxId == 0x15) // SSZ
-    {
-        if (option.zone.ssz == 1)
-        {
-            return "15-alt"
-        }
-
-        else
-        {
-            return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-        }
-    }
-
-    else if (sfxId == 0x16) // DEZ1
-    {
-        if (option.zone.dez1 == 1)
-        {
-            return "16-alt"
-        }
-
-        else
-        {
-            return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
-        }
-    }
-
-    else if (sfxId == 0x17) // DEZ2
-    {
-        if (option.zone.dez2 == 1)
-        {
-            return "17-alt"
-        }
-
-        else if (option.zone.dez2 == 2)
-        {
-            return "17-alt2"
-        }
-
-        else if (option.zone.dez2 == 3)
-        {
-            return "17-alt3"
-        }
-
 
         else
         {
