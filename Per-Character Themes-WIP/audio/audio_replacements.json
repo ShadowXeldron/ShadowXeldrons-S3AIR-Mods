@@ -1,4 +1,5 @@
 {
+// Some loops provided by FancyDoggy
 
 // Sonic (Mania)
 "sonic-clear": { "File": "SonicClear.ogg", "Type": "Jingle"},
@@ -53,21 +54,21 @@
 "shadow-clear": { "File": "ShadowClear.ogg", "Type": "Jingle"},
 "shadow-gameover": { "File": "ShadowGameOver.ogg", "Type": "Jingle"},
 "shadow-1up": { "File": "Shadow1Up.ogg", "Type": "Jingle"},
-"shadow-invincible": { "File": "ShadowInvincible.ogg", "Type": "Music", "LoopStart": "0"},
-"shadow-super": { "File": "ShadowSuper.ogg", "Type": "Music", "LoopStart": "0"},
+"shadow-invincible": { "File": "ShadowInvincible.ogg", "Type": "Music", "LoopStart": "0"}, // File provided by FancyDoggy. I originally wanted to use the theme from Shadow's game, but it was too short
+"shadow-super": { "File": "ShadowSuper.ogg", "Type": "Music", "LoopStart": "1032192"},
 "shadow-hyper": { "File": "ShadowHyper.ogg", "Type": "Music", "LoopStart": "0"},
-"shadow-credits": { "File": "ShadowCredits.ogg", "Type": "Music", "LoopStart": "0"}, // '06 Version of All Hail Shadow
+"shadow-credits": { "File": "ShadowCredits.ogg", "Type": "Music", "LoopStart": "1175552"}, // All Hail Shadow
 "shadow-speed": { "File": "ShadowSpeed.ogg", "Type": "Music", "LoopStart": "0"},
 
 // Amy (Sonic CD)
 "amy-clear": { "File": "AmyClear.ogg", "Type": "Jingle"},
 "amy-gameover": { "File": "AmyGameOver.ogg", "Type": "Jingle"},
 "amy-1up": { "File": "Amy1Up.ogg", "Type": "Jingle"},
-"amy-invincible": { "File": "AmyInvincible.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-invincible": { "File": "AmyInvincible.ogg", "Type": "Music", "LoopStart": "0"}, // This is unlooped in CD and as such is unlooped here
 "amy-super": { "File": "AmySuper.ogg", "Type": "Music", "LoopStart": "0"},
-"amy-hyper": { "File": "AmyHyper.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-hyper": { "File": "AmyHyper.ogg", "Type": "Music", "LoopStart": "525095"},
 "amy-credits": { "File": "AmyCredits.ogg", "Type": "Music", "LoopStart": "0"},
-"amy-speed": { "File": "AmySpeed.ogg", "Type": "Music", "LoopStart": "0"},
+"amy-speed": { "File": "AmySpeed.ogg", "Type": "Music", "LoopStart": "0"}, // This is unlooped in CD and as such is unlooped here
 
 // Ashura (3D Blast Mega Drive)
 "ashura-clear": { "File": "AshuraClear.ogg", "Type": "Jingle"},
