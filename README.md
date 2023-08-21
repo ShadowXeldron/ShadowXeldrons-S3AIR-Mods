@@ -35,6 +35,10 @@ Seperare Eggrobo Boss Music
 Adds unique boss music for Knuckles. This was meant as a part of Even More Themes, but I decided that I want to have a per-act version of the "pinch phase" music from the DS Pack in the mod instead. Since having Knuckles-specific stuff would probably make the mod to complicated, I've opted to split it off into its own script.
 
 
+Where's your rankings mod?
+-
+I think that because this repository serves multiple projects it would confuse things for contributiors to the rankings mod (so far called Scoring Revisited). If you want to lend a hand on the projectt, you can find it here: https://github.com/ShadowXeldron/S3AIR-Scoring-Revisited
+
 But what about your music replacement mods?
 -
 I don't feel right putting mods which don't have much code in them on GitHub. Because of that, you can find them in my cloud storage [here](https://mega.nz/folder/TiBkDZQD#HYsbMsR-LqBpL3PlbNhw9Q).
