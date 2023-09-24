@@ -594,8 +594,10 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 
 // This function was used for checking speed shoes music. Knuckles, Mighty and Tails cooperated just fine, but that wretched blue rat simply wouldn't work.
 
+global bool doBaseSpeedCall = 0
+
 #if STANDALONE
-function void playSpeedSong()
+function u64 getSpeedSong()
 {
 	u64 soundKey // This initialises the variable that will be fed into the sound player
 	u8 charID = (getCharID()) // Usage here is the same as in PlayMusic - it's to check who you are playing as.
@@ -640,24 +642,7 @@ function void playSpeedSong()
 		soundKey = ASHURA_SPEED[option.ashura.speed]
 	}
 
-	// Soundkey Fallback Go!
-
-	if (soundKey == "VANILLA HANDLING")
-	{
-		return
-	}
-
-	// Otherwise, fire the long boomy thingies
-
-	else if (!Audio.isPlayingAudio(soundKey))
-	{
-		Audio.playAudio(soundKey,0)
-	}
-
-	else
-	{
-		return
-	}
+	return soundKey
 }
 
 function void Character.updateBonusEffects() 
@@ -673,7 +658,12 @@ function void Character.updateBonusEffects()
 	
 	if (speedupped) 
 	{
-		playSpeedSong()
+		u64 speedkey = getSpeedSong()
+
+		if (!Audio.isPlayingAudio(speedkey))
+		{
+			Audio.playAudio(speedkey,0)
+		}
 	}
 	
 	if ((speedupped) && (((char.bonus_effect & char.bonus.SPEED_UP)) == 0))
