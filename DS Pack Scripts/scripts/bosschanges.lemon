@@ -1,0 +1,325 @@
+// This file features the bosses in alphabetical order because I'm using the GitHub repository as a reference.
+// Also, I don't care what the manual or the Encyclospeedia calls the bosses. If I think it's called Spinning Top Dude then I'm calling it Spinning Top Dude.
+// Finally, to any music nuts out there who are going "ERM, AKSHULLY" when seeing my functions and soundkey names, the reason why I'm using the term "allegro" is because it's what the Sonic Rush album usues to denote the "phase 2" tracks.
+
+global u8 MechaSonicBehavePlease = 0
+
+//# address-hook(0x068f62) end(0x068fe0)
+function void Boss.AIZ1.RegularUpdate() // AIZ1 "Fire Breath" Boss, obviously
+{
+    base.Boss.AIZ1.RegularUpdate()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+// Why can't all the other bosses use simialr, human-friendly function names like Fire Breath does?
+
+//# address-hook(0x069be2) end(0x069c64)
+function void fn069be2() // AIZ2 Boss - the Egg Fire Mech
+{
+    base.fn069be2()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+//# address-hook(0x06e0b0) end(0x06e122)
+function void fn06e0b0() // CNZ1 Boss, also known as Spinning Top Dude. This particular function is just guesswork because the CNZ1 boss is weird
+{
+    base.fn06e0b0()
+    if  (u8[A0 + 0x45] == 1)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x06ec9e) end(0x06ed04)
+function void fn06ec9e() // CNZ2 Boss, or as I like to call it, the Magnetic Ball Machine
+{
+    base.fn06ec9e()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+//# address-hook(0x07e7d6) end(0x07e7fe)
+function void fn07e7d6() // DEZ1 Boss; the idea is to activate the pinch music when it starts flying around
+{
+    dspack.playAllegroTrack(1)
+    base.fn07e7d6()
+}
+
+//# address-hook(0x07fb92) end(0x07fc16)
+function void fn07fb92() // DEZ2 Boss - not the Death Egg Robot, but the Spiny Shield!
+{
+    base.fn07fb92()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+//# address-hook(0x06f994) end(0x06f9f6)
+function void fn06f994() // FBZ1 Boss; specifically Gapsule and only Gapsule
+{
+    base.fn06f994()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x07065c) end(0x0706a6)
+function void fn07065c() // FBZ2 Boss; not the laser. It is, however, the Spinning Volcano Mech
+{
+    base.fn07065c()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+//# address-hook(0x06ac48) end(0x06acc0)
+function void fn06ac48() // HCZ1 Boss - the dreaded Washing Machine!
+{
+    base.fn06ac48()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x06bbc4) end(0x06bc2a)
+function void fn06bbc4() // HCZ2's famous boss, the Egg Hydro Vortex. Great at slicing hedgehogs and scuba suits alike.
+{
+    base.fn06bbc4()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+//# address-hook(0x06429e) end(0x0642ea)
+function void fn06429e() // HPZ Boss - You know him the fighting freak Knuckles; he's been away for a while. But now he's back to kick some tail at Wild Canyon.
+{
+    base.fn06429e()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(4)
+    }
+}
+
+
+//# address-hook(0x0718da) end(0x07194e)
+function void Boss.ICZ1.RegularUpdate() // ICZ1; thank you to the Amoeba Droid for not having a weird function name
+{
+    base.Boss.ICZ1.RegularUpdate()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x07225c) end(0x0722f4)
+function void fn07225c() // ICZ2, the Egg Freezer
+{
+    base.fn07225c()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+
+//# address-hook(0x072840) end(0x0728c2)
+function void fn072840()
+{
+    base.fn072840() // LBZ1's beloved Disposable Wrecking Balls
+    if (boss.remaining_hits == 0x03) // To time it with the second wrecking ball detatching
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x073fe2) end(0x074092)
+function void fn073fe2() // The first of the LBZ2 wrecking balls of death, the Egg Wreckers.
+{
+    base.fn073fe2()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+//# address-hook(0x0734fa) end(0x07360c)
+function void fn0734fa() // The second LBZ2 boss - the diligent Death Egg defender known as the Egg Tower
+{
+    base.fn0734fa()
+    if (boss.remaining_hits == 4) // This boss actually takes 9 hits, but I don't think it's possible for a boss to have 4.5 remaining HP
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+// TODO: Change the music to Allegro Track 2 when Big Arms shows up while Knuckles
+
+//# address-hook(0x074fd2) end(0x07508c)
+function void fn074fd2()  // And, finally, the last of LBZ2's boss gauntlet: the mech the myth the legend, Big Arms! Famous for it's appearance in the 3DS version of Sonic Generations.
+{
+    base.fn074fd2()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(3)
+    }
+}
+
+//# address-hook(0x078c14) end(0x078c5e)
+//# translated(0x078c98) end(0x078ca0)
+function void fn078c14() // He who haunts LRZ1... the Nightmare Hand.
+{
+    base.fn078c14()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x07981e) end(0x079852)
+function void fn07981e() // The LRZ2 Bombing Machine. Since the boss appearing itself is effectively a second phase, it plays the allegro track on initialisation.
+{
+    base.fn07981e()
+    dspack.playAllegroTrack(2)
+}
+
+//# address-hook(0x088a62) end(0x088ae0)
+function void fn088a62() // The MGZ1 Drilly Thing; for some reason this boss' death code is actually in mgz_driller.lemon
+{
+    base.fn088a62()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x06d5a4) end(0x06d618)
+function void fn06d5a4() // If you think that's bad, the MGZ2 boss, Flying Drill, is an arcane mess of assembly code. Strangely enough, the real function may have been in mgz_robotnikencounters.lemon the entire time
+{
+    base.fn06d5a4()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+//# address-hook(0x06d61e) end(0x06d678)
+function void fn06d61e() // And of course Knuckles' version of the MGZ2 boss also doesn't have an easy method of telling when the right time to check its health is
+{
+    base.fn06d61e()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+// Eukayrot if you don't add boss.remaining_hits to the bit that checks when the MGZ bosses take damage then I'm suing
+
+
+//# address-hook(0x075d80) end(0x075dfc)
+function void fn075d80() // Hey ho, it's Hey Ho! From MHZ1. Now with added boss.remaining_hits!
+{
+    base.fn075d80()
+    if (boss.remaining_hits == 3)
+    {
+        dspack.playAllegroTrack(1)
+    }
+}
+
+//# address-hook(0x076782) end(0x076872)
+function void fn076782() // Despite being a nine hit boss, the Climate Disruptor from MHZ2 is effectively an 8-hit one.
+{
+    base.fn076782()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+// Regirock from SOZ1 doesn't have a health bar; I'll ignore him for now
+
+//# address-hook(0x0781e4) end(0x078266)
+function void fn0781e4() // The Egg Golem from SOZ, however, does have a health bar.
+{
+    base.fn0781e4()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(2)
+    }
+}
+
+// I'll need to somehow make Allegro versions of the Sonic 1 and 2 boss themes. For now, I'm using the second phase boss theme from Advance 2.
+
+
+//# address-hook(0x07d312) end(0x07d358)
+//# translated(0x07d3be) end(0x07d3c6)
+function void fn07d312() // Mecha Sonic from SSZ, who thinks you pests have lived long enough. He also agrees with me that Gamebanana is a better modding than ProBoards.
+{
+    if (boss.remaining_hits == 0)
+    {
+        MechaSonicBehavePlease = 1  // A kludge for Super Mecha Sonic
+    }
+    base.fn07d312()
+    if (boss.remaining_hits == 4)
+    {
+        if (global.act == 1) // Play the boss music in SSZ2
+        {
+            if MechaSonicBehavePlease == 1
+            {
+                dspack.playAllegroTrack(6)
+            }
+            else
+            {
+                dspack.playAllegroTrack(5)
+            }
+        }
+        else // Otherwise play the normal version
+        {
+            dspack.playAllegroTrack(2)
+        }
+    }
+}
+
+//# address-hook(0x07a5a0) end(0x07a61c)
+function void fn07a5a0() // From SSZ, it's the first reused nostalgia boss in the entire franchise, and also the first boss in the franchise: give it up for the Wrecking Ball!
+{
+    base.fn07a5a0()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(7)
+    }
+}
+
+//# address-hook(0x07acf2) end(0x07ad72)
+function void fn07acf2() // And now the second boss that SSZ1 reuses, it's the scourge of Metropolis Zone: The legendary Flying Thing!
+{
+    base.fn07acf2()
+    if (boss.remaining_hits == 4)
+    {
+        dspack.playAllegroTrack(7)
+    }
+
+}
+
+//# address-hook(0x07bea8) end(0x07bf24)
+function void fn07bea8() // And last but most definitely not least: The true final boss of Sonic 3 & Knuckles: Super Mecha Sonic!
+{
+    base.fn07bea8()
+    if (boss.remaining_hits == 4)
+    {
+        //Audio.playAudio("1A-allegro", 0)
+        dspack.playAllegroTrack(6)
+    }
+}

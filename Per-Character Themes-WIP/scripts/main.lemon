@@ -241,7 +241,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		}
 	}
 
-	if sfxId == MUSIC_EXTRALIFE
+	else if sfxId == MUSIC_EXTRALIFE
 	{
 		// Like it or not, elseif chains are always going to be a requirement. However, with constant arrays we can at least offset some of the issues.
 
@@ -286,7 +286,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		}
 	}
 
-	if sfxId == MUSIC_GAMEOVER
+	else if sfxId == MUSIC_GAMEOVER
 	{
 
 		if (charID == 2) // Knuckles
@@ -330,7 +330,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		}
 	}
 
-	if sfxId == MUSIC_LEVELCLEAR
+	else if sfxId == MUSIC_LEVELCLEAR
 	{
 
 		if (global.game_mode == 0x48) // Special Stage
@@ -420,7 +420,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		}
 	}
 
-	if sfxId == MUSIC_SUPER
+	else if sfxId == MUSIC_SUPER
 	{
 		if (super.active == 0xff || super.active.tails == 0xff) // Hyper Forms. Tails uses his own variable for some reason.
 		{
@@ -458,11 +458,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = AMY_SUPER[option.amy.hyper]
 			}
-			if (charID == 7) // Ashura
-			{
-				soundKey = ASHURA_SUPER[option.ashura.hyper]
-			}
-
 			if (charID == 7) // Ashura
 			{
 				soundKey = ASHURA_SUPER[option.ashura.hyper]
@@ -515,7 +510,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		}
 	}
 
-	if sfxId == MUSIC_CREDITSMEDLEY
+	else if sfxId == MUSIC_CREDITSMEDLEY
 	{
 		if (charID == 2) // Knuckles
 		{
@@ -556,6 +551,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = ASHURA_CREDITS[option.ashura.credits]
 		}
+	}
+
+	else
+	{
+		soundKey = "VANILLA HANDLING" // Quick and dirty fix for a compatibility issue with Audio Overhaul.
 	}
 
 
