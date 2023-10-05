@@ -37,7 +37,7 @@ Adds unique boss music for Knuckles. This was meant as a part of Even More Theme
 
 Where's your rankings mod?
 -
-I think that because this repository serves multiple projects it would confuse things for contributiors to the rankings mod (so far called Scoring Revisited). If you want to lend a hand on the projectt, you can find it here: https://github.com/ShadowXeldron/S3AIR-Scoring-Revisited
+I think that because this repository serves multiple projects it would confuse things for contributiors to the rankings mod (so far called Scoring Revisited). If you want to lend a hand on the project, you can find it here: https://github.com/ShadowXeldron/S3AIR-Scoring-Revisited
 
 But what about your music replacement mods?
 -
