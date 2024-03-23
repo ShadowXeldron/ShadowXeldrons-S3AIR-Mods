@@ -11,6 +11,10 @@
 	
 */
 
+#define HAS_EMT = 1 // Used to say whether or not you have Even More Themes active
+
+//include functions // Custom function file
+
 // Although the license allows it, please do not include this script with your mod! It is an early work in progress that will be updated frequently. Also, using it will mean that you will have to adhere to the very strict license that this mod uses.
 // Of course, I'm well aware of the Spanish following that Sonic has. Therefore:
 // Aunque la licencia lo permite, ¡no incluya este script con su mod! Es un trabajo inicial en progreso que se actualizará con frecuencia. Además, usarlo significará que tendrá que cumplir con la licencia muy estricta que usa este mod.
@@ -36,7 +40,7 @@ global u8 config.misc.continue //DANANANANANANANANANANANANANANANANA
 global u8 sszcurrentsong
 global u8 knuxCutsceneStage = 0
 
-
+/*
 // Preventing the act clear music from playing in the special stage with an old friend of ours
 function void PlayMusic()
 {
@@ -50,6 +54,7 @@ function void PlayMusic()
         base.PlayMusic()
     }
 }
+*/
 
 // This function is here only for script mods that want to change the sound key, e.g. to play a custom music track / sound effect
 function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)

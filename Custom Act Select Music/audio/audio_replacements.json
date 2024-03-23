@@ -1,0 +1,4 @@
+{
+	// Custom Act Select Music
+	"act_select":      { "File": "SAdvActSelect.ogg", "Type": "Music", "LoopStart": "28672", "Name": "Sonic Advance - Stage Select" },
+}

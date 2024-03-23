@@ -1,0 +1,12 @@
+{
+	"Metadata":
+	{
+		"Name": "Custom Act Select Music",
+		"Author": "ShadowXeldron",
+		"UniqueID": "ShadowXeldron-CustomActSelectMusic",
+		"Description": "Replaces the game's sound track with music from Sega 32X games. Why did I make this?",
+		"URL": "Adds custom music to the new act select screen",
+		"ModVersion": "1.0",
+		"GameVersion": "19.09.28.1" // Replace with the real release version
+	}
+}
