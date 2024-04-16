@@ -1,5 +1,5 @@
 # ShadowXeldron's Sonic 3 AIR Mods
-
+ [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com) 
 This is my nuclear waste disposal plant. Here, we dispose of nuclear waste. And I guess my Sonic mods are here as well.
 
 These are the mods that have been copied here:
