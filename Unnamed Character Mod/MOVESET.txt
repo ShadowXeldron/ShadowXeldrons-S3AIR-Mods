@@ -51,7 +51,7 @@ Basically a double jump. This move is quite simple in concept and execution, and
 
 Down + Any in midair - Re-Entry
 
-Makes you fall really, really fast. It was designed with being able to perform a quick descent in mind, and you can also use this move for badnik bounces. So, ironically enough, the move that was designed for sending you down can potentially give you more height than the one designed to send you up.
+Makes you fall really, really fast. It was designed with being able to perform a quick descent in mind, but you can also use this move for badnik bounces. So, ironically enough, the move that was designed for sending you down can potentially give you more height than the one designed to send you up.
 
 
 

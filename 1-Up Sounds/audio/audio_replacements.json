@@ -3,6 +3,8 @@
 // Sonic
 "1Up-SCD": { "File": "SCD.ogg", "Type": "Sound"},
 "1Up-TimeStone": { "File": "SCD-TimeStone.ogg", "Type": "Sound"},
+"1Up-Yeah": { "File": "SCD-Yeah.ogg", "Type": "Sound"},
+"1Up-Alright": { "File": "SCD-Alright.ogg", "Type": "Sound"},
 "1Up-SMB1": { "File": "SMB1.ogg", "Type": "Sound"},
 "1Up-SMB1_Q": { "File": "SMB1q.ogg", "Type": "Sound"},
 "1Up-SMW": { "File": "Mario.ogg", "Type": "Sound"},
@@ -15,6 +17,9 @@
 "1Up-Kirby": { "File": "Kirby.ogg", "Type": "Sound"},
 "1Up-STT": { "File": "TripleTrouble.ogg", "Type": "Sound"},
 "1Up-STT16": { "File": "TripleTrouble16.ogg", "Type": "Sound"},
-
+"1Up-CS": { "File": "CaveStory.ogg", "Type": "Sound"},
+"1Up-Metroid": { "File": "Metroid.ogg", "Type": "Sound"},
+"1Up-SRB2": { "File": "Metroid.ogg", "Type": "Sound"},
+"1Up-SRB2Jingle": { "File": "Metroid.ogg", "Type": "Sound"},
 }
 // if (isMainCharacter(CHARACTER_SONIC))

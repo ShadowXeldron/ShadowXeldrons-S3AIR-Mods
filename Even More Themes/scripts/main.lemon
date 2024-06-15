@@ -13,6 +13,8 @@
 
 #define HAS_EMT = 1 // Used to say whether or not you have Even More Themes active
 
+include functions
+
 //include functions // Custom function file
 
 // Although the license allows it, please do not include this script with your mod! It is an early work in progress that will be updated frequently. Also, using it will mean that you will have to adhere to the very strict license that this mod uses.
@@ -119,7 +121,9 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 
     else if (sfxId == MUSIC_SPECIALSTAGE)
     {
-        if !global.sk_bluespheres // Thanks to Thorn for this!
+        return emt.getSpecialStageSoundKey(global.next_bluespheres, global.sk_bluespheres)
+
+        /*if !global.sk_bluespheres // Thanks to Thorn for this!
         {
             if global.next_bluespheres == 0
             {
@@ -197,7 +201,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
             {
                 return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType) // Final fallback in case a mod theoretically adds more S3 blue sphere layouts
             }
-        }
+        }*/
     }
         
     else if (sfxId == MUSIC_CONTINUE)
@@ -208,7 +212,7 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
         }
     }
 
-    else if (sfxId == 0x2f) // Thanks to TimerBunneh for this
+    else if (sfxId == 0x2f) // Thanks to Timer for this
     {
         if global.game_mode == 0x4c
         {

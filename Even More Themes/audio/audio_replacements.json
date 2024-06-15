@@ -9,22 +9,24 @@
 	// Special Stages
 	
 	// Sonic 3
-	"SS1": { "Name": "S3 Special Stage 1", "File": "Special1.ogg", "Type": "Music" },
-	"SS2": { "Name": "S3 Special Stage 2", "File": "Special2.ogg", "Type": "Music" },
-	"SS3": { "Name": "S3 Special Stage 3", "File": "Special3.ogg", "Type": "Music" },
-	"SS4": { "Name": "S3 Special Stage 4", "File": "Special4.ogg", "Type": "Music" },
-	"SS5": { "Name": "S3 Special Stage 5", "File": "Special5.ogg", "Type": "Music" },
-	"SS6": { "Name": "S3 Special Stage 6", "File": "Special6.ogg", "Type": "Music" },
-	"SS7": { "Name": "S3 Special Stage 7", "File": "Special7.ogg", "Type": "Music" },
+	"S3_SpecialStage1": { "Name": "S3 Special Stage 1", "File": "Special1.ogg", "Type": "Music" },
+	"S3_SpecialStage2": { "Name": "S3 Special Stage 2", "File": "Special2.ogg", "Type": "Music" },
+	"S3_SpecialStage3": { "Name": "S3 Special Stage 3", "File": "Special3.ogg", "Type": "Music" },
+	"S3_SpecialStage4": { "Name": "S3 Special Stage 4", "File": "Special4.ogg", "Type": "Music" },
+	"S3_SpecialStage5": { "Name": "S3 Special Stage 5", "File": "Special5.ogg", "Type": "Music" },
+	"S3_SpecialStage6": { "Name": "S3 Special Stage 6", "File": "Special6.ogg", "Type": "Music" },
+	"S3_SpecialStage7": { "Name": "S3 Special Stage 7", "File": "Special7.ogg", "Type": "Music" },
+    "S3_SpecialStage8": { "Name": "S3 Special Stage 7", "File": "Special7.ogg", "Type": "Music" },
 	
 	// Sonic & Knuckles
-	"SS8": { "Name": "S&K Special Stage 1", "File": "Special8.ogg", "Type": "Music" },
-	"SS9": { "Name": "S&K Special Stage 2", "File": "Special9.ogg", "Type": "Music" },
-	"SS10": { "Name": "S&K Special Stage 3", "File": "Special10.ogg", "Type": "Music" },
-	"SS11": { "Name": "S&K Special Stage 4", "File": "Special11.ogg", "Type": "Music" },
-	"SS12": { "Name": "S&K Special Stage 5", "File": "Special12.ogg", "Type": "Music" },
-	"SS13": { "Name": "S&K Special Stage 6", "File": "Special13.ogg", "Type": "Music" },
-	"SS14": { "Name": "S&K Special Stage 7", "File": "Special14.ogg", "Type": "Music" },
+	"SK_SpecialStage1": { "Name": "S&K Special Stage 1", "File": "Special8.ogg", "Type": "Music" },
+	"SK_SpecialStage2": { "Name": "S&K Special Stage 2", "File": "Special9.ogg", "Type": "Music" },
+	"SK_SpecialStage3": { "Name": "S&K Special Stage 3", "File": "Special10.ogg", "Type": "Music" },
+	"SK_SpecialStage4": { "Name": "S&K Special Stage 4", "File": "Special11.ogg", "Type": "Music" },
+	"SK_SpecialStage5": { "Name": "S&K Special Stage 5", "File": "Special12.ogg", "Type": "Music" },
+	"SK_SpecialStage6": { "Name": "S&K Special Stage 6", "File": "Special13.ogg", "Type": "Music" },
+	"SK_SpecialStage7": { "Name": "S&K Special Stage 7", "File": "Special14.ogg", "Type": "Music" },
+    "SK_SpecialStage8": { "Name": "S&K Special Stage 7", "File": "Special14.ogg", "Type": "Music" },
 	
 	// Special Stage Results
 	"SpecialClear": { "Name": "Special Stage Clear", "File": "SpecialClear.ogg", "Type": "Music" },

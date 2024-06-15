@@ -16,98 +16,118 @@ global u8 noRollSound = 0
 
 //define dashtimer =  u8[A0 + 0x35]	
 
-
-
-function void TailsPressedJumpInMidAir() # This is used for the midair abilities: Jet Burst, Rocket Boost and Re-Entry
+function void UpdateTailsJumpMoves()
 {
+    u8 input_state     = (char.character == CHARACTER_TAILS) ? control.tails.state   : control.player1.state
+	u8 input_pressed   = (char.character == CHARACTER_TAILS) ? control.tails.pressed : control.player1.pressed
+	bool isSuperActive = (char.character == CHARACTER_TAILS) ? super.active.tails    : super.active
 
-		u8 input_state   = (char.character == CHARACTER_TAILS) ? control.tails.state   : control.player1.state
-
-	// Tails is manually controlled?
-	if (isMainCharacter(CHARACTER_TAILS) || tails.control_counter != 0)
+	if (char.jumping)
 	{
-		// TailsStartFlight()
-		#if PRETEND
-		if (super.active)
-			u8[0xffffcbc0 + 0x20] = 1
-		else
-		#endif
-			u8[0xffffcce8 + 0x20] = 1		// That's 0x20 inside the shield object at 0xffffcce8
-		char.double_jump_state = 1
+	    // Limit velocity.y
+	    s16 max_vy = (char.flags & char.flag.UNDERWATER) ? -0x200 : -0x400
+	    if (char.velocity.y < max_vy)
+	    {
+		    // Limit vertical velocity while not pressing any jump button
+		    //  -> This is important to support low jumps by just tapping the button briefly
+		    if ((input_state & CONTROL_ABC) == 0)
+		    {
+			    char.velocity.y = max_vy
+		    }
+	    }
+	    else
+	    {
+			    if (Input.buttonPressed(BUTTON_Y))
+			    {
+				    if (!isSuperActive && char.invuln.countdown == 0)	// Check invulnerability to prevent spamming of super activate + cancel
+				    {
+					    if (Character.performSuperTransformation())
+						    return
+				    }
+			    }
 
-		s16 vx
-		
-		if (control.tails.state & CONTROL_UP) // Rocket Boost - Gives you a vertical boost but cuts your horizontal momentumn
-		{
-			if char.velocity.y > -0x380
-			{
-				char.velocity.y = -0x380	// Slightly increasing double jump height for Super Sonic
-			}
+		    // Check if pressed jump again in mid-air
+		    if (input_pressed & CONTROL_ABC)
+		    {
+                
+                char.double_jump_state = 1
 
-		}
+                s16 vx                    
+                        
+                if (control.tails.state & CONTROL_UP) // Rocket Boost - Gives you a vertical boost but cuts your horizontal momentumn
+                {
+	                if char.velocity.y > -0x380
+	                {
+		                char.velocity.y = -0x380	// Slightly increasing double jump height for Super Sonic
+	                }
 
-		else if (control.tails.state & CONTROL_DOWN) // Re-Entry - A quick downward blast that converts upwards momentumn into downwards momentumn.
-		{
-			if 0x800 < char.velocity.y // That is, if you're going up
-			{
-				vx = 0x800
-			}
+                }
 
-			else
-			{
-				vx = char.velocity.y + 0x800
-			}
+                else if (control.tails.state & CONTROL_DOWN) // Re-Entry - A quick downward blast that converts upwards momentumn into downwards momentumn.
+                {
+	                if 0x800 < char.velocity.y // That is, if you're going up
+	                {
+		                vx = 0x800
+	                }
 
-			//char.velocity.y 
-			char.velocity.y = vx
-			playSound(SFX_BOMBFALL)
-			//char.velocity.x = char.velocity.x / 2
-		}
+	                else
+	                {
+		                vx = char.velocity.y + 0x800
+	                }
 
-		else //if (input_state & (CONTROL_LEFT | CONTROL_RIGHT)) // Jet Burst - A sideways blast of speed
-		{
+                        //char.velocity.y 
+       		            char.velocity.y = vx
+       		            playSound(SFX_BOMBFALL)
+       		            //char.velocity.x = char.velocity.x / 2
+	                }
 
-			vx = 0x500
-			
-			if (char.flags & char.flag.FACING_LEFT)
-			{
-				//vx = -vx
-				char.velocity.x = char.velocity.x - (vx + char.velocity.x)
-			}
+	                else //if (input_state & (CONTROL_LEFT | CONTROL_RIGHT)) // Jet Burst - A sideways blast of speed
+	                {
 
-			else
-			{
-				char.velocity.x = char.velocity.x + (vx - char.velocity.x)
-			}
+		                vx = 0x500
+			                
+		                if (char.flags & char.flag.FACING_LEFT)
+		                {
+			                //vx = -vx
+			                char.velocity.x = char.velocity.x - (vx + char.velocity.x)
+		                }
 
-			//char.velocity.x = char.velocity.x + (vx - char.velocity.x)
-			if (char.velocity.y >= 0)
-			{
-				char.velocity.y = -1
-			}
+		                else
+		                {
+			                char.velocity.x = char.velocity.x + (vx - char.velocity.x)
+		                }
 
-			else
-			{
-				char.velocity.y -= 1
-			}
-		}
+		                //char.velocity.x = char.velocity.x + (vx - char.velocity.x)
+		                if (char.velocity.y >= 0)
+		                {
+			                char.velocity.y = -1
+		                }
 
-		char.flags &= ~(char.flag.ROLLING | char.flag.CONTROL_LOCK)
+		                else
+		                {
+			                char.velocity.y -= 1
+		                }
+	                }
 
-		//char.velocity.y = 0
-		char.groundspeed = vx
-		//camera.locktime.player1 = 0x2000
-		ClearPositionBackup()
-		playSound(SFX_SPINDASH_RELEASE)
-	}
-#if STANDALONE
-	// Make an exception for AI Tails, e.g. on MHZ 1 (Sonic alone) start when Sonic jumps off early
-	else if (tails.ai_routine == 0x10)
-	{
-		TailsStartFlight()
-	}
-#endif
+	                char.flags &= ~(char.flag.ROLLING | char.flag.CONTROL_LOCK)
+
+	                //char.velocity.y = 0
+	                char.groundspeed = vx
+	                //camera.locktime.player1 = 0x2000
+	                ClearPositionBackup()
+	                playSound(SFX_SPINDASH_RELEASE)
+		        }
+	        }
+        }
+        else
+        {
+	        if (char.spindash == 0)
+	        {
+		        char.velocity.y = max(char.velocity.y, -0x0fc0)
+	        }
+        }
 }
+
 
 //function bool Character.UpdateSpindash-NO()
 //{
@@ -122,7 +142,7 @@ function bool Character.UpdateSpindash()
 
 	if (!isMainCharacter(CHARACTER_TAILS))
 	{
-		base.Character.UpdateSpindash()
+		return base.Character.UpdateSpindash()
 	}
 
 	u8 input_state   = (char.character == CHARACTER_TAILS) ? control.tails.state   : control.player1.state

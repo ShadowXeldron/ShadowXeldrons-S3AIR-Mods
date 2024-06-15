@@ -1,1 +1,28 @@
- 
+// Custom function folder
+// PROTIP: You can override and perform base calls modded functions, just like how you can override vanilla functions!
+/*
+For example, let's say that you want to have multiple options for the special stage music. To do that, you can try something like this:
+
+function string emt.getSpecialStageSoundKey(u8 specialstage, bool isSKStage)
+{
+    if mySetting
+    {
+        doStuff()
+    }
+
+    else
+        return base.emt.getSpecialStageSoundKey(specialstage, isSKStage)
+}
+
+Just remember to wrap any parts of your mod's code that uses this mod's functions inside of the preprocessor instruction so that people don't need the mod installed to use it.
+
+*/
+
+
+function u64 emt.getSpecialStageSoundKey(u8 specialstage, bool isSKStage)
+{
+    if isSKStage
+        return stringformat("SK_SpecialStage%d", specialstage + 1)
+    else
+        return stringformat("S3_SpecialStage%d", specialstage + 1)
+}
