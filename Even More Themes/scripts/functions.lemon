@@ -3,7 +3,7 @@
 /*
 For example, let's say that you want to have multiple options for the special stage music. To do that, you can try something like this:
 
-function string emt.getSpecialStageSoundKey(u8 specialstage, bool isSKStage)
+function u64 emt.getSpecialStageSoundKey(u8 specialstage, bool isSKStage)
 {
     if mySetting
     {
@@ -25,4 +25,34 @@ function u64 emt.getSpecialStageSoundKey(u8 specialstage, bool isSKStage)
         return stringformat("SK_SpecialStage%d", specialstage + 1)
     else
         return stringformat("S3_SpecialStage%d", specialstage + 1)
+}
+
+// Single line return functions. You're supposed to override them!
+
+function u64 emt.getContinueSoundKey()
+{
+    return "Continue"
+}
+
+function u64 emt.getLevelSelectSoundKey()
+{
+    return "Continue"
+}
+
+function u64 emt.getBlueSphereMenuSoundKey()
+{
+    // Returns the vanilla soundkey for No Way. It's been excluded for simplicity reasons.
+    return "Continue"
+}
+
+function u64 emt.getBlueSphereMenuSoundKey()
+{
+    // Returns the vanilla soundkey for No Way. It's been excluded for simplicity reasons.
+    return "Continue"
+}
+
+function u64 emt.getActSelectSoundKey()
+{
+    // This is literally all it does. You're supposed to override it!
+    return "Continue"
 }
