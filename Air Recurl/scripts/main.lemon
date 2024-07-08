@@ -17,7 +17,8 @@ function void Character.UpdateSonicUprightInAir()
 //# address-hook(0x01684c) end(0x01688e)
 function void Character.UpdateKnucklesUprightInAir()
 {
-    if (char.double_jump_state != 1)
+    // God dammit zero based numbering
+    if (char.double_jump_state == 0 || char.double_jump_state == 2)
         recurl()
     base.Character.UpdateKnucklesUprightInAir()
 }
@@ -34,7 +35,7 @@ function void Character.UpdateTailsUprightInAir()
 function void recurl()
 {
     u8 input_pressed = (char.character == CHARACTER_TAILS) ? control.tails.pressed : control.player1.pressed
-	if (input_pressed & CONTROL_ABC)
+	if (input_pressed & CONTROL_ABC && !char.spindash)
     {
         char.hitbox_extends.x = char.hitbox.x.ROLLING
 		char.hitbox_extends.y = char.hitbox.y.ROLLING
