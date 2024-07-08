@@ -1,0 +1,43 @@
+/*
+	This script file is derived from the Sonic 3 A.I.R. script software distribution.
+	Copyright (C) 2017-2024 by Eukaryot
+
+	Published under the GNU GPLv3 open source software license, see license.txt
+	or https://www.gnu.org/licenses/gpl-3.0.en.html
+*/
+
+
+//# address-hook(0x010fb6) end(0x010fde)
+function void Character.UpdateSonicUprightInAir()
+{
+    recurl()
+    base.Character.UpdateSonicUprightInAir()
+}
+
+//# address-hook(0x01684c) end(0x01688e)
+function void Character.UpdateKnucklesUprightInAir()
+{
+    recurl()
+    base.Character.UpdateKnucklesUprightInAir()
+}
+
+//# address-hook(0x0147b8) end(0x014820)
+function void Character.UpdateTailsUprightInAir()
+{
+    if (char.double_jump_state == 0)
+        recurl()
+
+    base.Character.UpdateTailsUprightInAir()
+}
+
+function void recurl()
+{
+    u8 input_pressed = (char.character == CHARACTER_TAILS) ? control.tails.pressed : control.player1.pressed
+	if (input_pressed & CONTROL_ABC)
+    {
+        char.hitbox_extends.x = char.hitbox.x.ROLLING
+		char.hitbox_extends.y = char.hitbox.y.ROLLING
+		char.flags |= char.flag.ROLLING
+		char.state = char.state.ROLLING
+    }
+}
