@@ -17,7 +17,8 @@ function void Character.UpdateSonicUprightInAir()
 //# address-hook(0x01684c) end(0x01688e)
 function void Character.UpdateKnucklesUprightInAir()
 {
-    recurl()
+    if (char.double_jump_state != 1)
+        recurl()
     base.Character.UpdateKnucklesUprightInAir()
 }
 
