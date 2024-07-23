@@ -1,0 +1,28 @@
+{
+    "Metadata":
+    {
+	    "Name": "Main Menu Music",
+	    "Author": "ShadowXeldron",
+	    "Description": "Simple custom main menu music implementation",
+	    "ModVersion": "v0.1",
+        "UniqueID": "ShadowXeldron-MainMenuMusic",
+    },
+
+    "Settings":
+	{
+		"List":
+		[
+            {
+				"InternalName": "TrackNo",
+				"DisplayName": "Main Menu Music Choice",
+				"Variable": "menuMusic.menuMusicSoundKey",
+				"DefaultValue": "0",
+				"Options":
+				{
+					"0": "Crusader of Centy",
+					"1": "Ys III"
+				}
+			},
+        ],
+    },
+}

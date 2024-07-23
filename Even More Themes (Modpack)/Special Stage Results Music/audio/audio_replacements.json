@@ -1,0 +1,5 @@
+{
+	// Special Stage Results
+	"special_clear": { "Name": "Special Stage Clear", "File": "SpecialClear.ogg", "LoopStart": "0", "Type": "Music" },
+	"special_fail": { "Name": "Special Stage Fail", "File": "SpecialFail.ogg", "LoopStart": "145863", "Type": "Music" },	
+}

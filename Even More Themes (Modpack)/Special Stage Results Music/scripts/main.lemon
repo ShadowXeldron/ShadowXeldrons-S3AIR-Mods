@@ -1,0 +1,101 @@
+// Special Stage Clear Music - Part of the Even More Themes project because you can never have too many themes
+
+/*
+    Special Stage Clear Music - Part of the Even More Themes project because you can never have too many themes
+    You can find it here: https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods
+
+    Copyright 2024 ShadowXeldron
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+   ----------------------------------------------------------------------
+
+   What this means is that this entire script may be included in any of your projects for any reason, even ones that use different licenses are non-reusable, AS LONG AS THE FOLLOWING CONDITIONS ARE OBSERVED:
+
+   1. THIS ENTIRE COMMENT BLOCK MUST NOT BE REMOVED OR EDITED!
+   2. YOU MUST PROVIDE ATTRIBUTION (in layman's terms, this means giving credit)
+   3. YOU MUST CLEARLY STATE THAT THE SCRIPT IS USED AND CLEARLY STATE EVERY MODIFICATION THAT YOU MADE TO THE SCRIPT (in other words, you have to say what you changed)
+
+*/
+
+#define HAS_SSRM
+
+// Set up configuration variable
+global u8 option.emtp_ssrm.fade_out_setting
+
+// This is used to prevent the act clear jingle from interrupting the results music in the special stage
+function void playMusic(u8 soundId)
+{
+    if (global.game_mode == 0x48 && emtp.allowSpecialResultsMusic())
+        return
+    else
+        base.playMusic(soundId)
+}
+
+//# address-hook(0x02e410) end(0x02e4d2)
+function void fn02e410()
+{
+    base.fn02e410()
+    if emtp.allowSpecialResultsMusic() // Only play the special stage music
+        emtp.playSpecialResultsMusic()
+}
+
+function u64 emtp.getSSRMSoundKey(bool succeeded)
+{
+    // Should be true if you passed the special stage.
+    if (succeeded)
+        return "special_clear"
+    
+    else
+        return "special_fail"
+}
+
+/// Starts playing back the special stage clear music when called
+function void emtp.playSpecialResultsMusic()
+{
+    bool succeeded = (bluespheres.blue_remaining == 0)
+    u64 soundkey = emtp.getSSRMSoundKey(succeeded)
+
+    if (!Audio.isPlayingAudio(soundkey))
+    {
+        Audio.playAudio(soundkey, 0)
+    }
+}
+
+/// Always returns true. The purpose of this function is to be overrided when you have a specific configuration that means you don't want it to play
+function bool emtp.allowSpecialResultsMusic()
+{
+    return true
+}
+
+//# address-hook(0x02e616) end(0x02e744)
+function void fn02e616()
+{
+    // If you've enabled audio cutout
+    if (objA0.countdown_value == 0 && option.emtp_ssrm.fade_out_setting != 0)
+	{
+		if (option.emtp_ssrm.fade_out_setting == 1)
+        {
+            // Fade out the audio
+            Audio.fadeOutChannel(0, 2.0f)
+        }
+
+        else
+        {
+            // Just cut it out
+            Audio.stopChannel(0)
+        }
+	}
+
+    base.fn02e616()
+}

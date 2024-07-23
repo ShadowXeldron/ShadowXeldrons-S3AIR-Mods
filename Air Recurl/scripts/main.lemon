@@ -34,6 +34,7 @@ function void Character.UpdateTailsUprightInAir()
 
 function void recurl()
 {
+    // Derived from character.lemon
     u8 input_pressed = (char.character == CHARACTER_TAILS) ? control.tails.pressed : control.player1.pressed
 	if (input_pressed & CONTROL_ABC && !char.spindash)
     {

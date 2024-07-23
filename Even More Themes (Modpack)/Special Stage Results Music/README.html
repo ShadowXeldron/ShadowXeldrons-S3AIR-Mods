@@ -1,0 +1,258 @@
+<html>
+     <!--
+        If you opened this README and are confused as to why it's full of code, DON'T PANIC!
+        This is a HTML file, which is basically an offline website. You're supposed to access it by opening it in your web browser. It'll look just fine on there!
+
+        But if you know opened it to see how it was made, go right ahead.
+        If you find any mistakes, feel free to correct them and submit your fixes as a pull request on my GitHub repository. It'll make me happy :)
+     -->
+
+    <head>
+        <title>Special Stage Results Music</title>
+
+        <style>
+            /* Small CSS bit. Normally this would be in a seperate file, but my webpage is very small so I don't need much CSS. I also want to keep my mod's file structure tidy. */
+            body {
+                    /* Use a more readable font than Times New Roman */
+                    font-family: sans-serif;
+                }
+        </style>
+    </head>
+
+    <body>
+        <h1>Special Stage Results Music (SSRM)</h1>
+
+        <h2>Table of contents</h2>
+        <ol>
+            <li><a href=#intro>What's this?</a></li>
+            <li><a href=#how-it-works>How it works</a></li>
+            <li><a href=#usage>How To Use</a>
+                <ul>
+                    <li><a href=#usage-the-right-way>Use the mod as a library</a></li>
+                    <li><a href=#usage-the-wrong-way>Integrate the script directly into your mod [NOT RECOMMENDED!]</a></li>
+                </ul>
+            </li>
+            <li><a href=#funcs>Functions</a></li>
+            <li><a href=#example>Examples</a>
+                <ul>
+                    <li><a href=#example-normal>Just replacing the soundkeys</a></li>
+                    <li><a href=#example-disable>Prevent the results music if a specific option is set</a></li>
+                    <li><a href=#example-array>Getting custom audio from a constant array</a></li>
+                </ul>
+            </li>
+            <li><a href=#apache>License</a></li>
+        </ol>
+
+        <h2 id=intro>What's this?</h2>
+        <p>
+            This script adds specific results music to the special stage results screen that changes depending on whether you failed or succeeded, just like the Sonic Advance games. The music immediately kicks in immediately and has multiple options for how to handle the audio during the transition to Hidden Palace Zone after the Sonic &amp; Knuckles special stages, namely leaving it on, fading it out or cutting it out immediately.
+
+            <br /><br />Multiple helpful functions are included so that you can use it in combination with another mod, including ones that you're making. No permission required!
+
+            <br /><br />This mod is part of the Even More Themes project, which provides a series of permissively licensed audio mods to further increase the game's soundtrack variety. <a href=https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods>The Even More Themes project can be found on my GitHub repository</a>!
+        </p>
+
+        <h2 id=how-it-works>How it works</h2>
+        <p>
+            The mod overrides the function for the special stage results screen to check if a specific soundkey is playing, then if it isn't the mod will play said soundkey. The soundkey in question is returned by a custom  function which returns a different value based on whether <code>true</code> or <code>false</code> has been passed to the function as an argumennt. Which argument to pass is in turn decided by a boolean that checks if all the blue spheres in the special stage have been collected.
+        </p>
+
+        <h2 id=usage>How To Use</h2>
+
+        If you just want to play with the mod, you don't need to do anything! Load it into the game as usual.<br />The following information is for those who want to use the mod's functionality in their mods, which there are two main methods of doing:
+
+        <h3 id=usage-the-right-way>Use the mod as a library</h3>
+
+        <p>
+            This is the method that I personally recommend using because it's more compatible with other mods.<br />
+            The advantage of this method over directly integrating the scripts is that it's more compatible with other mods. If you use this method then you should also link back to my GitHub repository so that people know where to get the mod.
+
+            To use this method, see the list of functions below and override the ones that you need.
+            When you've overriden a function, wrap the override inside <code>#if HAS_SSRM</code> and <code>#endif</code> preprocessor instructions so that your mod works without SRRM active and check against a specific condition, returning a base call if it's false.
+
+            For example:
+            <pre>
+                <code>
+    #if HAS_SRRM
+    function u64 emtp.getSSRMSoundKey(bool succeeded)
+    {
+        if (some_condition)
+        {
+            doStuff()
+        }
+        else
+            return base.emtp.getSSRMSoundKey(succeeded)
+    }
+    #endif
+                </code>
+            </pre>
+
+            If you do use this method, you should also add the following you your <code>mod.json</code> so that people know to load the mods in the correct order:
+            <pre>
+                <code>
+    "OtherMods":
+    {
+        "ShadowXeldron-SpecialStageResultsMusic":
+        {
+            "DisplayName": "Special Stage Results Music",
+            "IsRequired": "0",
+            "Priority": "Lower"
+        }
+    },
+                </code>
+            </pre>
+
+            Need something to help you get started? See the examples below!
+        </p>
+
+        <h3 id=usage-the-wrong-way>Integrate the script directly into your mod [NOT RECOMMENDED!]</h3>
+        <p>
+            This is probably more convenient, but it means your mod will have significantly worse compatibility with this mod as well as others that use code from it.<br />
+            Additionally, the Apache license requires that you state every change made to the mod - neglecting to mention even one modification is considered a violation! Therefore, you should only do this if you only want to include a small fraction of the mod's functionality.
+
+            For these two reasons, I would only suggest using this method if you just need a very small part of the script rather than the whole thing.
+
+            If you absolutely must use this method, copy the parts that you want from the script, then add the following comment block to the top of the script file:
+            <pre>
+                <code>
+    /*
+        This mod uses functionality from Special Stage Clear Music.
+        You can find the original mod here: https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods
+
+        ----------------------------------------------------------------------
+        Special Stage Clear Music
+
+        Copyright 2024 ShadowXeldron
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+
+        ----------------------------------------------------------------------
+
+        What this means is that this entire script may be included in any of your projects for any reason, even ones that use different licenses are non-reusable, AS LONG AS THE FOLLOWING CONDITIONS ARE OBSERVED:
+
+        1. THIS ENTIRE COMMENT BLOCK MUST NOT BE REMOVED OR EDITED!
+        2. YOU MUST PROVIDE ATTRIBUTION (in layman's terms, this means giving credit)
+        3. YOU MUST CLEARLY STATE THAT THE SCRIPT IS USED AND CLEARLY STATE EVERY MODIFICATION THAT YOU MADE TO THE SCRIPT (in other words, you have to say what you changed)
+
+    */
+                </code>
+            </pre>
+            <b>Failure to include the above comment block</b>. You must also credit me on your mod's release page and state every change that you made to the file, including what you added and removed.
+        </p>
+
+        <h2 id="funcs">Functions</h2>
+
+        <h4>u64 emtp.getSSRMSoundKey(bool succeeded)</h4>
+        Returns a different value depending on whether <code>true</code> or <code>false</code> is passed as an argument.
+
+        <h4>void emtp.playSpecialResultsMusic()</h4>
+        Checks if all blue spheres were collected in a special stage, then passes either <code>true</code> or <code>false</code> to <code>emtp.getSSRMSound</code> depending on whether or not the check was successful. It then
+
+        <h4>bool emtp.allowSpecialResultsMusic()</h4>
+        Always returns true. The purpose of this function is so that you can override it under certain circumstances.
+
+        <h2 id=example>Examples</h2>
+        <h5>Note that this section of the readme expects you to be using the mod like a library.</h5>
+
+        <h3 id=example-normal>Just replacing the soundkeys</h3>
+        If all you want is to change the included tracks and don't want any code, copy the contents of <code>audio_replacements.json</code> and edit it to suit your mod.
+
+        <h3 id=example-disable>Prevent the results music if a specific option is set</h3>
+        If you have a specific configuration that would be incompatible with this mod, you can prevent SRRM from working by using the following code:
+
+        <pre>
+                <code>
+    #if HAS_SRRM
+    function bool emtp.allowSpecialResultsMusic()
+    {
+        if (some_condition)
+            return false
+        else
+            return base.emtp.getSSRMSoundKey(succeeded)
+    }
+    #endif
+                </code>
+            </pre>
+
+        <h3 id=example-array>Getting custom audio from a constant array</h3>
+        Constant arrays are the easiest wasy to add multiple track options to your mod.
+        Add two options to your mod, one for special stage failure and another for success. Make sure
+
+        Then you can use this example code:
+
+        <pre>
+            <code>
+    // Make sure that every entry in this array is lower case!
+    constant array<string> RESULTS_TRACKS =
+    {
+        "soundkey_1",
+        "soundkey_2",
+        "soundkey_3",
+        "soundkey_4",
+        "soundkey_5"
+    }
+                
+    global u8 option.stage_fail_song
+    global u8 option.stage_pass_song
+                
+    #if HAS_SSRM
+    function u64 emtp.getSSRMSoundKey(bool succeeded)
+    {
+        //If true
+        if (succeeded)
+        {
+        // Return base if the option is disabled (for compatibility reasons)
+        if (option.stage_pass_song == 0)
+            return base.emtp.getSSRMSoundKey(succeeded)
+                
+            else
+            {
+                // Subtract the result by 1 because 0 is used for defaulting, Not subtracting the value would play the music back in the wrong order
+                return RESULTS_TRACKS[option.stage_pass_song - 1]
+            }
+        }
+
+        // Otherwise,
+        else
+        {
+            // Return base if the option is disabled (for compatibility reasons)
+            if (option.stage_fail_song == 0)
+                return base.emtp.getSSRMSoundKey(succeeded)
+            else
+            {
+                // Subtract the result by 1 because 0 is used for defaulting, Not subtracting the value would play the music back in the wrong order
+                return RESULTS_TRACKS[option.stage_fail_song - 1]
+            }
+        }
+    }
+    #endif
+            </code>
+        </pre>
+
+
+        <h2 id=apache> License</h2>
+            <p>
+                Copyright 2024 ShadowXeldron<br /><br />
+
+                Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at <a href=https://www.apache.org/licenses/LICENSE-2.0>https://www.apache.org/licenses/LICENSE-2.0</a>.<br/>
+
+                <br />Unless required by applicable law or agreed to in writing, software
+                distributed under the License is distributed on an "AS IS" BASIS,
+                WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+                See the License for the specific language governing permissions and
+                limitations under the License.
+
+                <br>Full text of the license is in the `LICENSE.txt` file included with the distribution
+            </p>
+    </body>
+</html>

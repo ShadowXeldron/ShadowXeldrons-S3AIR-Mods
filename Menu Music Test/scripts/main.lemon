@@ -1,0 +1,25 @@
+global u8 menuMusic.menuMusicSoundKey
+
+constant array<string> MENU_MUSIC_SOUNDKEYS = 
+{
+    "menu-centy",
+    "menu-ys3"
+}
+
+
+function u64 getMainMenuSoundKey()
+{
+    return MENU_MUSIC_SOUNDKEYS[menuMusic.menuMusicSoundKey]
+}
+
+
+function void MainMenuBG.Update(u16 cameraForegroundX, u16 cameraBackgroundX)
+{
+    if Audio.isPlayingAudio(MUSIC_DATASELECT)
+        Audio.stopChannel(0x00)
+    
+    if !Audio.isPlayingAudio(getMainMenuSoundKey())
+        Audio.playAudio(getMainMenuSoundKey(), 0)
+    
+    base.MainMenuBG.Update(cameraForegroundX, cameraBackgroundX)
+}

@@ -1,0 +1,4 @@
+function u16 VInt.getBlendFactorForScreenFlash()
+{
+	return 0x00
+}

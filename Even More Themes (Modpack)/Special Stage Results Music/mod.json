@@ -1,0 +1,31 @@
+{
+	"Metadata":
+	{
+		"Name": "Special Stage Results Music",
+		"UniqueID": "ShadowXeldron-SpecialStageResultsMusic",
+		"Author": "ShadowXeldron",
+		"Description": "Adds custom results music to the special stages",
+		"URL": "https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods",
+		"ModVersion": "v0.1",
+		"GameVersion": "24.02.02.0"
+	},
+
+    "Settings":
+	{
+		"List":
+		[
+            {
+				"InternalName": "FadeOutSettings",
+				"DisplayName": "During HPZ trasition...",
+				"Variable": "option.emtp_ssrm.fade_out_setting",
+				"DefaultValue": "1",
+				"Options":
+				{
+					"0": "Keep playing",
+					"1": "Fade out",
+                    "2": "Stop immediately"
+				}
+			},
+        ],
+    },
+}
