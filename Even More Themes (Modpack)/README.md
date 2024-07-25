@@ -15,7 +15,7 @@ This will implement the following as standalone mods:
 * Save select music (since the old mod seems to be broken)  
 * Seperate battle music for the fight against Knuckles in HPZ (successfully implemented, and in a more convoluted way than you might think)
 * Different music for every phase of the Death Egg Robot (including the bit where Eggman tries to escape) (implemented to a usuable standard; may require some polishing)
-* Special Stage results music  
+* Special Stage results music  (RELEASED!)
 * Unique music for all 14 Special Stages (successfully implemented!)  
 * Extra tracks for the following cutscenes:
   * The AIZ opening cutscene with the plane (successfully implemented!)
@@ -26,23 +26,21 @@ This will implement the following as standalone mods:
 * Any of the extra features from the Sonic DS music pack
 
 
-Most of these mods should be licensed under a lax perimissive license, such as the MIT license, and can be freely modified and redistributed as long as attribution is given.
-As well as being able to be included in mods, you can also interface with them via base function calls.
+Most of these mods should be licensed under the lax perimissive Apache license, and can be freely modified and redistributed as long as attribution is given. Certain mods however will need to use vanilla code to function and will therefore be licensed under the GNU General Public License version 3.0.
+As well as being able to be included in mods, you can also interface with them via base function calls which is the intended way to use it.
 
-Certain mods however will need to use vanilla code to function and will therefore be licensed under the GNU General Public License version 3.0
-
-
+All of the mods will include a series of
 
 Have any suggestions? I'll consider throwing them in. Code contributions to the project via the GitHub are also welcome! Just remember to read the license before sending a pull request.  
 
 Never Asked Questions
 -
 
-Q. Are you still going to work on Per-Character Themes?  
-A: Yes. I have an update for that mod in the works as well; it's just I decided to start this WIP today.  
+Q. Why did you reboot the project?
+A: The original version of the mod was very unstable and was becoming a bit of a mess to debug.
 
 Q. kan u giv me purmishum 2 uze ur skript i wont chang it just put it in mi fnf sonci exe modd pak  
-A. The beauty of the GPL is that it means you don't actually need permission to utilise, modify and redistribute any GPL'd code, but I'd like to say that this mod will cause licensing complications if you try and bundle it with most scripts - especially ones that demand permission for usage. Instead, request users to download it on their own and have them load your mod above this one.  
+A. It's Apache licensed now, so you don't even need to worry about the GPL anymore. See the text inside each mod's `main.lemon` for usage guidelines.
 
 Q. Do you intend to add features from other mods?  
 A. Only if they're discontinued or don't work. Of course, if I think I can do it better than them I may consider it.  

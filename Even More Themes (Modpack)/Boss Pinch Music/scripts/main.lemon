@@ -1,0 +1,143 @@
+/*
+    Boss Pinch Battle Music - Part of the Even More Themes project because you can never have too many themes
+    You can find it here: https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods
+
+    Copyright 2024 ShadowXeldron
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+   ----------------------------------------------------------------------
+
+   What this means is that this entire script may be included in any of your projects for any reason, even ones that use different licenses are non-reusable, AS LONG AS THE FOLLOWING CONDITIONS ARE OBSERVED:
+
+   1. THIS ENTIRE COMMENT BLOCK MUST NOT BE REMOVED OR EDITED!
+   2. YOU MUST PROVIDE ATTRIBUTION (in layman's terms, this means giving credit)
+   3. YOU MUST CLEARLY STATE THAT THE SCRIPT IS USED AND CLEARLY STATE EVERY MODIFICATION THAT YOU MADE TO THE SCRIPT (in other words, you have to say what you changed)
+
+*/
+
+/// Preprocessor definition. Useful to check if the mod is active and run specific code if required.
+#define HAS_BPBM = 1
+
+// Add the boss changes file
+include bosschanges
+
+// Define Constants
+
+constant u8 BPBM_MINIBOSS = 0x00
+constant u8 BPBM_MINIBOSS_FORCE_S3 = 0x01
+constant u8 BPBM_MINIBOSS_FORCE_SK = 0x02
+constant u8 BPBM_BOSS = 0x03
+constant u8 BPBM_HPZ_KNUCKLES = 0x04
+constant u8 BPBM_SONIC1 = 0x05
+constant u8 BPBM_SONIC2 = 0x06
+constant u8 BPBM_FINAL = 0x07
+constant u8 BPBM_DDZ = 0x08
+// Protip: You can pass these constants to make reading the function much easier!
+
+/// Returns a different 
+function u64 emtp.getBPBMSoundKey(u8 bossType)
+{
+
+    if (bossType == BPBM_MINIBOSS || bossType == BPBM_MINIBOSS_FORCE_S3 || bossType == BPBM_MINIBOSS_FORCE_SK)
+    {
+        // Used to more easily check if the Sonic 3 theme is used. The boolean retrieves the miniboss audio setting and checks if you're using the generic boss music option.
+        bool is_sonic3_theme_set = (bossType == BPBM_MINIBOSS && Game.getSetting(SETTING_AUDIO_MINIBOSS_THEME) == 0)
+
+        // If you've set the option or the Sonic 3 theme is forced, play that
+        if (is_sonic3_theme_set || bossType == BPBM_MINIBOSS_FORCE_S3)
+        {
+            return "2e_sonic3_pinch"
+        }
+
+        // Otherwise, play the Sonic & Knuckles version
+        else
+        {
+            return "18_pinch"
+        }
+    }
+
+    else if (bossType == BPBM_BOSS)
+    {
+        return "19_pinch"
+    }
+
+    
+    else if (bossType == BPBM_HPZ_KNUCKLES)
+    {
+        // Cannot derive from the basegame for this because then this mod would have to be GPL licensed, which I don't want. I can at least check the setting.
+        u8 knux_song_option = Game.getSetting(SETTING_AUDIO_HPZ_MUSIC)
+
+        // I really wish S3AIR had case matching...
+        if (knux_song_option == 0 || knux_song_option == 2)
+            return "2e_sonic3_pinch"
+            // or return "1a_sonic3_pinch" if it gets made
+        
+        else if (knux_song_option == 1)
+            return "1f_pinch"
+
+        else if (knux_song_option == 3)
+            return "1f_proto_pinch"
+
+        else // fallback option
+            return "1f_pinch"
+        
+    }
+
+    else if (bossType == BPBM_SONIC1)
+    {
+        // See if the option for SSZ boss tracks has been set to the Sonic 1 and 2 variant
+        if (Game.getSetting(SETTING_SSZ_BOSS_TRACKS) == 1)
+            return "sonic1_boss_pinch"
+
+        // Otherwise, play the original
+        else 
+            return "19_pinch"
+    }
+
+    else if (bossType == BPBM_SONIC2)
+    {
+        // Functionality is basically the same as the Sonic 1 one and only targets a different soundkey.
+        if (Game.getSetting(SETTING_SSZ_BOSS_TRACKS) == 1)
+            return "sonic2_boss_pinch"
+
+        else 
+            return "19_pinch"
+    }
+
+    // Big Arms, Super Mecha, Kyodai, etc.
+    else if (bossType == BPBM_FINAL)
+    {
+        return "30_pinch"
+    }
+
+    else if (bossType == BPBM_DDZ)
+    {
+        return "1a_pinch"
+    }
+
+    else
+    {
+        // Return an error if an invalid value is passed
+        assert(false, stringformat("Invalid boss type argument \"0x%02x\" was passed!\nIf this is intended for custom handling, you will need to modify the function or set a custom override.\n\nPlease see the README.html file included with Boss Pinch Battle Music for more information.", bossType))
+        return "19_pinch"
+    }
+}
+
+/// Plays the necessary audio track
+function void emtp.playBossPinchMusic(u8 bossType)
+{
+    u64 soundkey = emtp.getBPBMSoundKey(bossType)
+    if (!Audio.isPlayingAudio(soundkey))
+        Audio.playAudio(soundkey, 0)
+}

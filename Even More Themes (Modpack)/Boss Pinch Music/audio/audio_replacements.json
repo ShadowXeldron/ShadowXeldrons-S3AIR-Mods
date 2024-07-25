@@ -1,0 +1,12 @@
+{
+    "2e_sonic3_pinch": { "Name": "Mini Boss (S3) (Pinch Phase)", "File": "MidbossS3-Pinch.ogg", "Type": "Music" },
+	"18_pinch": { "Name": "Mini Boss (SK) (Pinch Phase)", "File": "MidbossSK-Pinch.ogg", "Type": "Music" },
+	"19_pinch": { "Name": "Main Boss (Pinch Phase)", "File": "Boss-Pinch.ogg", "Type": "Music" },
+	"1f_pinch": { "Name": "Knuckles Theme (S&K) (Pinch Phase)", "File": "Boss-Pinch.ogg", "Type": "Music" },
+	//"1f_sonic3_pinch": { "Name": "Knuckles Theme (S3) (Pinch Phase)", "File": "Boss-Pinch.ogg", "Type": "Music" },
+	"1f_proto_pinch": { "Name": "Knuckles Theme (Proto) (Pinch Phase)", "File": "Boss-Pinch.ogg", "Type": "Music" },
+	"sonic1_boss_pinch": { "Name": "Sonic 1 Boss (Pinch Phase)", "File": "BossS1-Pinch.ogg", "Type": "Music" },
+    "sonic2_boss_pinch": { "Name": "Sonic 2 Boss (Pinch Phase)", "File": "BossS2-Pinch.ogg", "Type": "Music" },
+    "30_pinch": { "Name": "Final Boss (Pinch Phase)", "File": "BigArms-Pinch.ogg", "Type": "Music" },
+    "1a_pinch": { "Name": "Doomsday (Pinch Phase)", "File": "DDZ-Pinch.ogg", "Type": "Music" },
+}

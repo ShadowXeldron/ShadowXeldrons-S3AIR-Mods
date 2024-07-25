@@ -27,7 +27,7 @@
    3. YOU MUST CLEARLY STATE THAT THE SCRIPT IS USED AND CLEARLY STATE EVERY MODIFICATION THAT YOU MADE TO THE SCRIPT (in other words, you have to say what you changed)
 
 */
-
+/// Preprocessor definition. Useful to check if the mod is active and run specific code if required.
 #define HAS_SSRM
 
 // Set up configuration variable
