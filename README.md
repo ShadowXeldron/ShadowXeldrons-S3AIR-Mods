@@ -3,7 +3,7 @@
 This is my nuclear waste disposal plant. Here, we dispose of nuclear waste. And I guess my Sonic mods are here as well.
 
 These are the mods that have been copied here:
-## DISCLAIMER: All mods in this repository are licensed under the GNU GPL version 3.0; with the exception of No SHC Splash which is licensed under the CC0.
+## DISCLAIMER: Unless otherwise stated, assume that every mod here is licensed under the GNU General Public License version 3.0
 
 Per-Character Themes
 -
