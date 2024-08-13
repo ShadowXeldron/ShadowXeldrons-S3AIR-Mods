@@ -1,89 +1,31 @@
 {
-// Some loops provided by FancyDoggy
+    // Sonic (Mania)
+    "sonic-clear": { "File": "SonicClear.ogg", "Type": "Jingle", "Name": "Sonic Mania - Act Clear"},
+    "sonic-gameover": { "File": "SonicGameOver.ogg", "Type": "Jingle", "Name": "Sonic Mania - Game Over"},
+    "sonic-1up": { "File": "Sonic1Up.ogg", "Type": "Jingle", "Name": "Sonic Mania - Extra Life"},
+    "sonic-invincible": { "File": "SonicInvincible.ogg", "Type": "Music", "LoopStart": "139623", "Name": "Sonic Mania - Invincibility"},
+    "sonic-super": { "File": "SonicSuper.ogg", "Type": "Music", "LoopStart": "165375", "Name": "Sonic Mania - Super Sonic"},
+    "sonic-hyper": { "File": "SonicHyper.ogg", "Type": "Music", "LoopStart": "186368", "Name": "Sonic Mania - Egg Reverie"},
+    "sonic-credits": { "File": "SonicCredits.ogg", "Type": "Music", "LoopStart": "759808", "Name": "Sonic Adventure - It Doesn't Matter'"},
+    "sonic-speed": { "File": "SonicSpeed.ogg", "Type": "Music", "LoopStart": "759808", "Name": "Sonic Mania - Speed Shoes"},
 
-// Sonic (Mania)
-"sonic-clear": { "File": "SonicClear.ogg", "Type": "Jingle"},
-"sonic-gameover": { "File": "SonicGameOver.ogg", "Type": "Jingle"},
-"sonic-1up": { "File": "Sonic1Up.ogg", "Type": "Jingle"},
-"sonic-invincible": { "File": "SonicInvincible.ogg", "Type": "Music", "LoopStart": "139623"},
-"sonic-super": { "File": "SonicSuper.ogg", "Type": "Music", "LoopStart": "165375"},
-"sonic-hyper": { "File": "SonicHyper.ogg", "Type": "Music", "LoopStart": "186368"},
-"sonic-credits": { "File": "SonicCredits.ogg", "Type": "Music", "LoopStart": "759808"},
-"sonic-speed": { "File": "SonicSpeed.ogg", "Type": "Music", "LoopStart": "759808"},
-// Tails (Sonic 2)
-"tails-clear": { "File": "TailsClear.ogg", "Type": "Jingle"},
-"tails-gameover": { "File": "TailsGameOver.ogg", "Type": "Jingle"},
-"tails-1up": { "File": "Tails1Up.ogg", "Type": "Jingle"},
-"tails-invincible": { "File": "TailsInvincible.ogg", "Type": "Music", "LoopStart": "38846"},
-"tails-super": { "File": "TailsSuper.ogg", "Type": "Music", "LoopStart": "0"},
-"tails-hyper": { "File": "TailsHyper.ogg", "Type": "Music", "LoopStart": "247432"}, // www.youtube.com/watch?v=v3GdxonZHdI
-"tails-credits": { "File": "TailsCredits.ogg", "Type": "Music", "LoopStart": "186368"},
-"tails-speed": { "File": "TailsSpeed.ogg", "Type": "Music", "LoopStart": "0"},
-// Knuckles (Knuckles' Chaotix)
-"knux-clear": { "File": "KnucklesClear.ogg", "Type": "Jingle"},
-"knux-gameover": { "File": "KnucklesGameOver.ogg", "Type": "Music", "LoopStart": "229376"},
-"knux-1up": { "File": "Knuckles1Up.ogg", "Type": "Jingle"},
-"knux-invincible": { "File": "KnucklesInvincible.ogg", "Type": "Music", "LoopStart": "43008"},
-"knux-super": { "File": "KnucklesSuper.ogg", "Type": "Music", "LoopStart": "129024"},
-"knux-hyper": { "File": "KnucklesHyper.ogg", "Type": "Music", "LoopStart": "848736"}, // www.youtube.com/watch?v=Hv_9sSwyewA
-"knux-credits": { "File": "KnucklesCredits.ogg", "Type": "Music", "LoopStart": "602112"},
-"knux-speed": { "File": "KnucklesSpeed.ogg", "Type": "Music", "LoopStart": "759808"},
+    // Tails (Sonic 2)
+    "tails-clear": { "File": "TailsClear.ogg", "Type": "Jingle", "Name": "Sonic 2 - Act Clear"},
+    "tails-gameover": { "File": "TailsGameOver.ogg", "Type": "Jingle", "Name": "Sonic 2 - Game Over"},
+    "tails-1up": { "File": "Tails1Up.ogg", "Type": "Jingle", "Name": "Sonic 2 - Extra Life"},
+    "tails-invincible": { "File": "TailsInvincible.ogg", "Type": "Music", "LoopStart": "38846", "Name": "Sonic 2 - Invincibility"},
+    "tails-super": { "File": "TailsSuper.ogg", "Type": "Music", "LoopStart": "0", "Name": "Sonic 2 - Super Sonic"},
+    "tails-hyper": { "File": "TailsHyper.ogg", "Type": "Music", "LoopStart": "247432", "Name": "Sonic Before The Sequel - Unstoppable (Remix by SpeedVGM)"}, // www.youtube.com/watch?v=v3GdxonZHdI
+    "tails-credits": { "File": "TailsCredits.ogg", "Type": "Music", "LoopStart": "186368", "Name": "Sonic Adventure - Believe in Myself"},
+    "tails-speed": { "File": "TailsSpeed.ogg", "Type": "Music", "LoopStart": "0", "Name": "Sonic Megamix v4.0 - Speed Shoes"},
 
-// Mod Characters
-// Mighty (SegaSonic)
-"mighty-clear": { "File": "MightyClear.ogg", "Type": "Jingle"},
-"mighty-gameover": { "File": "MightyGameOver.ogg", "Type": "Jingle"},
-"mighty-1up": { "File": "Mighty1Up.ogg", "Type": "Jingle"},
-"mighty-invincible": { "File": "MightyInvincible.ogg", "Type": "Music", "LoopStart": "0"},
-"mighty-super": { "File": "MightySuper.ogg", "Type": "Music", "LoopStart": "0"},
-"mighty-hyper": { "File": "MightyHyper.ogg", "Type": "Music", "LoopStart": "0"}, // www.youtube.com/watch?v=vd1YvioTbac
-"mighty-credits": { "File": "MightyCredits.ogg", "Type": "Music", "LoopStart": "0"}, // Sonic Mania - Credits
-"mighty-speed": { "File": "MightySpeed.ogg", "Type": "Music", "LoopStart": "1097401"},
-
-// Ray (Sonic GT)
-"ray-clear": { "File": "RayClear.ogg", "Type": "Jingle"},
-"ray-gameover": { "File": "RayGameOver.ogg", "Type": "Jingle"},
-"ray-1up": { "File": "Ray1Up.ogg", "Type": "Jingle"},
-"ray-invincible": { "File": "RayInvincible.ogg", "Type": "Music", "LoopStart": "0"},
-"ray-super": { "File": "RaySuper.ogg", "Type": "Music", "LoopStart": "0"},
-"ray-hyper": { "File": "RayHyper.ogg", "Type": "Music", "LoopStart": "0"},
-"ray-credits": { "File": "RayCredits.ogg", "Type": "Music", "LoopStart": "0"},
-"ray-speed": { "File": "RaySpeed.ogg", "Type": "Music", "LoopStart": "0"},
-
-//Shadow (Shadow '05)
-"shadow-clear": { "File": "ShadowClear.ogg", "Type": "Jingle"},
-"shadow-gameover": { "File": "ShadowGameOver.ogg", "Type": "Jingle"},
-"shadow-1up": { "File": "Shadow1Up.ogg", "Type": "Jingle"},
-"shadow-invincible": { "File": "ShadowInvincible.ogg", "Type": "Music", "LoopStart": "0"}, // File provided by FancyDoggy. I originally wanted to use the theme from Shadow's game, but it was too short
-"shadow-super": { "File": "ShadowSuper.ogg", "Type": "Music", "LoopStart": "1032192"},
-"shadow-hyper": { "File": "ShadowHyper.ogg", "Type": "Music", "LoopStart": "0"},
-"shadow-credits": { "File": "ShadowCredits.ogg", "Type": "Music", "LoopStart": "1175552"}, // All Hail Shadow
-"shadow-speed": { "File": "ShadowSpeed.ogg", "Type": "Music", "LoopStart": "0"},
-
-// Amy (Sonic CD)
-"amy-clear": { "File": "AmyClear.ogg", "Type": "Jingle"},
-"amy-gameover": { "File": "AmyGameOver.ogg", "Type": "Jingle"},
-"amy-1up": { "File": "Amy1Up.ogg", "Type": "Jingle"},
-"amy-invincible": { "File": "AmyInvincible.ogg", "Type": "Music", "LoopStart": "0"}, // This is unlooped in CD and as such is unlooped here
-"amy-super": { "File": "AmySuper.ogg", "Type": "Music", "LoopStart": "0"},
-"amy-hyper": { "File": "AmyHyper.ogg", "Type": "Music", "LoopStart": "525095"},
-"amy-credits": { "File": "AmyCredits.ogg", "Type": "Music", "LoopStart": "0"},
-"amy-speed": { "File": "AmySpeed.ogg", "Type": "Music", "LoopStart": "0"}, // This is unlooped in CD and as such is unlooped here
-
-// Ashura (3D Blast Mega Drive)
-"ashura-clear": { "File": "AshuraClear.ogg", "Type": "Jingle"},
-"ashura-gameover": { "File": "AshuraGameOver.ogg", "Type": "Jingle"},
-"ashura-1up": { "File": "Ashura1Up.ogg", "Type": "Jingle"},
-"ashura-invincible": { "File": "AshuraInvincible.ogg", "Type": "Music", "LoopStart": "0"},
-"ashura-super": { "File": "AshuraSuper.ogg", "Type": "Music", "LoopStart": "61886"},
-"ashura-hyper": { "File": "AshuraHyper.ogg", "Type": "Music", "LoopStart": "0"},
-"ashura-credits": { "File": "AshuraCredits.ogg", "Type": "Music", "LoopStart": "1234733"},
-"ashura-speed": { "File": "AshuraSpeed.ogg", "Type": "Music", "LoopStart": "0"},
-
-// Misc.
-"cdus-clear": { "File": "CDUSClear.ogg", "Type": "Jingle"},
-
-// NOTE TO SELF: Raid the entire Frontiers and Little Tail Bronx soundtracks when the Sage mod comes out
-
+    // Knuckles (Knuckles' Chaotix)
+    "knux-clear": { "File": "KnucklesClear.ogg", "Type": "Jingle", "Name": "Knuckles Chaotix - Reach the Goal"},
+    "knux-gameover": { "File": "KnucklesGameOver.ogg", "Type": "Music", "LoopStart": "229376", "Name": "Knuckles Chaotix - Mechanical Dance"},
+    "knux-1up": { "File": "Knuckles1Up.ogg", "Type": "Jingle", "Name": "Knuckles Chaotix - High Five"},
+    "knux-invincible": { "File": "KnucklesInvincible.ogg", "Type": "Music", "LoopStart": "43008", "Name": "Knuckles Chaotix - Surging Power"},
+    "knux-super": { "File": "KnucklesSuper.ogg", "Type": "Music", "LoopStart": "129024", "Name": "Knuckles Chaotix - This Horizon"},
+    "knux-hyper": { "File": "KnucklesHyper.ogg", "Type": "Music", "LoopStart": "848736", "Name": "Knuckles Chaotix - Tribute"}, // www.youtube.com/watch?v=Hv_9sSwyewA
+    "knux-credits": { "File": "KnucklesCredits.ogg", "Type": "Music", "LoopStart": "602112", "Name": "Sonic Adventure - Unknown from M.E"},
+    "knux-speed": { "File": "KnucklesSpeed.ogg", "Type": "Music", "LoopStart": "759808", "Name": "Knuckles Chaotix - Speed of Sound"},
 }
-// if (isMainCharacter(CHARACTER_SONIC))

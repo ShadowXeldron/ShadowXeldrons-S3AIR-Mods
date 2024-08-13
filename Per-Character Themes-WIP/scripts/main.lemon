@@ -1,5 +1,6 @@
-// Once again, I have rewritten another worthless object. If you've been keeping count, we're now at our third rewrite. And this time, it's unrelated to compatibility!
-// This time, the focus is on maintainability. Elseif chains are annoying to make, annoying to debug, and overall annoying to have to deal with
+// Once again, I have rewritten another worthless object. If you've been keeping count, we're now at our third rewrite (and a half; I had an earlier WIP of this before I axed extra slot support). And this time, it's unrelated to compatibility!
+// This time, the focus is on maintainability. Elseif chains are annoying to make, annoying to debug, and overall annoying to have to deal with.
+// Also, we've now got functions so you can add you're own damn extra slot support
 
 // Now with added commentary!
 
@@ -20,9 +21,6 @@ include constant-arrays // The audio keys are in here
 // Preprocessor directive for people to use
 #define PCT_ACTIVE
 
-// Additional preprocessor directive used by the mod - this automatically sets the mod to "lite" mode, which omits extra character support. This is to keep the filesize small.
-#define PCT_LITE = 0
-
 /*
 
 Just so that I remember them, here's the constants that I need to know
@@ -35,6 +33,7 @@ MUSIC_INVINCIBLE
 MUSIC_GAMEOVER
 
 */
+
 
 // Config options
 global u8 option.knux.clear
@@ -67,132 +66,13 @@ global u8 option.tails.invincible
 global u8 option.tails.credits
 global u8 option.tails.speed
 
-global u8 option.mighty.clear
-global u8 option.mighty.specialclear
-global u8 option.mighty.1up
-global u8 option.mighty.super
-global u8 option.mighty.hyper
-global u8 option.mighty.gameover
-global u8 option.mighty.invincible
-global u8 option.mighty.credits
-global u8 option.mighty.speed
-
-global u8 option.ray.clear
-global u8 option.ray.specialclear
-global u8 option.ray.1up
-global u8 option.ray.super
-global u8 option.ray.hyper
-global u8 option.ray.gameover
-global u8 option.ray.invincible
-global u8 option.ray.credits
-global u8 option.ray.speed
-
-global u8 option.shadow.clear
-global u8 option.shadow.specialclear
-global u8 option.shadow.1up
-global u8 option.shadow.super
-global u8 option.shadow.hyper
-global u8 option.shadow.gameover
-global u8 option.shadow.invincible
-global u8 option.shadow.credits
-global u8 option.shadow.speed
-
-global u8 option.amy.clear
-global u8 option.amy.specialclear
-global u8 option.amy.1up
-global u8 option.amy.super
-global u8 option.amy.hyper
-global u8 option.amy.gameover
-global u8 option.amy.invincible
-global u8 option.amy.credits
-global u8 option.amy.speed
-
-global u8 option.ashura.clear
-global u8 option.ashura.specialclear
-global u8 option.ashura.1up
-global u8 option.ashura.super
-global u8 option.ashura.hyper
-global u8 option.ashura.gameover
-global u8 option.ashura.invincible
-global u8 option.ashura.credits
-global u8 option.ashura.speed
-
-global u8 speedShoesUsed // We don't need this anymore
-
-function u8 getCharID() // Function that checks for character IDs
-{
-	u8 charID = getMainCharacter() // It made me do this in development, even though it let me off before
-
-	/* For anyone reading this, I have a cheat sheet prepared for you all to know who's who under the wave of charIDs. 
-	I thought that charID would be less of a pain to work this than nested Mods.modIsActives.
-		
-	charID == 0 - Sonic
-	charID == 1 - Tails
-	charID == 2 - Knuckles
-	charID == 3 - Mighty
-	charID == 4 - Ray
-	charID == 5 - Shadow
-	charID == 6 - Amy
-
-	The thing is, I don't actually use extra slots and I only added support so that the 1 year olds don't complain about hearing Sonic 2 music when playing as Extra Slot Harry Styles.
-
-	*/
-
-	// Mod detection; for now we've only got Mighty. I hope that you lot hurry up with Ray so that I can add it.
-	// This checks if you're playing as Sonic with Ultimate Mighty loaded, or straight-up playing as Extra Slot Might.
-	//Thanks to iCloudius for help on detecting if somebody is playing as Extra Slot Mighty.
-
-	// This only runs if PCT_LITE is false. Every character supported increases the filesize, and the web version is played on notoriously crap devices that can't handle many mods.
-	#if PCT_LITE == 0
-
-
-	if ((Mods.isModActive("Ultimate Mighty") && isMainCharacter(CHARACTER_SONIC)) && u8[0xffffe654] == 0 || (u8[0xffffE654] == 1 && Renderer.hasCustomSprite("MightyPose_0x00")))  // No I am not changing this to global.xtrachar. GPL is serious buisness,
-	{
-		charID = 3
-	}
-
-	if ((Mods.isModActive("Ray the Flying Squirrel") && isMainCharacter(CHARACTER_TAILS)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra Slot Ray") && u8[0xffffE654] == 2 ))
-	{
-		charID = 4
-	}
-
-	if ((Mods.isModActive("3D2D Shadow") && isMainCharacter(CHARACTER_SONIC)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra Slot 3D2D Shadow") && u8[0xffffE654] == 5 ))
-	{
-		charID = 5
-	}
-
-	if ((Mods.isModActive("Amy Rose") && isMainCharacter(CHARACTER_TAILS)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra Slot Amy") && u8[0xffffE654] == 3 ))
-	{
-		charID = 6
-	}
-
-	if ((Mods.isModActive("3D2D Glitches: Sonic 3 With Bluckles") && isMainCharacter(CHARACTER_SONIC)) && u8[0xffffe654] == 0 || (Mods.isModActive("Extra slot 3D in 2D Ashura") && u8[0xffffE654] == 168 ))
-	{
-		charID = 7
-	}
-
-	// This is in preparation for the eventual release of the Sage mod. Assuming I can think of anything to go with it.
-	if (Mods.isModActive("starfall-sage-main") && isMainCharacter(CHARACTER_TAILS) && u8[0xffffe654] == 0 || (Mods.isModActive("starfall-sage-es") && u8[0xffffE654] == 0xff))
-	{
-		charID = 0 // Temporary value until the mod comes out
-	}
-
-	
-
-	#endif
-
-	return charID
-}
-
-
-
 function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
 {
 	u64 originalSoundkey = soundKey
 
 	// Time for a refreshing new begining! 
 
-	u8 charID = getCharID() // the CharID system is used to easily add support for extra characters.
+	u8 charID = getMainCharacter() // HEY HEY HEY, BUT MUH EXTRA SLO- Don't mention it or I'll snap your toenails
 
 	// I know you don't actually need the curly brackets, but I think it makes things tidier.
 
@@ -214,31 +94,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = SONIC_INVINCIBLE[option.sonic.invincible]
 		}
-
-		if (charID == 3) // Mighty
-		{
-			soundKey = MIGHTY_INVINCIBLE[option.mighty.invincible]
-		}
-
-		if (charID == 4) // Ray
-		{
-			soundKey = RAY_INVINCIBLE[option.ray.invincible]
-		}
-
-		if (charID == 5) // Shadow
-		{
-			soundKey = SHADOW_INVINCIBLE[option.shadow.invincible]
-		}
-
-		if (charID == 6) // Amy
-		{
-			soundKey = AMY_INVINCIBLE[option.amy.invincible]
-		}
-
-		if (charID == 7) // Ashura
-		{
-			soundKey = ASHURA_INVINCIBLE[option.ashura.invincible]
-		}
 	}
 
 	else if sfxId == MUSIC_EXTRALIFE
@@ -259,31 +114,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = SONIC_EXTRALIFE[option.sonic.1up]
 		}
-
-		if (charID == 3) // Mighty
-		{
-			soundKey = MIGHTY_EXTRALIFE[option.mighty.1up]
-		}
-
-		if (charID == 4) // Ray
-		{
-			soundKey = RAY_EXTRALIFE[option.ray.1up]
-		}
-
-		if (charID == 5) // Shadow
-		{
-			soundKey = SHADOW_EXTRALIFE[option.shadow.1up]
-		}
-
-		if (charID == 6) // Amy
-		{
-			soundKey = AMY_EXTRALIFE[option.amy.1up]
-		}
-
-		if (charID == 7) // Ashura
-		{
-			soundKey = ASHURA_EXTRALIFE[option.ashura.1up]
-		}
 	}
 
 	else if sfxId == MUSIC_GAMEOVER
@@ -302,31 +132,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		if (charID == 0) // Sonic
 		{
 			soundKey = SONIC_GAMEOVER[option.sonic.gameover]
-		}
-
-		if (charID == 3) // Mighty
-		{
-			soundKey = MIGHTY_GAMEOVER[option.mighty.gameover]
-		}
-
-		if (charID == 4) // Ray
-		{
-			soundKey = RAY_GAMEOVER[option.ray.gameover]
-		}
-
-		if (charID == 5) // Shadow
-		{
-			soundKey = SHADOW_GAMEOVER[option.shadow.gameover]
-		}
-
-		if (charID == 6) // Amy
-		{
-			soundKey = AMY_GAMEOVER[option.amy.gameover]
-		}
-
-		if (charID == 7) // Ashura
-		{
-			soundKey = ASHURA_GAMEOVER[option.ashura.gameover]
 		}
 	}
 
@@ -349,31 +154,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = KNUX_SPECIALCLEAR[option.sonic.specialclear]
 			}
-
-			if (charID == 3) // Mighty
-			{
-				soundKey = MIGHTY_SPECIALCLEAR[option.mighty.specialclear]
-			}
-
-			if (charID == 4) // Ray
-			{
-				soundKey = RAY_SPECIALCLEAR[option.ray.specialclear]
-			}
-
-			if (charID == 5) // Shadow
-			{
-				soundKey = SHADOW_SPECIALCLEAR[option.shadow.specialclear]
-			}
-
-			if (charID == 6) // Amy
-			{
-				soundKey = AMY_SPECIALCLEAR[option.amy.specialclear]
-			}
-
-			if (charID == 7) // Ashura
-			{
-				soundKey = ASHURA_SPECIALCLEAR[option.ashura.specialclear]
-			}
 		}
 
 		else // Normal Act Clear
@@ -391,31 +171,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			if (charID == 0) // Sonic
 			{
 				soundKey = SONIC_ACTCLEAR[option.sonic.clear]
-			}
-
-			if (charID == 3) // Mighty
-			{
-				soundKey = MIGHTY_ACTCLEAR[option.mighty.clear]
-			}
-
-			if (charID == 4) // Ray
-			{
-				soundKey = RAY_ACTCLEAR[option.ray.clear]
-			}
-
-			if (charID == 5) // Shadow
-			{
-				soundKey = SHADOW_ACTCLEAR[option.shadow.clear]
-			}
-
-			if (charID == 6) // Amy
-			{
-				soundKey = AMY_ACTCLEAR[option.amy.clear]
-			}
-
-			if (charID == 7) // Ashura
-			{
-				soundKey = ASHURA_ACTCLEAR[option.ashura.clear]
 			}
 		}
 	}
@@ -438,30 +193,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = SONIC_SUPER[option.sonic.hyper]
 			}
-
-			if (charID == 3) // Mighty
-			{
-				soundKey = MIGHTY_SUPER[option.mighty.hyper]
-			}
-
-			if (charID == 4) // Ray
-			{
-				soundKey = RAY_SUPER[option.ray.hyper]
-			}
-
-			if (charID == 5) // Shadow
-			{
-				soundKey = SHADOW_SUPER[option.shadow.hyper]
-			}
-
-			if (charID == 6) // Amy
-			{
-				soundKey = AMY_SUPER[option.amy.hyper]
-			}
-			if (charID == 7) // Ashura
-			{
-				soundKey = ASHURA_SUPER[option.ashura.hyper]
-			}
 		}
 
 		else // Normal super forms
@@ -480,33 +211,6 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 			{
 				soundKey = SONIC_SUPER[option.sonic.super]
 			}
-
-			if (charID == 3) // Mighty
-			{
-				soundKey = MIGHTY_SUPER[option.mighty.super]
-			}
-
-			if (charID == 4) // Ray
-			{
-				soundKey = RAY_SUPER[option.ray.super]
-			}
-
-			if (charID == 5) // Shadow
-			{
-				soundKey = SHADOW_SUPER[option.shadow.super]
-			}
-
-			if (charID == 6) // Amy
-			{
-				soundKey = AMY_SUPER[option.amy.super]
-			}
-
-			if (charID == 7) // Ashura
-			{
-				soundKey = ASHURA_SUPER[option.ashura.super]
-			}
-
-			
 		}
 	}
 
@@ -526,36 +230,11 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		{
 			soundKey = SONIC_CREDITS[option.sonic.credits]
 		}
-
-		if (charID == 3) // Mighty
-		{
-			soundKey = MIGHTY_CREDITS[option.mighty.credits]
-		}
-
-		if (charID == 4) // Ray
-		{
-			soundKey = RAY_CREDITS[option.ray.credits]
-		}
-
-		if (charID == 5) // Shadow
-		{
-			soundKey = SHADOW_CREDITS[option.shadow.credits]
-		}
-
-		if (charID == 6) // Amy
-		{
-			soundKey = AMY_CREDITS[option.amy.credits]
-		}
-
-		if (charID == 7) // Ashura
-		{
-			soundKey = ASHURA_CREDITS[option.ashura.credits]
-		}
 	}
 
 	else
 	{
-		soundKey = "VANILLA HANDLING" // Quick and dirty fix for a compatibility issue with Audio Overhaul.
+		soundKey = "VANILLA HANDLING" // Quick and dirty fix for a compatibility issue with Audio Overhaul, assuming that you still have it...
 	}
 
 
@@ -580,99 +259,57 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 	
 }
 
-// Don't get too excited boys(?), those were the EASY ones! Now it's the dreaded speed shoes.
-
-/* To any and all who notice this, yes, I DID take a cursory look at Speed Shoes Music 2 by Lavaslime so that I could get the foggiest idea on how to make this stupid thing work. 
-	   No, I did not copy any of it. If I could, I would have tried to implement it completely differently. 
-	   As I once did, since the music. And failed miserably. See function void getSpeedSong above.
-	   Astute nosers who are as nosy as me may have also nosed that Speed Shoes Music 2 modifies changeMusicTempo. I may be nosy, but I'm not a plagiarist. 
-	   Therefore, we're not using that particular function. This may make the mod worse overall, but so be it */
-
-// This was by far my LEAST favourite part of the mod to have to implement. I shall consider these my bad omen.
-
-// Also, this whole time I was CONVINCED that address hooks were just comments.
-
-// This function was used for checking speed shoes music. Knuckles, Mighty and Tails cooperated just fine, but that wretched blue rat simply wouldn't work.
-
-global bool doBaseSpeedCall = 0
+// Now for speedshoes. Wahoo.
 
 #if STANDALONE
-function u64 getSpeedSong()
+function u64 PCT.getSpeedSong()
 {
 	u64 soundKey // This initialises the variable that will be fed into the sound player
-	u8 charID = (getCharID()) // Usage here is the same as in PlayMusic - it's to check who you are playing as.
+	u8 charID = getMainCharacter() // Usage here is the same as in PlayMusic - it's to check who you are playing as.
 
 	if (charID == 2) // Knuckles
 	{
 		soundKey = KNUX_SPEED[option.knux.speed]
 	}
 
-	if (charID == 1) // Tails
+	else if (charID == 1) // Tails
 	{
 		soundKey = TAILS_SPEED[option.tails.speed]
 	}
 
-	if (charID == 0) // Sonic
+	else if (charID == 0) // Sonic
 	{
 		soundKey = SONIC_SPEED[option.sonic.speed]
-	}
-
-	if (charID == 3) // Mighty
-	{
-		soundKey = MIGHTY_SPEED[option.mighty.speed]
-	}
-
-	if (charID == 4) // Ray
-	{
-		soundKey = RAY_SPEED[option.ray.speed]
-	}
-
-	if (charID == 5) // Shadow
-	{
-		soundKey = SHADOW_SPEED[option.shadow.speed]
-	}
-
-	if (charID == 6) // Amy
-	{
-		soundKey = AMY_SPEED[option.amy.speed]
-	}
-	
-	if (charID == 7) // Ashura
-	{
-		soundKey = ASHURA_SPEED[option.ashura.speed]
 	}
 
 	return soundKey
 }
 
+// I hate this code so much
 function void Character.updateBonusEffects() 
 {
-	bool speedupped = (char.bonus_effect & char.bonus.SPEED_UP) 
+	bool use_speed_music = (char.bonus_effect & char.bonus.SPEED_UP && !super.active && !super.active.tails)
 
-	if (super.active || super.active.tails)
-	{
-		speedupped = false // I don't want the speed shoes music playing while super
-	}
-	
+	// Do base first
 	base.Character.updateBonusEffects()
-	
-	if (speedupped) 
-	{
-		u64 speedkey = getSpeedSong()
 
-		if (!Audio.isPlayingAudio(speedkey))
+	if (use_speed_music)
+	{
+		// If the speed shoes are actually active
+		if ((char.bonus_effect & char.bonus.SPEED_UP) == 0)
+			chooseFittingMusic()
+
+		else
 		{
-			Audio.playAudio(speedkey,0)
+			u64 speedkey = PCT.getSpeedSong()
+
+			if (!Audio.isPlayingAudio(speedkey))
+			{
+				Audio.playAudio(speedkey,0)
+			}
 		}
-	}
-	
-	if ((speedupped) && (((char.bonus_effect & char.bonus.SPEED_UP)) == 0))
-	{	
-		chooseFittingMusic()
 	}
 }
 
 #endif
-
-// Beat Invaders was snubbed for GOTY
 
