@@ -3,7 +3,8 @@
 // This file features the bosses in alphabetical order because I'm using the GitHub repository as a reference.
 // Also, I don't care what the manual or the Encyclospeedia calls the bosses. If I think it's called Spinning Top Dude then I'm calling it Spinning Top Dude.
 
-global u8 MechaSonicBehavePlease = 0
+// Stupid hack for Mecha Sonic
+global bool is_mecha_phase2 = false
 
 //# address-hook(0x068f62) end(0x068fe0)
 function void Boss.AIZ1.RegularUpdate() // AIZ1 "Fire Breath" Boss, obviously
@@ -70,6 +71,14 @@ function void fn07fb92() // DEZ2 Boss - not the Death Egg Robot, but the Spiny S
     {
         emtp.playBossPinchMusic(BPBM_BOSS)
     }
+}
+
+
+//# address-hook(0x080058) end(0x080080)
+function void fn080058() // The final boss of Sonic's route, the Kyodai Death Egg Robot or whatever it's called
+{
+    emtp.playBossPinchMusic(BPBM_FINAL)
+    base.fn080058()
 }
 
 //# address-hook(0x06f994) end(0x06f9f6)
@@ -281,20 +290,44 @@ function void fn0781e4() // The Egg Golem from SOZ, however, does have a health 
 function void fn07d312() // Mecha Sonic from SSZ, who thinks you pests have lived long enough. He also agrees with me that Gamebanana is a better modding than ProBoards.
 {
     if (boss.remaining_hits == 0) 
-    {
-        MechaSonicBehavePlease = 1  // A kludge for Super Mecha Sonic
-    }
+        is_mecha_phase2 = true  // A kludge for Super Mecha Sonic
+
     base.fn07d312()
     if (boss.remaining_hits == 4)
     {
         if (global.act == 1) // Play the final boss music in SSZ2
         {
-            emtp.playBossPinchMusic(BPBM_FINAL)
+            // Switch to either the DDZ or final music depending on whether or not you're in the second phase of the fight.
+            emtp.playBossPinchMusic(is_mecha_phase2 ? BPBM_DDZ : BPBM_FINAL)
+            /*
+                If you saw this function and wondered "What's that question mark and colon for?", it's used for quick pattern matching.
+
+                Normally, you'd have to write something like this:
+                if (is_mecha_phase_2)
+                    emtp.playBossPinchMusic(BPBM_DDZ)
+                else
+                    emtp.playBossPinchMusic(BPBM_FINAL)
+
+                But that's kind of wordy and probably not very optimal, so I can use
+
+                Give it a try! It'll make your scripts way easier to read.
+            */
         }
         else // Otherwise play the normal version
         {
             emtp.playBossPinchMusic(BPBM_BOSS)
         }
+    }
+}
+
+//# address-hook(0x07bea8) end(0x07bf24)
+function void fn07bea8() // A bit more Super Mecha Sonic to catch any potential hits not covered by the base Mecha function
+{
+    base.fn07bea8()
+    if (boss.remaining_hits == 4)
+    {
+        //Audio.playAudio("1A-allegro", 0)
+        emtp.playBossPinchMusic(BPBM_DDZ)
     }
 }
 
@@ -318,15 +351,3 @@ function void fn07acf2() // And now the second boss that SSZ1 reuses, it's the s
     }
 
 }
-
-//# address-hook(0x07bea8) end(0x07bf24)
-function void fn07bea8() // And last but most definitely not least: The true final boss of Sonic 3 & Knuckles: Super Mecha Sonic!
-{
-    base.fn07bea8()
-    if (boss.remaining_hits == 4)
-    {
-        //Audio.playAudio("1A-allegro", 0)
-        emtp.playBossPinchMusic(BPBM_DDZ)
-    }
-}
-

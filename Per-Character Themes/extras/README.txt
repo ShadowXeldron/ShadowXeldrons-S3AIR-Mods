@@ -1,3 +1,1 @@
 Bonus content! Included is a silly little fanfiction, an article about my suffering, a few things of historical curiosity, and a sneak peak at the future...
-
-"DolphinCube Whenever he runs the mod.jpeg" was made by DolphinCube: https://sonic3air.boards.net/user/205

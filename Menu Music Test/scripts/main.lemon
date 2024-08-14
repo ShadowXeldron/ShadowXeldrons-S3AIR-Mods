@@ -1,3 +1,4 @@
+// Code for the menu music mod
 global u8 menuMusic.menuMusicSoundKey
 
 constant array<string> MENU_MUSIC_SOUNDKEYS = 
