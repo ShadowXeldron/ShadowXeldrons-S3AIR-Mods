@@ -28,4 +28,7 @@
     "knux-hyper": { "File": "KnucklesHyper.ogg", "Type": "Music", "LoopStart": "848736", "Name": "Knuckles Chaotix - Tribute"}, // www.youtube.com/watch?v=Hv_9sSwyewA
     "knux-credits": { "File": "KnucklesCredits.ogg", "Type": "Music", "LoopStart": "602112", "Name": "Sonic Adventure - Unknown from M.E"},
     "knux-speed": { "File": "KnucklesSpeed.ogg", "Type": "Music", "LoopStart": "759808", "Name": "Knuckles Chaotix - Speed of Sound"},
+
+    // Misc.
+    "cdus-clear": { "File": "CDUSClear.ogg", "Type": "Jingle"},
 }

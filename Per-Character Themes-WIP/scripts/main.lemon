@@ -17,23 +17,10 @@
 */
 
 include constant-arrays // The audio keys are in here
+include functions // Contains functions for getting soundkeys
 
 // Preprocessor directive for people to use
 #define PCT_ACTIVE
-
-/*
-
-Just so that I remember them, here's the constants that I need to know
-
-MUSIC_SUPER	
-MUSIC_EXTRALIFE	
-MUSIC_LEVELCLEAR	
-MUSIC_CREDITSMEDLEY
-MUSIC_INVINCIBLE
-MUSIC_GAMEOVER
-
-*/
-
 
 // Config options
 global u8 option.knux.clear
@@ -66,184 +53,40 @@ global u8 option.tails.invincible
 global u8 option.tails.credits
 global u8 option.tails.speed
 
+// Now the actual code
 function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
 {
 	u64 originalSoundkey = soundKey
 
 	// Time for a refreshing new begining! 
 
-	u8 charID = getMainCharacter() // HEY HEY HEY, BUT MUH EXTRA SLO- Don't mention it or I'll snap your toenails
-
-	// I know you don't actually need the curly brackets, but I think it makes things tidier.
+	u8 char_ID = getMainCharacter() // HEY HEY HEY, BUT MUH EXTRA SLO- Don't mention it or I'll snap your toenails
 
 	if sfxId == MUSIC_INVINCIBLE
-	{
-		// Like it or not, elseif chains are always going to be a requirement. However, with constant arrays we can at least offset some of the issues.
-
-		if (charID == 2) // Knuckles
-		{
-			soundKey = KNUX_INVINCIBLE[option.knux.invincible]
-		}
-
-		if (charID == 1) // Tails
-		{
-			soundKey = TAILS_INVINCIBLE[option.tails.invincible]
-		}
-
-		if (charID == 0) // Sonic
-		{
-			soundKey = SONIC_INVINCIBLE[option.sonic.invincible]
-		}
-	}
+		soundKey = PCT.getInvincibilitySoundKey(char_ID)
 
 	else if sfxId == MUSIC_EXTRALIFE
-	{
-		// Like it or not, elseif chains are always going to be a requirement. However, with constant arrays we can at least offset some of the issues.
-
-		if (charID == 2) // Knuckles
-		{
-			soundKey = KNUX_EXTRALIFE[option.knux.1up]
-		}
-
-		if (charID == 1) // Tails
-		{
-			soundKey = TAILS_EXTRALIFE[option.tails.1up]
-		}
-
-		if (charID == 0) // Sonic
-		{
-			soundKey = SONIC_EXTRALIFE[option.sonic.1up]
-		}
-	}
+		soundKey = PCT.getExtraLifeSoundKey(char_ID)
 
 	else if sfxId == MUSIC_GAMEOVER
-	{
-
-		if (charID == 2) // Knuckles
-		{
-			soundKey = KNUX_GAMEOVER[option.knux.gameover]
-		}
-
-		if (charID == 1) // Tails
-		{
-			soundKey = TAILS_GAMEOVER[option.tails.gameover]
-		}
-
-		if (charID == 0) // Sonic
-		{
-			soundKey = SONIC_GAMEOVER[option.sonic.gameover]
-		}
-	}
+		soundKey = PCT.getGameOverSoundKey(char_ID)
 
 	else if sfxId == MUSIC_LEVELCLEAR
-	{
-
-		if (global.game_mode == 0x48) // Special Stage
-		{
-			if (charID == 2) // Knuckles
-			{
-				soundKey = KNUX_SPECIALCLEAR[option.knux.specialclear]
-			}
-
-			if (charID == 1) // Tails
-			{
-				soundKey = KNUX_SPECIALCLEAR[option.tails.specialclear]
-			}
-
-			if (charID == 0) // Sonic
-			{
-				soundKey = KNUX_SPECIALCLEAR[option.sonic.specialclear]
-			}
-		}
-
-		else // Normal Act Clear
-		{
-			if (charID == 2) // Knuckles
-			{
-				soundKey = KNUX_ACTCLEAR[option.knux.clear]
-			}
-
-			if (charID == 1) // Tails
-			{
-				soundKey = TAILS_ACTCLEAR[option.tails.clear]
-			}
-
-			if (charID == 0) // Sonic
-			{
-				soundKey = SONIC_ACTCLEAR[option.sonic.clear]
-			}
-		}
-	}
+		soundKey = PCT.getActClearSoundKey(char_ID, global.game_mode == 0x48) // Did you know that you can perform comparison opertations in functions for booleans?
 
 	else if sfxId == MUSIC_SUPER
-	{
-		if (super.active == 0xff || super.active.tails == 0xff) // Hyper Forms. Tails uses his own variable for some reason.
-		{
-			if (charID == 2) // Knuckles
-			{
-				soundKey = KNUX_SUPER[option.knux.hyper] // We only have one super table since all the tracks are the same
-			}
-
-			if (charID == 1) // Tails
-			{
-				soundKey = TAILS_SUPER[option.tails.hyper]
-			}
-
-			if (charID == 0) // Sonic
-			{
-				soundKey = SONIC_SUPER[option.sonic.hyper]
-			}
-		}
-
-		else // Normal super forms
-		{
-			if (charID == 2) // Knuckles
-			{
-				soundKey = KNUX_SUPER[option.knux.super]
-			}
-
-			if (charID == 1) // Tails
-			{
-				soundKey = TAILS_SUPER[option.tails.super]
-			}
-
-			if (charID == 0) // Sonic
-			{
-				soundKey = SONIC_SUPER[option.sonic.super]
-			}
-		}
-	}
+		soundKey = PCT.getSuperSoundKey(char_ID, super.active == 0xff || super.active.tails == 0xff)
 
 	else if sfxId == MUSIC_CREDITSMEDLEY
-	{
-		if (charID == 2) // Knuckles
-		{
-			soundKey = KNUX_CREDITS[option.knux.credits]
-		}
-
-		if (charID == 1) // Tails
-		{
-			soundKey = TAILS_CREDITS[option.tails.credits]
-		}
-
-		if (charID == 0) // Sonic
-		{
-			soundKey = SONIC_CREDITS[option.sonic.credits]
-		}
-	}
+		soundKey = PCT.getCreditsSoundKey(char_ID)
 
 	else
-	{
 		soundKey = "VANILLA HANDLING" // Quick and dirty fix for a compatibility issue with Audio Overhaul, assuming that you still have it...
-	}
 
 
-	// Soundkey has been set. 
-
+	// Soundkey has been set.
 	if soundKey == "VANILLA HANDLING" // Used when disabling the mod's crazy stuff 
-	{
 		return base.Standalone.getModdedSoundKey(originalSoundkey, sfxId, soundRegType)
-	}
 
 	else if originalSoundkey == MUSIC_EXTRALIFE 
 	{
@@ -252,11 +95,8 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 		return false // Non-void functions have to return a value
 	}
 
-	else
-	{
+	else // Otherwise, return the custom theme and play it
 		return soundKey
-	}
-	
 }
 
 // Now for speedshoes. Wahoo.
@@ -265,19 +105,19 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 function u64 PCT.getSpeedSong()
 {
 	u64 soundKey // This initialises the variable that will be fed into the sound player
-	u8 charID = getMainCharacter() // Usage here is the same as in PlayMusic - it's to check who you are playing as.
+	u8 char_ID = getMainCharacter() // Usage here is the same as in PlayMusic - it's to check who you are playing as.
 
-	if (charID == 2) // Knuckles
+	if (char_ID == 2) // Knuckles
 	{
 		soundKey = KNUX_SPEED[option.knux.speed]
 	}
 
-	else if (charID == 1) // Tails
+	else if (char_ID == 1) // Tails
 	{
 		soundKey = TAILS_SPEED[option.tails.speed]
 	}
 
-	else if (charID == 0) // Sonic
+	else if (char_ID == 0) // Sonic
 	{
 		soundKey = SONIC_SPEED[option.sonic.speed]
 	}

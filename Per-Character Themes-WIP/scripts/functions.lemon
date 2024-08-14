@@ -1,0 +1,105 @@
+// Functions for getting soundkeys
+
+// CharID is passed into the function to make it less wordy
+function u64 PCT.getInvincibilitySoundKey(u8 char_ID)
+{
+	// Like it or not, elseif chains are always going to be a requirement. However, with constant arrays we can at least offset some of the issues.
+	if (char_ID == 2) // Knuckles
+		return KNUX_INVINCIBLE[option.knux.invincible]
+
+	if (char_ID == 1) // Tails
+		return TAILS_INVINCIBLE[option.tails.invincible]
+
+	if (char_ID == 0) // Sonic
+		return SONIC_INVINCIBLE[option.sonic.invincible]
+}
+
+function u64 PCT.getExtraLifeSoundKey(u8 char_ID)
+{
+	if (char_ID == 2) // Knuckles
+		return KNUX_EXTRALIFE[option.knux.1up]
+
+	if (char_ID == 1) // Tails
+		return TAILS_EXTRALIFE[option.tails.1up]
+
+	if (char_ID == 0) // Sonic
+		return SONIC_EXTRALIFE[option.sonic.1up]
+}
+
+function u64 PCT.getGameOverSoundKey(u8 char_ID)
+{
+	if (char_ID == 2) // Knuckles
+		return KNUX_GAMEOVER[option.knux.gameover]
+
+	if (char_ID == 1) // Tails
+		return TAILS_GAMEOVER[option.tails.gameover]
+
+	if (char_ID == 0) // Sonic
+		return SONIC_GAMEOVER[option.sonic.gameover]
+}
+
+function u64 PCT.getActClearSoundKey(u8 char_ID, bool is_special_stage)
+{
+	if (is_special_stage) // Special Stage
+	{
+		if (char_ID == 2) // Knuckles
+			return KNUX_SPECIALCLEAR[option.knux.specialclear]
+
+		if (char_ID == 1) // Tails
+			return KNUX_SPECIALCLEAR[option.tails.specialclear]
+
+		if (char_ID == 0) // Sonic
+			return KNUX_SPECIALCLEAR[option.sonic.specialclear]
+	}
+
+	else // Normal Act Clear
+	{
+		if (char_ID == 2) // Knuckles
+			return KNUX_ACTCLEAR[option.knux.clear]
+
+		if (char_ID == 1) // Tails
+			return TAILS_ACTCLEAR[option.tails.clear]
+
+		if (char_ID == 0) // Sonic
+			return SONIC_ACTCLEAR[option.sonic.clear]
+	}
+}
+
+function u64 PCT.getSuperSoundKey(u8 char_ID, bool is_hyper)
+{
+	if (is_hyper) // Hyper Forms. Tails uses his own variable for some reason.
+	{
+		if (char_ID == 2) // Knuckles
+			return KNUX_SUPER[option.knux.hyper] // We only have one super table since all the tracks are the same
+
+		if (char_ID == 1) // Tails
+			return TAILS_SUPER[option.tails.hyper]
+
+		if (char_ID == 0) // Sonic
+			return SONIC_SUPER[option.sonic.hyper]
+	}
+
+	else // Normal super forms
+	{
+		if (char_ID == 2) // Knuckles
+			return KNUX_SUPER[option.knux.super]
+
+		if (char_ID == 1) // Tails
+			return TAILS_SUPER[option.tails.super]
+
+		if (char_ID == 0) // Sonic
+			return SONIC_SUPER[option.sonic.super]
+	}
+}
+
+function u64 PCT.getCreditsSoundKey(u8 char_ID)
+{
+	if (char_ID == 2) // Knuckles
+		return KNUX_CREDITS[option.knux.credits]
+
+	if (char_ID == 1) // Tails
+		return TAILS_CREDITS[option.tails.credits]
+
+	if (char_ID == 0) // Sonic
+		return SONIC_CREDITS[option.sonic.credits]
+}
