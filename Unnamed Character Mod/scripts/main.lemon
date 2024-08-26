@@ -412,18 +412,16 @@ function void dashAttack()
 			}
 		}
 
-		
-		
-			char.velocity.x = char.velocity.x + (vx - char.velocity.x)
-			if (char.velocity.y >= 0)
-			{
-				char.velocity.y = -1
-			}
+		char.velocity.x = char.velocity.x + (vx - char.velocity.x)
+		if (char.velocity.y >= 0)
+		{
+			char.velocity.y = -1
+		}
 
-			else
-			{
-				char.velocity.y += -1
-			}
+		else
+		{
+			char.velocity.y += -1
+		}
 
 		//	char.flags &= ~(char.flag.ROLLING | char.flag.CONTROL_LOCK)
 
