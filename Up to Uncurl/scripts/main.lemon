@@ -1,0 +1,15 @@
+// Up to uncurl script, by ShadowXeldron
+
+function void updateCharacterRollingOnGround()
+{
+	if (Input.buttonPressed(BUTTON_UP) && char.state == char.state.ROLLING)
+	{
+		// Set the running state
+		char.state = char.state.RUNNING
+		// Then reset hitbox
+		char.hitbox_extends.x = char.hitbox.default.x
+		char.hitbox_extends.y = char.hitbox.default.y
+	}
+	
+	base.updateCharacterRollingOnGround()
+}
