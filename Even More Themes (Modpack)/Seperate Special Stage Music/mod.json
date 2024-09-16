@@ -1,0 +1,12 @@
+{
+	"Metadata":
+	{
+		"Name": "Seperate Special Stage Music",
+		"UniqueID": "ShadowXeldron-SSSM",
+		"Author": "ShadowXeldron",
+		"Description": "Adds unique soundkeys for each individual special stage",
+		"URL": "https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods",
+		"ModVersion": "v1.0",
+		"GameVersion": "20.04.26.0"
+	}
+}
