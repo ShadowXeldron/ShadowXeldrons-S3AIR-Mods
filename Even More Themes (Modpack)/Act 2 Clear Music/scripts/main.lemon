@@ -3,8 +3,8 @@ function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegTyp
 {
     if (sfxId == MUSIC_LEVELCLEAR && (global.act.apparent == 0x01 || global.zone.apparent == 0x0a))
     {
-		return "29-act2"
+        return "29-act2"
     }
     else
-		return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
+        return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
 }
