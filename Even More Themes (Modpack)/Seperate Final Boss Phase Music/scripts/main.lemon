@@ -1,0 +1,72 @@
+/*
+    Seperate Final Boss Phase Music - Part of the Even More Themes project because you can never have too many themes
+    You can find it here: https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods
+
+    Copyright 2024 ShadowXeldron
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+   ----------------------------------------------------------------------
+
+   What this means is that this entire script may be included in any of your projects for any reason, even ones that use different licenses are non-reusable, AS LONG AS THE FOLLOWING CONDITIONS ARE OBSERVED:
+
+   1. THIS ENTIRE COMMENT BLOCK MUST NOT BE REMOVED OR EDITED!
+   2. YOU MUST PROVIDE ATTRIBUTION (in layman's terms, this means giving credit)
+   3. YOU MUST CLEARLY STATE THAT THE SCRIPT IS USED AND CLEARLY STATE EVERY MODIFICATION THAT YOU MADE TO THE SCRIPT (in other words, you have to say what you changed)
+
+*/
+/// Preprocessor definition. Useful to check if the mod is active and run specific code if required.
+#define HAS_SFBPM
+
+// Custom functions
+function u64 SFBPM.getFinalBossPhaseMusic(u8 phase)
+{
+    // Return a u64 based on the final boss phase. This might be redundant, but it's *COMPATIBLE* dammit!
+    if (phase == 1)
+        return "final1"
+    else if (phase == 2)
+        return "final2"
+    else if (phase == 3)
+        return "final3" // And Knuckles
+    // If another mod hasn't set an override (say you added a new final boss phase for example) then this will be overriden
+    else
+    {
+        assert(false, stringformat("Invalid final boss phase argument \"%d\" was passed!\nIf this is intended for custom handling, you will need to modify the function or set a custom override.\n\nPlease see the README.html file included with Seperate Final Boss Phase Music for more information.", phase))
+        return "final1"
+    }
+}
+
+// Function Overrides
+function u64 Standalone.getModdedSoundKey(u64 soundKey, u8 sfxId, u8 soundRegType)
+{
+    // This implementation may be more stupid than I am willing to admit
+    if (sfxId == MUSIC_BIGARMS && global.zone_act == 0x1700)
+        return SFBPM.getFinalBossPhaseMusic(1)
+    else
+        return base.Standalone.getModdedSoundKey(soundKey, sfxId, soundRegType)
+}
+
+//# address-hook(0x080058) end(0x080080)
+function void fn080058()
+{
+    if (!Audio.isPlayingAudio(SFBPM.getFinalBossPhaseMusic(2)))
+        Audio.playAudio(SFBPM.getFinalBossPhaseMusic(2), 0)
+    base.fn080058()
+}
+
+//# address-hook(0x081206) end(0x08122a)
+function void fn081206()
+{
+    Audio.playAudio(SFBPM.getFinalBossPhaseMusic(3), 0)
+    base.fn081206()
+}
