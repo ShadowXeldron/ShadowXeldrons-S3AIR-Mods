@@ -19,8 +19,7 @@ You choose between the new audio definitions or the vanilla Sonic 3 AIR settings
 
 By default, Sonic's themes are from Sonic Mania, Tails' themes are ripped directly from the Retro Engine version of Sonic 2, and Knuckles' themes are from Knuckles Chaotix. Every character's credits themes however are their theme songs from Sonic Adventure.  
   
-Mighty is also supported! Themes from SegaSonic the Hedgehog will play if you are playing as either [Ultimate Mighty](https://gamebanana.com/mods/54268) or [Extra Slot Mighty](https://gamebanana.com/mods/336038).  
-  
 They can also be changed using audio replacements! Be sure to load this mod first when using compatible mods. The soundkeys can be found in the mod files for those who would like to use it.  
   
 This can be bundled with other mods, as long as you respect the GNU General Public License v3.
+**NOTE:** Because of toxicity surrounding Extra Slot Mods, Mighty support has been **PERMANENTLY REMOVED** and will not be added back into the mod. I will however release an extension that restores Mighty functionality as a seperate download, although it will be provided without support.
