@@ -4,8 +4,6 @@
 	// Music and jingles                            //
 	//----------------------------------------------//
 
-	//
-
 	// Special Stages
 	
 	// Sonic 3
@@ -72,8 +70,6 @@
 	"Final1": { "Name": "Death Egg Robot Phase 1", "File": "FinalBoss1.ogg", "Type": "Music" },
 	"Final2": { "Name": "Death Egg Robot Phase 2", "File": "FinalBoss2.ogg", "Type": "Music" },
 	"Final3": { "Name": "Death Egg Robot Escape", "File": "FinalBoss3.ogg", "Type": "Music" },
-	
-	
 }
 
 
