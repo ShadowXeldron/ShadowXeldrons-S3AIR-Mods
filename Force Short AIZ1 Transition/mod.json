@@ -1,0 +1,23 @@
+{
+	"Metadata":
+	{
+		"Name": "Force Short AIZ1 Transition",
+		"Author": "ShadowXeldron",
+		"UniqueID": "ShadowXeldron-LessFrames",
+		"Description": "Forces the game to use the short version of the transition cutscene to burning AIZ1. This is the same one you've seen in time attack mode. This mod is very badly made.",
+		"URL": "https://github.com/ShadowXeldron/ShadowXeldrons-S3AIR-Mods",
+		"ModVersion": "v0.1"
+	},
+	
+	// To prevent a horrible looking screen flash with the tree transition, tells the user to load this mod ABOVE Unburned AIZ... although there's probably no good reason why you'd use oth of these mods at the same time
+	"OtherMods":
+    {
+        "useott-s-unburnt-aiz2":
+        {
+            "DisplayName": "Useott's Unburnt AIZ2",
+            "IsRequired": "0",
+            "Priority": "Lower"
+        }
+    },
+	
+}
